@@ -3,7 +3,8 @@ Mobile app allowing users to create shopping lists and track expiration dates of
 
 In this project we will be designing and implementing a shopping list app. Among 
 other features, users will be able to:
-*Add and remove items from a shopping list
+
+* Add and remove items from a shopping list
 * Track how much they are spending
 * Keep track of their current groceries/household products/etc. and any 
 pertinent information (e.g. expiry dates)
