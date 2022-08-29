@@ -1,5 +1,5 @@
 # Shopping-List
-Mobile app allowing users to create shopping lists and track expiration dates of their groceries and other pertinent information etc
+Mobile app allowing users to create shopping lists and track expiration dates of their groceries and other pertinent information.
 
 In this project we will be designing and implementing a shopping list app. Among 
 other features, users will be able to:
