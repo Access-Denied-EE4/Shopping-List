@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
 
 const Signup = () => {
@@ -13,9 +13,10 @@ const Signup = () => {
     //also empty string as no errors bu default
     const [error,setError]=useState('');
 
-
     //set the imported fucntion from the AuthContext file
     const {createUser}= UserAuth()
+
+    const navigate=useNavigate();
 
     //handle submit function
     //async as waits for submit button to be pressed
@@ -28,6 +29,8 @@ const Signup = () => {
 
         try{
             await createUser(email,password);
+            //after user created, naviage to account page
+            navigate('/account');
 
         }catch(e){
             setError(e.message);
