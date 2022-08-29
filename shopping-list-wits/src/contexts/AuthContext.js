@@ -36,7 +36,6 @@ export const AuthContextProvider=({children})=>{
 
     /*use onAuthStateChange-> put inside useEffect as only want it to run once when 
       component mounts*/
-
     useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
             console.log(currentUser);
@@ -49,7 +48,7 @@ export const AuthContextProvider=({children})=>{
 
     return (
         //this is where we export all our values/functions-imported via UserAuth and accessed as objects
-        <UserContext.Provider value={{createUser, user, logout}}>
+        <UserContext.Provider value={{createUser, user, logout, signIn}}>
             {children}
         </UserContext.Provider>
     )
