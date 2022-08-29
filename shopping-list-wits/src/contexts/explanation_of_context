@@ -1,0 +1,5 @@
+basically redux
+state managment
+useful for states that dont change often like authentication 
+
+many differnt ways to implement 
