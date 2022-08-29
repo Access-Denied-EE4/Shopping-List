@@ -17,9 +17,22 @@ export const AuthContextProvider=({children})=>{
 
     //create a new user function
     const createUser=(email,password)=>{
+        //firebase function for creating user
         return createUserWithEmailAndPassword(auth,email,password);
 
     };
+
+    //login function
+    const signIn=(email,password)=>{
+        //firebase function for loggin in
+        return signInWithEmailAndPassword(auth,email,password);
+    }
+
+    //logout function
+    const logout=()=>{
+        //firbase function for logging out
+        return signOut(auth);
+    }
 
     /*use onAuthStateChange-> put inside useEffect as only want it to run once when 
       component mounts*/
@@ -36,7 +49,7 @@ export const AuthContextProvider=({children})=>{
 
     return (
         //this is where we export all our values/functions-imported via UserAuth and accessed as objects
-        <UserContext.Provider value={{createUser, user}}>
+        <UserContext.Provider value={{createUser, user, logout}}>
             {children}
         </UserContext.Provider>
     )
