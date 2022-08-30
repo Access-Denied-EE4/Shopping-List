@@ -1,11 +1,11 @@
 version: 2.1
+working_directory: ~/shopping-list-wits
 orbs:
   node: circleci/node@5.0.2
 jobs:
   build-and-test:
     docker:
       - image: "cimg/base:stable"
-    working_directory: ~/Shopping-List/shopping-list-wits
     steps:
       - checkout
       - node/install:
