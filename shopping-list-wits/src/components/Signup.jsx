@@ -1,7 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
+import Verification from './Verification';
 
 const Signup = () => {
 
@@ -15,6 +16,7 @@ const Signup = () => {
 
     //set the imported fucntion from the AuthContext file
     const {createUser}= UserAuth()
+    const {user}=UserAuth();
 
     const navigate=useNavigate();
 
@@ -22,6 +24,9 @@ const Signup = () => {
     //async as waits for submit button to be pressed
     //pass event e so page dosent refresh when hit submit
     const handleSubmit= async (e)=>{
+
+
+
         //prevents page from refreshing when you submit
         e.preventDefault();
         //make sure error is emoty string as no current error
@@ -30,12 +35,14 @@ const Signup = () => {
         try{
             await createUser(email,password);
             //after user created, naviage to account page
-            navigate('/account');
+            //navigate('/account');
+            navigate('/verification');
 
         }catch(e){
             setError(e.message);
             console.log(e.message);
         }
+
 
     }
 

@@ -4,6 +4,7 @@ import Signup from "./components/Signup";
 import Account from "./components/Account";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Verification from "./components/Verification";
 
 function App() {
   return (
@@ -14,11 +15,13 @@ function App() {
       </h1> 
 
       <AuthContextProvider>
+
         {/* all routes to be used*/}
         <Routes>
           {/*individual routes */}
           <Route path= '/' element={<Signin/>}/>
           <Route path= '/signup' element={<Signup/>}/>
+          <Route path='/verification' element={<Verification/>}/>
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>
             <Account/>

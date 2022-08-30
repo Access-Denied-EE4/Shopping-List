@@ -3,9 +3,8 @@ import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 
 
-
-
 const Signin = () => {
+
 
     //setup states for email and password
     //set to empty string by default as no email/password by default
@@ -16,7 +15,8 @@ const Signin = () => {
     const [error,setError]=useState('');
 
     //define signIn from userAuth (the function we made there to sign in)
-    const {signIn}=UserAuth();
+    const {signIn,user}=UserAuth();
+
 
     //assign naviagte to the use navigate function
     const navigate=useNavigate();
@@ -33,7 +33,17 @@ const Signin = () => {
             //sigIn executes in the AuthContext file
             await signIn(email,password);
             //upon log in, redirect to account page
-            navigate('/account');
+            if(user.emailVerified)
+            {
+                navigate('/account');
+            }
+            else{
+                alert("Veryify email");
+                const delay = ms => new Promise(res => setTimeout(res, ms));
+                //wait 6 seconds
+                await delay(6000);
+                window.location.reload(false);
+            }
 
         }catch(e){
             setError(e.message);
