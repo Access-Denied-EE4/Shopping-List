@@ -1,19 +1,30 @@
 version: 2.1
+
 orbs:
-  node: circleci/node@4.7.0
+  heroku: circleci/heroku@0.0.10
+
 jobs:
-  build_and_test:
+  build:
     docker:
-      - image: cimg/node:17.2.0
+      - image: circleci/node:10.16.3
+    working_directory: ~/repo
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
+      # install dependencies
       - run:
-          command: npm test
+          name: Install Dependencies
+          command: npm install
+      - run:
           name: Run tests
+          command: npm run test
 
 workflows:
-  test_my_app:
+  heroku_deploy:
     jobs:
-      - build_and_test
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          filters:
+            branches:
+              only: web_app
