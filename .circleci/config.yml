@@ -1,22 +1,18 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.7.0
-
+  node: circleci/node@5.0.2
 jobs:
-  build_and_test:
+  build-and-test:
     docker:
-      - image: cimg/node:17.2.0
+      - image: "cimg/base:stable"
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
+      - node/install:
+          node-version: "12.22"
+      - node/install-packages
       - run:
-          command: npm test
-          name: Run tests
-
+          command: npm run test
 workflows:
-  test_my_app:
+  build-and-test:
     jobs:
-      - build_and_test
-
-
+      - build-and-test
