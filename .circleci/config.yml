@@ -1,20 +1,23 @@
 version: 2.1
-working_directory: ~/shopping-list-wits
-app-dir: /shopping-list-wits
-orbs:
-  node: circleci/node@5.0.2
 jobs:
-  build-and-test:
+  build:
+    working_directory: ~/repo
     docker:
-      - image: "cimg/base:stable"
+      - image: circleci/node:10.16.3
     steps:
       - checkout
-      - node/install:
-          node-version: "12.22"
-      - node/install-packages
       - run:
+          name: Update NPM
+          command: "sudo npm install -g npm@5"
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
           command: npm run test
-workflows:
-  build-and-test:
-    jobs:
-      - build-and-test
