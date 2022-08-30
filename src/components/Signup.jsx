@@ -1,7 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
+import Verification from './Verification';
 
 const Signup = () => {
 
@@ -15,6 +16,7 @@ const Signup = () => {
 
     //set the imported fucntion from the AuthContext file
     const {createUser}= UserAuth()
+    const {user}=UserAuth();
 
     const navigate=useNavigate();
 
@@ -22,6 +24,9 @@ const Signup = () => {
     //async as waits for submit button to be pressed
     //pass event e so page dosent refresh when hit submit
     const handleSubmit= async (e)=>{
+
+
+
         //prevents page from refreshing when you submit
         e.preventDefault();
         //make sure error is emoty string as no current error
@@ -30,12 +35,14 @@ const Signup = () => {
         try{
             await createUser(email,password);
             //after user created, naviage to account page
-            navigate('/account');
+            //navigate('/account');
+            navigate('/verification');
 
         }catch(e){
             setError(e.message);
             console.log(e.message);
         }
+
 
     }
 
@@ -47,7 +54,7 @@ const Signup = () => {
             <h1 className='text-2xl font-bold py-2'>Sign up for a free account</h1>
             <p className='py-2'>
                 {/* '/' indiciates link will take us to home page */}
-                Already have an account? 
+                Already have an account?
                 <Link to='/' className='underline' >Sign in</Link>
             </p>
         </div>
@@ -59,12 +66,11 @@ const Signup = () => {
                 {/* on change, set email to the target of the event value*/}
                 <input onChange={(e)=>setEmail(e.target.value)} className='border p-3' type='email'/>
             </div>
-    
+
             <div className='flex flex-col py-2'>
                 <label className='py-2 font-medium'>Password</label>
                 <input onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
             </div>
-
             <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
                 Sign Up
             </button>

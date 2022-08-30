@@ -3,9 +3,8 @@ import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 
 
-
-
 const Signin = () => {
+
 
     //setup states for email and password
     //set to empty string by default as no email/password by default
@@ -16,7 +15,8 @@ const Signin = () => {
     const [error,setError]=useState('');
 
     //define signIn from userAuth (the function we made there to sign in)
-    const {signIn}=UserAuth();
+    const {signIn,user}=UserAuth();
+
 
     //assign naviagte to the use navigate function
     const navigate=useNavigate();
@@ -25,7 +25,7 @@ const Signin = () => {
     const handleSubmit = async (e)=>{
         //do not want page refreshing on submit
         e.preventDefault();
-        // set error to empty string as no error by default 
+        // set error to empty string as no error by default
         setError('');
 
         try{
@@ -33,7 +33,17 @@ const Signin = () => {
             //sigIn executes in the AuthContext file
             await signIn(email,password);
             //upon log in, redirect to account page
-            navigate('/account');
+            if(user.emailVerified)
+            {
+                navigate('/account');
+            }
+            else{
+                alert("Veryify email");
+                const delay = ms => new Promise(res => setTimeout(res, ms));
+                //wait 6 seconds
+                await delay(6000);
+                window.location.reload(false);
+            }
 
         }catch(e){
             setError(e.message);
@@ -59,12 +69,13 @@ const Signin = () => {
                 {/* on input/change of field, set email to that value*/}
                 <input onChange={(e)=>{setEmail(e.target.value)}} className='border p-3' type='email'/>
             </div>
-    
+
             <div className='flex flex-col py-2'>
                 <label className='py-2 font-medium'>Password</label>
                 {/* on input/change of field, set email to that value*/}
                 <input onChange={(e)=>{setPassword(e.target.value)}} className='border p-3' type='password' />
             </div>
+
 
             <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
                 Sign In
