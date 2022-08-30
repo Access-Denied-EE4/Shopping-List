@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/Shopping-List/shopping-list-wits
+    working_directory: /home/shopping-list-wits
     docker:
       - image: circleci/node:10.16.3
     steps:
