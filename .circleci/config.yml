@@ -11,7 +11,7 @@ jobs:
           node-version: "12.22"
       - node/install-packages
       - run:
-          command: npm run test
+          command: cd shopping-list-wits && npm run test
 workflows:
   build-and-test:
     jobs:
