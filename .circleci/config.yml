@@ -5,13 +5,14 @@ jobs:
   build-and-test:
     docker:
       - image: "cimg/base:stable"
+    working_directory: ~/shopping-list-wits
     steps:
       - checkout
       - node/install:
           node-version: "12.22"
       - node/install-packages
       - run:
-          command: cd shopping-list-wits && npm run test
+          command: npm run test
 workflows:
   build-and-test:
     jobs:
