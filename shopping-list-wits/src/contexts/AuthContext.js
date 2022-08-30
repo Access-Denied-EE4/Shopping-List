@@ -5,6 +5,8 @@ import {signOut} from 'firebase/auth'
 //checks if logged in therefore have access to protected routes
 import {onAuthStateChanged} from 'firebase/auth'
 import{auth} from '../firebase';
+import { sendPasswordResetEmail } from "firebase/auth";
+
 
 const UserContext=createContext();
 
@@ -34,6 +36,11 @@ export const AuthContextProvider=({children})=>{
         return signOut(auth);
     }
 
+     //forgotpasswordFunction
+    const forgotPassword = (email) => {
+        return sendPasswordResetEmail(auth,email);
+    }
+
     /*use onAuthStateChange-> put inside useEffect as only want it to run once when 
       component mounts*/
     useEffect(()=>{
@@ -48,7 +55,7 @@ export const AuthContextProvider=({children})=>{
 
     return (
         //this is where we export all our values/functions-imported via UserAuth and accessed as objects
-        <UserContext.Provider value={{createUser, user, logout, signIn}}>
+        <UserContext.Provider value={{createUser, user, logout, signIn,forgotPassword}}>
             {children}
         </UserContext.Provider>
     )

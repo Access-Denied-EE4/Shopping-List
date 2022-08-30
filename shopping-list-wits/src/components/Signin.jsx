@@ -71,6 +71,12 @@ const Signin = () => {
             </button>
         </form>
 
+        <p className='py-2'>
+            {/* create link to forgotpasswordpage */}
+            <Link to ='/forgot-password' className='underline'>Forgot Password?</Link>
+
+        </p>
+
     </div>
   )
 }
