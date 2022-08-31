@@ -8,6 +8,7 @@ other features, users will be able to:
 * Track how much they are spending
 * Keep track of their current groceries/household products/etc. and any 
 pertinent information (e.g. expiry dates)
+* Keep track of how much money they are spending
 * Automatically add items to shopping lists on a regular basis (e.g. add milk to 
 the shopping list every week)
 * Share lists with other users (e.g. family members)
