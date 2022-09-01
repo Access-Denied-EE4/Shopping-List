@@ -54,7 +54,7 @@ test('Case when email and password is entered', () => {
 
 
 test('Case when email is entered and not password', () => {
-    const email = "test@gmail.com";
+    const email = "testing@gmail.com";
     const pass = "";
     expect(Approve_Sign_in(email, pass)).toBe(false);
 });
