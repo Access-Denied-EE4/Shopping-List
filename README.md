@@ -1,5 +1,5 @@
 # Shopping-List
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Access-Denied-EE4/Shopping-List/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Access-Denied-EE4/Shopping-List/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Access-Denied-EE4/Shopping-List/tree/web_app.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Access-Denied-EE4/Shopping-List/tree/web_app)
 
 Mobile app allowing users to create shopping lists and track expiration dates of their groceries and other pertinent information.
 
