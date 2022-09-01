@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "node_modules",
+			"path": "..\\..\\..\\..\\..\\Desktop\\shopping-list-app\\node_modules"
+		},
+		{
+			"name": "Shopping-List",
+			"path": "..\\.."
+		}
+	],
+	"settings": {}
+}
