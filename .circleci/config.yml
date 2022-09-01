@@ -14,7 +14,7 @@ jobs:
       # install dependencies
       - run:
           name: Install Dependencies
-          command: npm install && make test-coverage
+          command: npm install
       - coveralls/upload
       - run:
           name: Run tests
