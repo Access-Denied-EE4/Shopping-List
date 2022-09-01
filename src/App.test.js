@@ -25,7 +25,7 @@ test('case when passwords do not match', () => {
 });
 
 test('Case for valid email', () => {
-    const email = "email@gmail.com";
+    const email = "test@gmail.com";
     expect(Valid_Email(email)).toBe(true);
 
 });
