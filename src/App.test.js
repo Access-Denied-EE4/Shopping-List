@@ -3,6 +3,7 @@ import App from './App';
 import { Passwords_Match } from './contexts/AuthContext';
 import { Valid_Email } from "./contexts/AuthContext";
 import { Email_Entered } from "./contexts/AuthContext";
+import { Approve_Sign_in } from "./contexts/AuthContext";
 import { view } from '@testing-library/react';
 import { Signup } from './components/Signup';
 
@@ -43,4 +44,29 @@ test('Case if email is not entered', () => {
     const email = "";
     expect(Email_Entered(email)).toBe(false);
 
+});
+
+test('Case when email and password is entered', () => {
+    const email = "test@gmail.com";
+    const pass = "testpass";
+    expect(Approve_Sign_in(email, pass)).toBe(true);
+});
+
+
+test('Case when email is entered and not password', () => {
+    const email = "test@gmail.com";
+    const pass = "";
+    expect(Approve_Sign_in(email, pass)).toBe(false);
+});
+
+test('Case when password is entered and not email', () => {
+    const email = "";
+    const pass = "testpass";
+    expect(Approve_Sign_in(email, pass)).toBe(false);
+});
+
+test('Case when password and email is not entered', () => {
+    const email = "";
+    const pass = "";
+    expect(Approve_Sign_in(email, pass)).toBe(false);
 });

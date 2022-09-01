@@ -80,3 +80,4 @@ export const UserAuth = () => {
 export const Passwords_Match = (password, rep_password) => password === rep_password;
 export const Valid_Email = (email) => email.includes("@");
 export const Email_Entered = (email) => email !== "";
+export const Approve_Sign_in = (email, password) => email !== "" && password !== "";
