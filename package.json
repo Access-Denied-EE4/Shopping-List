@@ -20,6 +20,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "test-ci": "react-scripts test --env=jsdom --coverage --reporters=default",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

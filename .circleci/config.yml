@@ -1,22 +1,27 @@
-version: 2.1
-
-orbs:
-  coveralls: coveralls/coveralls@1.0.5
-  heroku: circleci/heroku@0.0.10
-
+version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10.16.3
-    working_directory: ~/repo
+      - image: circleci/node:8
     steps:
       - checkout
-      # install dependencies
+      - restore_cache: # special step to restore the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install Dependencies
+          name: Setup Dependencies
           command: npm install
       - run:
-          name: Run tests
-          command: npm run test
-
-
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run: # run tests
+          name: Run Test and Coverage
+          command: |
+            ./cc-test-reporter before-build
+            npm test -- --coverage
+            ./cc-test-reporter after-build --exit-code $?
