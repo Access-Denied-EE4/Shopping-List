@@ -1,6 +1,8 @@
 # Shopping-List
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Access-Denied-EE4/Shopping-List/tree/web_app.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Access-Denied-EE4/Shopping-List/tree/web_app)
 
+<a href="https://codeclimate.com/github/Access-Denied-EE4/Shopping-List/test_coverage"><img src="https://api.codeclimate.com/v1/badges/1031d20c72d978de5915/test_coverage" /></a>
+
 Mobile app allowing users to create shopping lists and track expiration dates of their groceries and other pertinent information.
 
 In this project we will be designing and implementing a shopping list app. Among 
