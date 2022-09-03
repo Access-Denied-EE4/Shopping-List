@@ -1,3 +1,7 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Access-Denied-EE4/Shopping-List/tree/web_app.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Access-Denied-EE4/Shopping-List/tree/web_app)
+
+<a href="https://codeclimate.com/github/Access-Denied-EE4/Shopping-List/test_coverage"><img src="https://api.codeclimate.com/v1/badges/1031d20c72d978de5915/test_coverage" /></a>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
