@@ -57,7 +57,7 @@ const Verification = () => {
 
   return (
     //if user has not verified the account, show this.
-    //user?.emailVerified===false &&(
+    user?.emailVerified===false &&(
         <div className='max-w-[700px] mx-auto my-16 p-4'>
             <div>
                 <h1 className='text-2xl font-bold py-2 text-center'>Please verify your account to complete Sign up!</h1>
@@ -72,7 +72,7 @@ const Verification = () => {
         </div>
 
 
-    //)
+    )
   )
 }
 
