@@ -4,8 +4,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { signOut } from 'firebase/auth'
 //checks if logged in therefore have access to protected routes
 
-import {onAuthStateChanged} from 'firebase/auth'
-import{auth} from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../firebase';
 import { sendPasswordResetEmail } from "firebase/auth";
 
 
@@ -38,12 +38,12 @@ export const AuthContextProvider = ({ children }) => {
     }
 
 
-     //forgotpasswordFunction
+    //forgotpasswordFunction
     const forgotPassword = (email) => {
-        return sendPasswordResetEmail(auth,email);
+        return sendPasswordResetEmail(auth, email);
     }
 
-    /*use onAuthStateChange-> put inside useEffect as only want it to run once when 
+    /*use onAuthStateChange-> put inside useEffect as only want it to run once when
 
     /*use onAuthStateChange-> put inside useEffect as only want it to run once when
 
@@ -62,11 +62,12 @@ export const AuthContextProvider = ({ children }) => {
         //this is where we export all our values/functions-imported via UserAuth and accessed as objects
         <
         UserContext.Provider value = {
-            { createUser, user, logout, signIn, forgotPassword } } > { children } </UserContext.Provider>
+            { createUser, user, logout, signIn, forgotPassword }
+        } > { children } < /UserContext.Provider>
     )
 }
 
-   
+
 
 export const UserAuth = () => {
         //this is what makes context avaliable
@@ -76,4 +77,25 @@ export const UserAuth = () => {
 export const Passwords_Match = (password, rep_password) => password === rep_password;
 export const Valid_Email = (email) => email.includes("@");
 export const Email_Entered = (email) => email !== "";
+export const Pass_Entered = (password) => password !== "";
 export const Approve_Sign_in = (email, password) => email !== "" && password !== "";
+export const CheckPassLength = (password) => password.length >= 6;
+export const Validate_SignIn = (password, email) => {
+
+
+    if (!Approve_Sign_in(password, email)) {
+
+        if (!Email_Entered(email) && Pass_Entered(password)) {
+            return 'Please enter an email address.'
+        } else if (Email_Entered(email) && !Pass_Entered(password)) {
+
+            return 'Please enter your password.'
+        } else if (!Email_Entered(email) && !Pass_Entered(password)) {
+            return 'Please enter an email address and password.';
+
+        }
+    } else {
+        return 'Approve';
+    }
+
+}

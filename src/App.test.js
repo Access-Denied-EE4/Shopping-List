@@ -6,7 +6,8 @@ import { Email_Entered } from "./contexts/AuthContext";
 import { Approve_Sign_in } from "./contexts/AuthContext";
 import { view } from '@testing-library/react';
 import { Signup } from './components/Signup';
-
+import { Validate_SignIn } from './contexts/AuthContext';
+import { CheckPassLength } from './contexts/AuthContext';
 
 
 
@@ -69,4 +70,41 @@ test('Case when password and email is not entered', () => {
     const email = "";
     const pass = "";
     expect(Approve_Sign_in(email, pass)).toBe(false);
+});
+
+test('Testing error messages when signing in #1 :Approve', () => {
+    const email = "test@gmail.com";
+    const pass = "test";
+    expect(Validate_SignIn(pass, email)).toBe('Approve');
+});
+
+test('Testing error messages when signing in #2', () => {
+    const email = "test@gmail.com";
+    const pass = "";
+    expect(Validate_SignIn(pass, email)).toBe('Please enter your password.');
+});
+test('Testing error messages when signing in #3', () => {
+    const email = "";
+    const pass = "";
+    expect(Validate_SignIn(pass, email)).toBe('Please enter an email address and password.');
+});
+test('Testing error messages when signing in #4', () => {
+    const email = "";
+    const pass = "test";
+    expect(Validate_SignIn(pass, email)).toBe('Please enter an email address.');
+});
+
+test('Password for new account has length>6', () => {
+    const pass = "test123";
+    expect(CheckPassLength(pass)).toBe(true);
+});
+
+test('Password for new account has length=6', () => {
+    const pass = "test12";
+    expect(CheckPassLength(pass)).toBe(true);
+});
+
+test('Password for new account has length<6', () => {
+    const pass = "test1";
+    expect(CheckPassLength(pass)).toBe(false);
 });

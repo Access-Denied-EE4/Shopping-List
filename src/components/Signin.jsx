@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import ClickToCart from "../images/CTCC.jpg"
 import {Alert} from "react-bootstrap";
+import { Validate_SignIn } from '../contexts/AuthContext';
 
 const Signin = () => {
 
@@ -29,36 +30,36 @@ const Signin = () => {
         // set error to empty string as no error by default
         setError('');
 
-        if(email.length==0)
-        {
-            return setError("Please enter an email address");
-        }
-        if(password.length==0)
-        {
-            return setError("Please enter a password");
+        if (Validate_SignIn(password,email)!=='Approve'){
+            setError(Validate_SignIn(password,email));
         }
 
-        try{
-            //wait for call to signIn function with set email and password
-            //sigIn executes in the AuthContext file
-            await signIn(email,password);
-            //upon log in, redirect to account page
-            if(user.emailVerified)
-            {
-                navigate('/categories');
-            }
-            else{
-                alert("Veryify email");
-                const delay = ms => new Promise(res => setTimeout(res, ms));
-                //wait 6 seconds
-                await delay(6000);
-                window.location.reload(false);
+            try{
+                console.log(email);
+                //wait for call to signIn function with set email and password
+                //sigIn executes in the AuthContext file
+                await signIn(email,password);
+                //upon log in, redirect to account page
+                if(user.emailVerified)
+                {
+                    navigate('/categories');
+                }
+                else{
+                    alert("Veryify email");
+                    const delay = ms => new Promise(res => setTimeout(res, ms));
+                    //wait 6 seconds
+                    await delay(6000);
+                    window.location.reload(false);
+                }
+
+            }catch(e){
+                if (Validate_SignIn(password,email)==='Approve'){
+                    setError("User not found, please check email and password");
+                }
+
+                console.log(e.message);
             }
 
-        }catch(e){
-            setError("User not found, please check email and password");
-            console.log(e.message);
-        }
     }
 
   return (
