@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ForgotPassword from "./components/ForgotPasswordPage"
 import Verification from "./components/Verification";
 import Categories from "./components/Categories";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
       <AuthContextProvider>
         {/* all routes to be used*/}
+        <NavBar />
         <Routes>
           {/*individual routes */}
           <Route path= '/' element={<Signin/>}/>
