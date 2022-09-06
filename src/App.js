@@ -24,9 +24,7 @@ function App() {
           {/*individual routes */}
           <Route path= '/' element={<Signin/>}/>
           <Route path= '/signup' element={<Signup/>}/>
-
           <Route path = '/forgot-password' element={<ForgotPassword />}/>
-
           <Route path='/verification' element={<Verification/>}/>
 
           {/*protected route*/}

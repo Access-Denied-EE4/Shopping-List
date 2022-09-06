@@ -4,6 +4,7 @@ import { UserAuth } from '../contexts/AuthContext';
 import { sendEmailVerification } from 'firebase/auth';
 import {Close} from '@mui/icons-material'
 import {useNavigate } from 'react-router-dom';
+import {Card, Form} from 'react-bootstrap';
 
 const Verification = () => {
 
@@ -56,34 +57,22 @@ const Verification = () => {
 
   return (
     //if user has not verified the account, show this.
-    user?.emailVerified===false &&(        
-        <Box>
-            {/* open is a sate that contolles state of open or closed*/}
-            <Collapse in={open}>
-                <Alert 
-                severity='warning' 
-                action={
-                    <IconButton
-                    aria-label='Close'
-                    size='small'
-                    onClick={()=>setOpen(false)}>
-                        <Close fontSize="inherit"/>
-                    </IconButton>
-                }
-                sx={{mb:3}}
-                >
-                    Your email has not been verified
-                    <Button
-                    size='small'
-                    onClick={verify}
-                    disabled={isClicked}
-                    sx={{lineHeight: "initial"}}>
-                        veryify 
-                    </Button>
-                </Alert>
-            </Collapse>
-        </Box>
-    )
+    //user?.emailVerified===false &&(
+        <div className='max-w-[700px] mx-auto my-16 p-4'>
+            <div>
+                <h1 className='text-2xl font-bold py-2 text-center'>Please verify your account to complete Sign up!</h1>
+                <p className='py-2 text-center'>
+                    If this is your first time Signing Up with us the verification
+                    email will be in your spam inbox so please be sure to check!
+                </p>
+            </div>
+                <button onClick={verify} disabled={isClicked} className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
+                   Verify
+                </button>
+        </div>
+
+
+    //)
   )
 }
 
