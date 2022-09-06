@@ -1,7 +1,15 @@
 import React from 'react';
 import {Card, Container, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import ClickToCart from "../images/CTCC.jpg"
+import {Link, useNavigate} from 'react-router-dom';
 const Categories = () => {
+
+    const navigate=useNavigate();
+
+    const goToAccount=()=>
+    {
+        navigate("/account");
+    }
   return (
 
     <>
@@ -66,6 +74,12 @@ const Categories = () => {
 
             </ImageList>
         </Container>
+
+        <div>
+            <button onClick={goToAccount} className='border px-6 py-2 my-4'>
+                Go To Account
+            </button>
+        </div>
     </>
   )
 }

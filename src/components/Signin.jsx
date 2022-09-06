@@ -45,7 +45,7 @@ const Signin = () => {
             //upon log in, redirect to account page
             if(user.emailVerified)
             {
-                navigate('/account');
+                navigate('/categories');
             }
             else{
                 alert("Veryify email");
