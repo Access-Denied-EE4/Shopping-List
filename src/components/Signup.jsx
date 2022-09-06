@@ -43,6 +43,10 @@ const Signup = () => {
         {
             return setError("Please enter a password");
         }
+        if(password.length<6)
+        {
+            return setError("Please enter a password at least 6 characters long")
+        }
 
         try{
             setError('');
@@ -52,7 +56,7 @@ const Signup = () => {
             navigate('/verification');
 
         }catch(e){
-            setError(e.message);
+            setError("Failed to create an account")
             console.log(e.message);
         }
         setLoading(false);
