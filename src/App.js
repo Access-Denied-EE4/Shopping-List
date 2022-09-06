@@ -13,12 +13,8 @@ function App() {
   return (
 
     <div>
-      <h1 className='text-center text-3xl fot-bold'>
-      Shopping List
-      </h1> 
 
       <AuthContextProvider>
-
         {/* all routes to be used*/}
         <Routes>
           {/*individual routes */}

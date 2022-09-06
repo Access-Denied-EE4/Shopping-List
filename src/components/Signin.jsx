@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import ClickToCart from "../images/CTCC.jpg"
+import {Alert} from "react-bootstrap";
 
 const Signin = () => {
 
@@ -28,6 +29,15 @@ const Signin = () => {
         // set error to empty string as no error by default
         setError('');
 
+        if(email.length==0)
+        {
+            return setError("Please enter an email address");
+        }
+        if(password.length==0)
+        {
+            return setError("Please enter a password");
+        }
+
         try{
             //wait for call to signIn function with set email and password
             //sigIn executes in the AuthContext file
@@ -46,7 +56,7 @@ const Signin = () => {
             }
 
         }catch(e){
-            setError(e.message);
+            setError("User not found, please check email and password");
             console.log(e.message);
         }
     }
@@ -59,6 +69,12 @@ const Signin = () => {
         </div>
 
         <div className='max-w-[700px] mx-auto my-16 p-4'>
+            <div id='errorDiv'>
+                <div className='text-white border border-error bg-error w-fit p-4 my-2'>
+                    {/* if there is an error, set a bootstrap alert with the error*/}
+                    {error && <Alert variant='danger'>{error}</Alert>}
+                </div>
+            </div>
             <div>
                 <h1 className='text-2xl font-bold py-2'>Sign in to your account</h1>
                 <p className='py-2'>
@@ -83,7 +99,7 @@ const Signin = () => {
                 </div>
 
 
-                <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
+                <button className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign In
                 </button>
             </form>

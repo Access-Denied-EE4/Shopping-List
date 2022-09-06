@@ -4,6 +4,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
 import Verification from './Verification';
 import ClickToCart from "../images/CTCC.jpg"
+import { Alert } from 'react-bootstrap';
 
 const Signup = () => {
 
@@ -14,6 +15,9 @@ const Signup = () => {
     //error state-> allows us to set errors on the screen
     //also empty string as no errors bu default
     const [error,setError]=useState('');
+    
+    //create state for loading 
+    const [loading, setLoading]=useState(false);
 
     //set the imported fucntion from the AuthContext file
     const {createUser}= UserAuth()
@@ -26,25 +30,32 @@ const Signup = () => {
     //pass event e so page dosent refresh when hit submit
     const handleSubmit= async (e)=>{
 
-
-
         //prevents page from refreshing when you submit
         e.preventDefault();
         //make sure error is emoty string as no current error
         setError('');
 
+        if(email.length==0)
+        {
+            return setError("Please enter an email address");
+        }
+        if(password.length==0)
+        {
+            return setError("Please enter a password");
+        }
+
         try{
+            setError('');
+            setLoading(true);
             await createUser(email,password);
-            //after user created, naviage to account page
-            //navigate('/account');
+            //after user created, naviage to verification page page
             navigate('/verification');
 
         }catch(e){
             setError(e.message);
             console.log(e.message);
         }
-
-
+        setLoading(false);
     }
 
   return (
@@ -54,6 +65,12 @@ const Signup = () => {
             <img style={{width:150, height:150}} src={ClickToCart}></img>
         </div>
         <div className='max-w-[700px] mx-auto my-16 p-4'>
+            <div id='errorDiv'>
+                <div className='text-white border border-error bg-error w-fit p-4 my-2'>
+                    {/* if there is an error, set a bootstrap alert with the error*/}
+                    {error && <Alert variant='danger'>{error}</Alert>}
+                </div>
+            </div>
             <div>
                 <h1 className='text-2xl font-bold py-2'>Sign up for a free account</h1>
                 <p className='py-2'>
@@ -75,7 +92,7 @@ const Signup = () => {
                     <label className='py-2 font-medium'>Password</label>
                     <input onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
                 </div>
-                <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
+                <button disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign Up
                 </button>
             </form>
