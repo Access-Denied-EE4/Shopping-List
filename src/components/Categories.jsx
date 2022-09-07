@@ -1,6 +1,13 @@
 import React from 'react';
 import {Card, Container, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import ClickToCart from "../images/CTCC.jpg"
+import meat from "../images/meat.jpeg";
+import chocolate from "../images/chocolate.jpeg";
+import dairy from "../images/dairy.webp";
+import drinks from "../images/drinks.jpeg";
+import readyMade from "../images/readyMade.webp";
+import toiletries from "../images/Toiletries.jpeg";
+import vegetables from "../images/vegetables.jpeg";
 import {Link, useNavigate} from 'react-router-dom';
 const Categories = () => {
 
@@ -24,51 +31,51 @@ const Categories = () => {
             }}>
                 <Card key={'category1'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={meat}></img>
                         <ImageListItemBar 
-                        title="Category"/>
+                        title="Meat Items"/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category2'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={dairy}></img>
                         <ImageListItemBar 
-                        title="Category"/>
+                        title="Dairy Items"/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category3'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={drinks}></img>
                         <ImageListItemBar 
-                        title="Category"/>
+                        title="Drinks"/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category4'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={readyMade}></img>
                         <ImageListItemBar 
-                        title={'Category'}/>
+                        title={'Ready Made Food'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category5'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={vegetables}></img>
                         <ImageListItemBar 
-                        title={'Category'}/>
+                        title={'Vegetables'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category6'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={chocolate}></img>
                         <ImageListItemBar 
-                        title={'Category'}/>
+                        title={'Sweets and Chocolate'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category7'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ClickToCart}></img>
+                        <img src={toiletries}></img>
                         <ImageListItemBar 
-                        title={'Category'}/>
+                        title={'Toiletries'}/>
                     </ImageListItem>
                 </Card>
 

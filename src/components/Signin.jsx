@@ -39,9 +39,10 @@ const Signin = () => {
                 //wait for call to signIn function with set email and password
                 //sigIn executes in the AuthContext file
                 await signIn(email,password);
+
                 //upon log in, redirect to account page
                 if(user.emailVerified)
-                {
+                {   
                     navigate('/categories');
                 }
                 else{
@@ -53,11 +54,11 @@ const Signin = () => {
                 }
 
             }catch(e){
+
                 if (Validate_SignIn(password,email)==='Approve'){
                     setError("User not found, please check email and password");
                 }
-
-                console.log(e.message);
+                console.log("Error :", e.message);
             }
 
     }

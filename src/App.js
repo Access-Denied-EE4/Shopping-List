@@ -16,7 +16,6 @@ function App() {
 
       <AuthContextProvider>
         {/* all routes to be used*/}
-        <NavBar />
         <Routes>
           {/*individual routes */}
           <Route path= '/' element={<Signin/>}/>

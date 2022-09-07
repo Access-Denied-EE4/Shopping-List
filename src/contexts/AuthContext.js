@@ -60,10 +60,9 @@ export const AuthContextProvider = ({ children }) => {
 
     return (
         //this is where we export all our values/functions-imported via UserAuth and accessed as objects
-        <
-        UserContext.Provider value = {
-            { createUser, user, logout, signIn, forgotPassword }
-        } > { children } < /UserContext.Provider>
+        <UserContext.Provider value={{createUser, user, logout, signIn, forgotPassword}}>
+            {children}
+        </UserContext.Provider>
     )
 }
 
