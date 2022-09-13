@@ -14,6 +14,7 @@ import Drink from "./components/Items/Drink";
 import ReadyMade from "./components/Items/Ready";
 import Veg from "./components/Items/Veg";
 import Sweet from "./components/Items/Sweet";
+import Toilet from "./components/Items/Toilet";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/ready' element={<ReadyMade/>}/>
           <Route path='/veg' element={<Veg/>}/>
           <Route path='/sweet' element={<Sweet/>}/>
+          <Route path='/toilet' element={<Toilet/>}/>
 
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>

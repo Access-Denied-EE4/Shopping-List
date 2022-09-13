@@ -82,7 +82,7 @@ const Categories = () => {
                 </Card>
                 <Card key={'category7'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={toiletries} style={{cursor:'pointer'}}></img>
+                        <img src={toiletries} style={{cursor:'pointer'}} onClick={()=>navigate('/toilet')}></img>
                         <ImageListItemBar 
                         title={'Toiletries'}/>
                     </ImageListItem>
