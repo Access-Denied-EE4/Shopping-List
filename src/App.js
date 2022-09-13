@@ -8,6 +8,7 @@ import ForgotPassword from "./components/ForgotPasswordPage"
 import Verification from "./components/Verification";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
+import Meat from "./components/Items/Meat";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path = '/forgot-password' element={<ForgotPassword />}/>
           <Route path='/verification' element={<Verification/>}/>
           <Route path='/categories' element={<Categories/>}/>
+          <Route path='/meat' element={<Meat/>}/>
 
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>

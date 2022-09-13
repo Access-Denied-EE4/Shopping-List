@@ -17,6 +17,12 @@ const Categories = () => {
     {
         navigate("/account");
     }
+
+    const handleClick=()=>
+    {
+        console.log("CLICKEDDDD");
+    }
+
   return (
 
     <>
@@ -28,52 +34,54 @@ const Categories = () => {
             gap={12}
             sx={{
                 mb:8,
+                /*makes grid respond to different screen sizes */
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
             }}>
-                <Card key={'category1'}>
+                <Card key={'meat'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={meat}></img>
+                        <img src={meat} style={{cursor:'pointer'}} onClick={()=>navigate('/meat')}></img>
                         <ImageListItemBar 
                         title="Meat Items"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'category2'}>
+                <Card key={'dairy'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={dairy}></img>
+                        <img src={dairy} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                         title="Dairy Items"/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category3'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={drinks}></img>
+                        <img src={drinks} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                         title="Drinks"/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category4'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={readyMade}></img>
-                        <ImageListItemBar 
+                        <img src={readyMade} style={{cursor:'pointer'}}></img>
+                        <ImageListItemBar
                         title={'Ready Made Food'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category5'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={vegetables}></img>
+                        <img src={vegetables} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                         title={'Vegetables'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category6'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={chocolate}></img>
+                        <img src={chocolate} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                         title={'Sweets and Chocolate'}/>
                     </ImageListItem>
                 </Card>
                 <Card key={'category7'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={toiletries}></img>
+                        <img src={toiletries} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                         title={'Toiletries'}/>
                     </ImageListItem>
