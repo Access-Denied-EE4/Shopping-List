@@ -52,9 +52,9 @@ const Categories = () => {
                         title="Dairy Items"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'category3'}>
+                <Card key={'drink'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={drinks} style={{cursor:'pointer'}}></img>
+                        <img src={drinks} style={{cursor:'pointer'}} onClick={()=>navigate('/drink')}></img>
                         <ImageListItemBar 
                         title="Drinks"/>
                     </ImageListItem>

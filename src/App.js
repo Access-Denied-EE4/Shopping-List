@@ -10,6 +10,7 @@ import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
 import Meat from "./components/Items/Meat";
 import Dairy from "./components/Items/Dairy";
+import Drink from "./components/Items/Drink";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/categories' element={<Categories/>}/>
           <Route path='/meat' element={<Meat/>}/>
           <Route path='/dairy' element={<Dairy/>}/>
+          <Route path='/drink' element={<Drink/>}/>
 
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>
