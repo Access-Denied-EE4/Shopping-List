@@ -66,7 +66,7 @@ const Signup = () => {
 
     <>
         <div className='image-container'>
-            <img style={{width:150, height:150}} src={ClickToCart}></img>
+            <img style={{width:190, height:190}} src={ClickToCart}></img>
         </div>
         <div className='max-w-[700px] mx-auto my-16 p-4'>
             <div id='errorDiv'>
