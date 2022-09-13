@@ -9,6 +9,7 @@ import readyMade from "../images/readyMade.webp";
 import toiletries from "../images/Toiletries.jpeg";
 import vegetables from "../images/vegetables.jpeg";
 import {Link, useNavigate} from 'react-router-dom';
+
 const Categories = () => {
 
     const navigate=useNavigate();
@@ -46,7 +47,7 @@ const Categories = () => {
                 </Card>
                 <Card key={'dairy'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={dairy} style={{cursor:'pointer'}}></img>
+                        <img src={dairy} style={{cursor:'pointer'}} onClick={()=>navigate('/dairy')}></img>
                         <ImageListItemBar 
                         title="Dairy Items"/>
                     </ImageListItem>
