@@ -11,6 +11,8 @@ import NavBar from "./components/NavBar";
 import Meat from "./components/Items/Meat";
 import Dairy from "./components/Items/Dairy";
 import Drink from "./components/Items/Drink";
+import ReadyMade from "./components/Items/Ready";
+import Veg from "./components/Items/Veg";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path='/meat' element={<Meat/>}/>
           <Route path='/dairy' element={<Dairy/>}/>
           <Route path='/drink' element={<Drink/>}/>
+          <Route path='/ready' element={<ReadyMade/>}/>
+          <Route path='/veg' element={<Veg/>}/>
 
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>

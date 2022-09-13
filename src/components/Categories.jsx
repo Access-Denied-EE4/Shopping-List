@@ -59,16 +59,16 @@ const Categories = () => {
                         title="Drinks"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'category4'}>
+                <Card key={'ready'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={readyMade} style={{cursor:'pointer'}}></img>
+                        <img src={readyMade} style={{cursor:'pointer'}} onClick={()=>navigate('/ready')}></img>
                         <ImageListItemBar
                         title={'Ready Made Food'}/>
                     </ImageListItem>
                 </Card>
-                <Card key={'category5'}>
+                <Card key={'veg'}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={vegetables} style={{cursor:'pointer'}}></img>
+                        <img src={vegetables} style={{cursor:'pointer'}} onClick={()=>navigate('/veg')}></img>
                         <ImageListItemBar 
                         title={'Vegetables'}/>
                     </ImageListItem>
