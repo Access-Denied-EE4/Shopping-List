@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react'
 import {auth} from '../firebase'
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from '@react-navigation/core'
-import { Link } from '@react-navigation/native';
 
-const LoginScreen = () => {
-    
+
+const SignUpScreen = () => {
+
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
     const navigation = useNavigation();
-   
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if(user){
@@ -22,74 +22,63 @@ const LoginScreen = () => {
 
         return unsubscribe;
     }, [])
+
     
-    const handleLogin=()=>{
-        signInWithEmailAndPassword(auth,email,password).then(userCredentials=>{
+    
+    const handleSignUp=()=>{
+        createUserWithEmailAndPassword(auth,email,password).then(userCredentials=>{
             const user=userCredentials.user;
-            console.log('Logged in with: ',user.email);
+            console.log('Signed up with: ',user.email);
         })
         .catch(error=>alert(error.message))
     }
 
 
+  return (
 
-    return (
-        <KeyboardAvoidingView
-            style={styles.container}
-        >
+    <KeyboardAvoidingView
+    style={styles.container}
+    >
 
-        <View>
+    <View>
 
-        <Text style={styles.title}>Login</Text>
-        </View>
-            <View style={styles.inputContainer}>
-                <TextInput
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                    style={styles.input}
-                />
-                <TextInput
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={handleLogin}
-                    style={[styles.button,styles.buttonOutline]}
-                >
-                <Text style={styles.buttonText}>Login</Text>
-
-                </TouchableOpacity>
-              
-            </View>
-
-            <Link 
-
-            style={styles.forgotPassword}
-
-            to={{ screen: 'SignUp' }}>
-                 Dont have an account yet? Sign Up!
-            </Link>
-
-            <Link 
-
-            style={styles.forgotPassword}
-            
-            to={{ screen: 'ForgotPassword' }}>
-                ForgotPassword?
-            </Link>
-
+    <Text style={styles.title}>Sign Up</Text>
     
-        </KeyboardAvoidingView>
-    )
+
+
+</View>
+    <View style={styles.inputContainer}>
+        <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            style={styles.input}
+        />
+        <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={text => setPassword(text)}
+            style={styles.input}
+            secureTextEntry
+        />
+    </View>
+    <View style={styles.buttonContainer}>
+        <TouchableOpacity
+            onPress={handleSignUp}
+            style={[styles.button,styles.buttonOutline]}
+        >
+        <Text style={styles.buttonText}>SignUp</Text>
+
+        </TouchableOpacity>
+    </View>
+
+    </KeyboardAvoidingView>
+    
+  )
 }
 
-export default LoginScreen
+export default SignUpScreen
+
 
 const styles = StyleSheet.create({
     container: {
@@ -139,20 +128,12 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize:16,
     },
-    forgotPassword: {
-        justifyContent:'center',
-        alignItem: 'center',
-        marginTop: 80,
-        fontWeight: '700',
-        textDecorationLine: 'underline'
-    },
     title:{
         justifyContent: 'center',
         alignItems: 'stretch',
         fontWeight: '800',
         marginBottom: 40,
-    },
-    
+    }
 
 
 })

@@ -7,6 +7,7 @@ import React from 'react';
 import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
 import ForgotPasswordScreen from './Screens/ForgotPasswordScreen'
+import SignUpScreen from './Screens/SignUpScreen'
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
@@ -19,6 +20,7 @@ export default function App() {
     <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
     <Stack.Screen name="Home" component={HomeScreen}/>
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
+    <Stack.Screen name="SignUp" component={SignUpScreen}/>
 
     </Stack.Navigator>
   </NavigationContainer>
