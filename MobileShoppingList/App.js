@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
+import ForgotPasswordScreen from './Screens/ForgotPasswordScreen'
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
@@ -17,6 +18,8 @@ export default function App() {
     <Stack.Navigator>
     <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
     <Stack.Screen name="Home" component={HomeScreen}/>
+    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
+
     </Stack.Navigator>
   </NavigationContainer>
   );

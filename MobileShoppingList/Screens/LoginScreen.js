@@ -1,8 +1,9 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {auth} from '../firebase'
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from '@react-navigation/core'
+import { Link } from '@react-navigation/native';
 
 const LoginScreen = () => {
     
@@ -37,6 +38,10 @@ const LoginScreen = () => {
         })
         .catch(error=>alert(error.message))
     }
+
+   
+
+    
 
 
     return (
@@ -75,7 +80,15 @@ const LoginScreen = () => {
                 </TouchableOpacity>
             </View>
 
+            <Link 
 
+            style={styles.forgotPassword}
+            
+            to={{ screen: 'ForgotPassword' }}>
+                ForgotPassword?
+            </Link>
+
+    
         </KeyboardAvoidingView>
     )
 }
@@ -129,6 +142,16 @@ const styles = StyleSheet.create({
         color: '#0782F9',
         fontWeight: '700',
         fontSize:16,
+    },
+    forgotPassword: {
+        justifyContent:'center',
+        alignItem: 'center',
+        marginTop: 80,
+        fontWeight: '700',
+        textDecorationLine: 'underline'
+        
+
+
     }
 
 
