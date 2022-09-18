@@ -15,7 +15,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if(user){
-                navigation.replace("Home")
+                navigation.navigate("Home")
             }
         })
         
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     buttonOutline:{
         backgroundColor:'white',
         marginTop:5,
-        borderColor:'#0782F9',
+        borderColor:'#585DA6',
         borderWidth: 2,
     },
     buttonText:{
