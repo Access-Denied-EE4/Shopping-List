@@ -52,6 +52,7 @@ const Signup = () => {
             setError('');
             setLoading(true);
             await createUser(email,password);
+            
             //after user created, naviage to verification page page
             navigate('/verification');
 
