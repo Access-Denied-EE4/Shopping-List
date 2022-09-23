@@ -3,8 +3,9 @@ import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Too
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {db} from "../../firebase";
+import {db, storage} from "../../firebase";
 import {collection, getDocs} from 'firebase/firestore';
+import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
 
 const Dairy = () => {
@@ -16,14 +17,47 @@ const Dairy = () => {
   const [dairyItems, setDairyItems]=useState([]);
   //variable holding the refernce to the DB collection
   //pass in db variable from fireabse file, collection name in DB
-  //collection is a firebase function 
+  //collection is a firebase function
   const dairyItemsCollectionRef=collection(db, "dairy_items");
+
+
+  //state for image, defualt is null
+  const [url, setUrl]=useState(null);
+
+  const handleImage=async(imageArray)=>{
+
+    //keep names of images
+    const newImageArray=[];
+    //create path name and set in array
+    for(let i =0; i<imageArray.length;++i)
+    {
+        newImageArray.push("dairy/"+imageArray[i]+".png");
+    }
+
+    //store all url in the array
+    const urlArray=[];
+    for(let i=0; i<imageArray.length;++i)
+    {
+      //get ref to image
+      const imageRef=ref(storage, newImageArray[i]);
+      //get url for the image
+      const image = await getDownloadURL(imageRef);
+      
+
+      const currProdId=imageArray[i];
+      //create obkect 
+      let entry={};
+      entry[currProdId]=image;
+      urlArray.push(entry);
+      console.log(urlArray["dairy-low-fat-milk"])
+    }
+    setUrl(urlArray);
+  }
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
   //make api call to firebase inside the useEffect hook
   useEffect(()=>{
-
     //use an async function 
     //api calls in JS will return a promise
     //never know how long will take for data to return back -> async
@@ -41,11 +75,20 @@ const Dairy = () => {
       //then also add the id 
       setDairyItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
 
-    };
+      //store prod id of each item in image array
+      const imageArray=[];
+      for(let i=0; i<dairyItems.length; ++i)
+      {
+          imageArray[i]=dairyItems[i].prod_id;
+      }
 
+      //call handle images function 
+      handleImage(imageArray);
+    };
     //call async function 
     getDairyItems();
   },[]);
+
 
   return (
     <>
@@ -61,7 +104,7 @@ const Dairy = () => {
                 return(
                   <Card key={item.id}>
                     <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={ctc} style={{cursor:'pointer'}}></img>
+                        <img src={url[0]} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
                           title={item.name}
                           actionIcon={
