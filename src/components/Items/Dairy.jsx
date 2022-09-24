@@ -22,7 +22,7 @@ const Dairy = () => {
 
 
   //state for image, defualt is null
-  const [url, setUrl]=useState(null);
+   const [url, setUrl]=useState([]);
 
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
@@ -34,7 +34,6 @@ const Dairy = () => {
     //never know how long will take for data to return back -> async
     //cant makr useEffect async and therefore need to make an async function inside that will be called
     const getDairyItems=async()=>{
-
       //var to ref data we gonna get back
       //await is used to handle promise
       //getDocs-firebase func->returns all documents from a collection 
@@ -44,90 +43,58 @@ const Dairy = () => {
       //map from each doc   and set equal to obejct in dairyItems array
       //...doc.data will return the fields of the item
       //then also add the id 
-      setDairyItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
-
-      //store prod id of each item in image array
-      const imageArray=[];
-      for(let i=0; i<dairyItems.length; ++i)
-      {
-          const imgUrl=await getDownloadURL(ref(storage,dairyItems[i].img_url));
-          imageArray[i]=imgUrl;
-      }
-      setUrl(imageArray);
+     setDairyItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
     };
     //call async function 
     getDairyItems();
   },[]);
 
+  useEffect(()=>{
+    const getImgUrl=async()=>{
+      const imageArray=[];
+      for(let i=0; i<dairyItems.length; ++i)
+      {
+          const imgUrl=await getDownloadURL(ref(storage,dairyItems[i].img_url));
+          imageArray.push({name: `${dairyItems[i].name}`, url: `${imgUrl}`});
+      }
+      setUrl(imageArray);
+    }
+    getImgUrl();
+
+  },[]);
 
   return (
-    <>
-        <Container>
-          <ImageList
-            gap={12}
-            sx={{
-                mb:8,
-                /*makes grid respond to different screen sizes */
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
-            }}>
-                <Card key={'meat'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={url[2]} style={{cursor:'pointer'}}></img>
-                        <ImageListItemBar 
-                        title={dairyItems[0].name}/>
-                    </ImageListItem>
-                </Card>
-                <Card key={'dairy'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={url[0]} style={{cursor:'pointer'}}></img>
-                        <ImageListItemBar 
-                       title={dairyItems[1].name}/>
-                    </ImageListItem>
-                </Card>
-                <Card key={'drink'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={url[1]} style={{cursor:'pointer'}} ></img>
-                        <ImageListItemBar 
-                        title={dairyItems[2].name}/>
-                    </ImageListItem>
-                </Card>
-            </ImageList>
-        </Container>
-    </>
-    // <>
-    //   <Container>
-    //       <ImageList
-    //       gap={12}
-    //       sx={{
-    //           mb:8,
-    //           /*makes grid respond to different screen sizes */
-    //           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
-    //       }}>
-    //           {dairyItems.map(item=>{
-    //             const imgRef=ref(storage, item.img_url);
-    //             getDownloadURL(imgRef).then((url)=>{
-    //               console.log(url);
-    //               setUrl(url);
-    //             });
-    //             return(
-    //               <Card key={item.id}>
-    //                 <ImageListItem sx={{height: '100% !important'}}>
-    //                     <img src={url} style={{cursor:'pointer'}}></img>
-    //                     <ImageListItemBar 
-    //                       title={item.name}
-    //                       actionIcon={
-    //                       <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-    //                         <AddCircleIcon/>
-    //                       </Tooltip>
-    //                     }
-    //                     />
-    //                 </ImageListItem>
-    //               </Card>
-    //             )
-    //           })}
-    //       </ImageList>
-    //   </Container>
-    // </>
+     <>
+       <Container>
+           <ImageList
+           gap={12}
+           sx={{
+               mb:8,
+               /*makes grid respond to different screen sizes */
+               gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
+           }}>
+               {dairyItems.map(item=>{
+                console.log(url);
+                let img_url=url.find(img=>img.name===item.name);
+                 return(
+                   <Card key={item.id}>
+                     <ImageListItem sx={{height: '100% !important'}}>
+                         <img src={img_url.url} style={{cursor:'pointer'}}></img>
+                         <ImageListItemBar 
+                           title={item.name}
+                           actionIcon={
+                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                             <AddCircleIcon/>
+                           </Tooltip>
+                         }
+                         />
+                     </ImageListItem>
+                   </Card>
+                 )
+               })}
+           </ImageList>
+       </Container>
+     </>
   )
 }
 

@@ -19,10 +19,6 @@ const Categories = () => {
         navigate("/account");
     }
 
-    const handleClick=()=>
-    {
-        console.log("CLICKEDDDD");
-    }
 
   return (
 
