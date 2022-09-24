@@ -24,35 +24,6 @@ const Dairy = () => {
   //state for image, defualt is null
   const [url, setUrl]=useState(null);
 
-  const handleImage=async(imageArray)=>{
-
-    //keep names of images
-    const newImageArray=[];
-    //create path name and set in array
-    for(let i =0; i<imageArray.length;++i)
-    {
-        newImageArray.push("dairy/"+imageArray[i]+".png");
-    }
-
-    //store all url in the array
-    const urlArray=[];
-    for(let i=0; i<imageArray.length;++i)
-    {
-      //get ref to image
-      const imageRef=ref(storage, newImageArray[i]);
-      //get url for the image
-      const image = await getDownloadURL(imageRef);
-      
-
-      const currProdId=imageArray[i];
-      //create obkect 
-      let entry={};
-      entry[currProdId]=image;
-      urlArray.push(entry);
-      console.log(urlArray["dairy-low-fat-milk"])
-    }
-    setUrl(urlArray);
-  }
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -79,11 +50,10 @@ const Dairy = () => {
       const imageArray=[];
       for(let i=0; i<dairyItems.length; ++i)
       {
-          imageArray[i]=dairyItems[i].prod_id;
+          const imgUrl=await getDownloadURL(ref(storage,dairyItems[i].img_url));
+          imageArray[i]=imgUrl;
       }
-
-      //call handle images function 
-      handleImage(imageArray);
+      setUrl(imageArray);
     };
     //call async function 
     getDairyItems();
@@ -92,34 +62,72 @@ const Dairy = () => {
 
   return (
     <>
-      <Container>
+        <Container>
           <ImageList
-          gap={12}
-          sx={{
-              mb:8,
-              /*makes grid respond to different screen sizes */
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
-          }}>
-              {dairyItems.map(item=>{
-                return(
-                  <Card key={item.id}>
+            gap={12}
+            sx={{
+                mb:8,
+                /*makes grid respond to different screen sizes */
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
+            }}>
+                <Card key={'meat'}>
+                    <ImageListItem sx={{height: '100% !important'}}>
+                        <img src={url[2]} style={{cursor:'pointer'}}></img>
+                        <ImageListItemBar 
+                        title={dairyItems[0].name}/>
+                    </ImageListItem>
+                </Card>
+                <Card key={'dairy'}>
                     <ImageListItem sx={{height: '100% !important'}}>
                         <img src={url[0]} style={{cursor:'pointer'}}></img>
                         <ImageListItemBar 
-                          title={item.name}
-                          actionIcon={
-                          <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                            <AddCircleIcon/>
-                          </Tooltip>
-                        }
-                        />
+                       title={dairyItems[1].name}/>
                     </ImageListItem>
-                  </Card>
-                )
-              })}
-          </ImageList>
-      </Container>
+                </Card>
+                <Card key={'drink'}>
+                    <ImageListItem sx={{height: '100% !important'}}>
+                        <img src={url[1]} style={{cursor:'pointer'}} ></img>
+                        <ImageListItemBar 
+                        title={dairyItems[2].name}/>
+                    </ImageListItem>
+                </Card>
+            </ImageList>
+        </Container>
     </>
+    // <>
+    //   <Container>
+    //       <ImageList
+    //       gap={12}
+    //       sx={{
+    //           mb:8,
+    //           /*makes grid respond to different screen sizes */
+    //           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
+    //       }}>
+    //           {dairyItems.map(item=>{
+    //             const imgRef=ref(storage, item.img_url);
+    //             getDownloadURL(imgRef).then((url)=>{
+    //               console.log(url);
+    //               setUrl(url);
+    //             });
+    //             return(
+    //               <Card key={item.id}>
+    //                 <ImageListItem sx={{height: '100% !important'}}>
+    //                     <img src={url} style={{cursor:'pointer'}}></img>
+    //                     <ImageListItemBar 
+    //                       title={item.name}
+    //                       actionIcon={
+    //                       <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+    //                         <AddCircleIcon/>
+    //                       </Tooltip>
+    //                     }
+    //                     />
+    //                 </ImageListItem>
+    //               </Card>
+    //             )
+    //           })}
+    //       </ImageList>
+    //   </Container>
+    // </>
   )
 }
 
