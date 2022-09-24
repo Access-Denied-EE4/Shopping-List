@@ -15,8 +15,8 @@ const Signup = () => {
     //error state-> allows us to set errors on the screen
     //also empty string as no errors bu default
     const [error,setError]=useState('');
-    
-    //create state for loading 
+
+    //create state for loading
     const [loading, setLoading]=useState(false);
 
     //set the imported fucntion from the AuthContext file
@@ -52,7 +52,7 @@ const Signup = () => {
             setError('');
             setLoading(true);
             await createUser(email,password);
-            
+
             //after user created, naviage to verification page page
             navigate('/verification');
 
@@ -81,7 +81,7 @@ const Signup = () => {
                 <p className='py-2'>
                     {/* '/' indiciates link will take us to home page */}
                     Already have an account?
-                    <Link to='/' className='underline' >Sign in</Link>
+                    <Link data-testid="sign in" to='/' className='underline' >Sign in</Link>
                 </p>
             </div>
 
@@ -90,14 +90,14 @@ const Signup = () => {
                 <div className='flex flex-col py-2'>
                     <label className='py-2 font-medium'>Email Address</label>
                     {/* on change, set email to the target of the event value*/}
-                    <input onChange={(e)=>setEmail(e.target.value)} className='border p-3' type='email'/>
+                    <input data-testid="email input" onChange={(e)=>setEmail(e.target.value)} className='border p-3' type='email'/>
                 </div>
 
                 <div className='flex flex-col py-2'>
                     <label className='py-2 font-medium'>Password</label>
-                    <input onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
+                    <input data-testid="pass input" onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
                 </div>
-                <button disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
+                <button data-testid="signup button" disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign Up
                 </button>
             </form>

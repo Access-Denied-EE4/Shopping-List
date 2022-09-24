@@ -1,13 +1,135 @@
-import { render, screen } from '@testing-library/react';
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/render-result-naming-convention */
+import { render, screen ,fireEvent} from '@testing-library/react';
 import App from './App';
+import AppTesting from './AppTester';
 import { Passwords_Match } from './contexts/AuthContext';
 import { Valid_Email } from "./contexts/AuthContext";
 import { Email_Entered } from "./contexts/AuthContext";
 import { Approve_Sign_in } from "./contexts/AuthContext";
 import { view } from '@testing-library/react';
-import { Signup } from './components/Signup';
+import {Signup } from './components/Signup';
 import { Validate_SignIn } from './contexts/AuthContext';
 import { CheckPassLength } from './contexts/AuthContext';
+import Signin from "./components/Signin";
+
+
+describe ("login testing" ,()=>{
+     test('All UI elements are rendered correctly', () => {
+        render(<AppTesting/>)
+      let labelInst= screen.getAllByText('Sign in to your account')[0];
+        expect(labelInst).toBeInTheDocument();
+
+      let labelNewAcc= screen.getAllByText('Dont have an account yet?')[0];
+        expect(labelNewAcc).toBeInTheDocument();
+
+      let labelEmail= screen.getAllByText('Email Address')[0];
+        expect(labelEmail).toBeInTheDocument();
+
+      let Eminput= screen.getAllByTestId("email input")[0];
+      expect(Eminput).toBeInTheDocument();
+
+
+      let labelpass= screen.getAllByText('Password')[0];
+        expect(labelpass).toBeInTheDocument();
+
+      let passinput= screen.getAllByTestId("password")[0];
+      expect(passinput).toBeInTheDocument();
+    });
+});
+
+
+describe ("Sign Up Testing" ,()=>{
+    test('all UI elements are rendered correctly', () => {
+       render(<AppTesting/>)
+       let link =screen.getAllByTestId("signup link")[0];
+       expect(link).toBeInTheDocument();
+       fireEvent.click(link, { button: 0});
+
+       let labelInstruct= screen.getAllByText('Sign up for a free account')[0];
+       expect(labelInstruct).toBeInTheDocument();
+
+       let labelQuest= screen.getAllByText('Already have an account?')[0];
+       expect(labelQuest).toBeInTheDocument();
+
+       let labelEmail= screen.getAllByText('Email Address')[0];
+       expect(labelEmail).toBeInTheDocument();
+
+      let Emailinput= screen.getAllByTestId("email input")[0];
+      expect(Emailinput).toBeInTheDocument();
+
+       let labelPass= screen.getAllByText('Password')[0];
+       expect(labelPass).toBeInTheDocument();
+
+      let passinput= screen.getAllByTestId("pass input")[0];
+      expect(passinput).toBeInTheDocument();
+
+     });
+
+});
+
+
+describe ("Forgot Password testing" ,()=>{
+    test('all UI elements are rendered correctly', () => {
+       render(<AppTesting/>)
+       let linkSignIn =screen.getAllByTestId("sign in")[0];
+       fireEvent.click(linkSignIn, { button: 0});
+
+       let linkForgotPass =screen.getAllByTestId("forgot password")[0];
+       fireEvent.click(linkForgotPass, { button: 0});
+
+       let labelReset= screen.getAllByText('Reset Password')[0];
+       expect(labelReset).toBeInTheDocument();
+
+       let labelInstr= screen.getAllByText('Enter your email address below to reset your password!')[0];
+       expect(labelInstr).toBeInTheDocument();
+
+       let labelEmail= screen.getAllByText('Email Address')[0];
+       expect(labelEmail).toBeInTheDocument();
+
+      let Emailinput= screen.getAllByTestId("email")[0];
+      expect(Emailinput).toBeInTheDocument();
+
+      let linkSignin =screen.getAllByTestId("signin")[0];
+      expect(linkSignin).toBeInTheDocument();
+
+     });
+
+});
+
+describe ("Verify Email Testing" ,()=>{
+    test('all UI elements are rendered correctly', () => {
+       render(<AppTesting/>)
+       let linkSignIn =screen.getAllByTestId("signin")[0];
+       expect(linkSignIn).toBeInTheDocument();
+       fireEvent.click(linkSignIn, { button: 0});
+/*
+     let linkSignUp =screen.getAllByTestId("signup link")[0];
+     fireEvent.click(linkSignUp, { button: 0});
+
+     let labelInstruct= screen.getAllByText('Sign up for a free account')[0];
+     expect(labelInstruct).toBeInTheDocument();
+
+      let Emailinput= screen.getAllByTestId("email input")[0];
+      fireEvent.change(Emailinput, {target: {value: 'testing2@gmail.com'}})
+
+      let passinput= screen.getAllByTestId("pass input")[0];
+      fireEvent.change(passinput, {target: {value: '123456'}});
+
+       let btnSignUp =screen.getAllByTestId("signup button")[0];
+       fireEvent.click(btnSignUp, { button: 0});
+
+      //expect(btnSignUp).toBeInTheDocument();
+
+    //  Please verify your account to complete Sign up!
+ //   let labelInstruct2= screen.getAllByText('Please verify your account to complete Sign up!')[0];
+  //   expect(labelInstruct2).toBeInTheDocument();
+*/
+
+     });
+
+});
+
 
 
 

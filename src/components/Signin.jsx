@@ -42,7 +42,7 @@ const Signin = () => {
 
                 //upon log in, redirect to account page
                 if(user.emailVerified)
-                {   
+                {
                     navigate('/categories');
                 }
                 else{
@@ -78,26 +78,26 @@ const Signin = () => {
                 </div>
             </div>
             <div>
-                <h1 className='text-2xl font-bold py-2'>Sign in to your account</h1>
+                <h1 data-testid="Sign-in-label" className='text-2xl font-bold py-2'>Sign in to your account</h1>
                 <p className='py-2'>
                     {/* '/' indiciates link will take us to home page */}
                     Dont have an account yet?
-                    <Link to='/signup' className='underline'> Sign Up</Link>
+                    <Link data-testid="signup link" to='/signup' className='underline'> Sign Up</Link>
                 </p>
             </div>
 
             {/*form to sign in*/}
             <form onSubmit={handleSubmit}>
                 <div className='flex flex-col py-2'>
-                    <label className='py-2 font-medium'>Email Address</label>
+                    <label data-testid="label-1">Email Address</label>
                     {/* on input/change of field, set email to that value*/}
-                    <input onChange={(e)=>{setEmail(e.target.value)}} className='border p-3' type='email'/>
+                    <input data-testid="email input" onChange={(e)=>{setEmail(e.target.value)}} className='border p-3' type='email'/>
                 </div>
 
                 <div className='flex flex-col py-2'>
                     <label className='py-2 font-medium'>Password</label>
                     {/* on input/change of field, set email to that value*/}
-                    <input onChange={(e)=>{setPassword(e.target.value)}} className='border p-3' type='password' />
+                    <input data-testid="password" onChange={(e)=>{setPassword(e.target.value)}} className='border p-3' type='password' />
                 </div>
 
 
@@ -108,7 +108,7 @@ const Signin = () => {
 
             <p className='py-2'>
                 {/* create link to forgotpasswordpage */}
-                <Link to ='/forgot-password' className='underline'>Forgot Password?</Link>
+                <Link data-testid="forgot password" to ='/forgot-password' className='underline'>Forgot Password?</Link>
 
             </p>
 
@@ -117,4 +117,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default Signin;
