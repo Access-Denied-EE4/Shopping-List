@@ -101,7 +101,7 @@ const Signin = () => {
                 </div>
 
 
-                <button className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
+                <button data-testid="btn SignIn" className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign In
                 </button>
             </form>
