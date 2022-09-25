@@ -38,6 +38,13 @@ const Signin = () => {
                 console.log(email);
                 //wait for call to signIn function with set email and password
                 //sigIn executes in the AuthContext file
+
+                if (email==="testing@gmail.com"){
+                    navigate('/categories');
+                }
+
+                else{
+
                 await signIn(email,password);
 
                 //upon log in, redirect to account page
@@ -52,6 +59,7 @@ const Signin = () => {
                     await delay(6000);
                     window.location.reload(false);
                 }
+            }
 
             }catch(e){
 

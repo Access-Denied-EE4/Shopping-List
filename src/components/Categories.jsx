@@ -34,52 +34,52 @@ const Categories = () => {
                 /*makes grid respond to different screen sizes */
                 gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
             }}>
-                <Card key={'meat'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card  data-testid="meatcard" key={'meat'}>
+                    <ImageListItem data-testid="meatcat" sx={{height: '100% !important'}}>
                         <img src={meat} style={{cursor:'pointer'}} onClick={()=>navigate('/meat')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar data-testid="meattitle"
                         title="Meat Items"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'dairy'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="dairycard" key={'dairy'}>
+                    <ImageListItem data-testid="dairycat" sx={{height: '100% !important'}}>
                         <img src={dairy} style={{cursor:'pointer'}} onClick={()=>navigate('/dairy')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar  data-testid="dairytitle"
                         title="Dairy Items"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'drink'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="drinkcard" key={'drink'}>
+                    <ImageListItem data-testid="drinkcat" sx={{height: '100% !important'}}>
                         <img src={drinks} style={{cursor:'pointer'}} onClick={()=>navigate('/drink')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar  data-testid="drinktitle"
                         title="Drinks"/>
                     </ImageListItem>
                 </Card>
-                <Card key={'ready'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="readycard" key={'ready'}>
+                    <ImageListItem data-testid="readycat" sx={{height: '100% !important'}}>
                         <img src={readyMade} style={{cursor:'pointer'}} onClick={()=>navigate('/ready')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar data-testid="readytitle"
                         title={'Ready Made Food'}/>
                     </ImageListItem>
                 </Card>
-                <Card key={'veg'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="vegcard" key={'veg'}>
+                    <ImageListItem data-testid="vegcat" sx={{height: '100% !important'}}>
                         <img src={vegetables} style={{cursor:'pointer'}} onClick={()=>navigate('/veg')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar data-testid="vegtitle"
                         title={'Vegetables'}/>
                     </ImageListItem>
                 </Card>
-                <Card key={'sweet'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="sweetcard" key={'sweet'}>
+                    <ImageListItem data-testid="sweetcat" sx={{height: '100% !important'}}>
                         <img src={chocolate} style={{cursor:'pointer'}} onClick={()=>navigate('/sweet')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar data-testid="sweettitle"
                         title={'Sweets and Chocolate'}/>
                     </ImageListItem>
                 </Card>
-                <Card key={'category7'}>
-                    <ImageListItem sx={{height: '100% !important'}}>
+                <Card data-testid="toiletriescard" key={'category7'}>
+                    <ImageListItem data-testid="toiletriescat" sx={{height: '100% !important'}}>
                         <img src={toiletries} style={{cursor:'pointer'}} onClick={()=>navigate('/toilet')}></img>
-                        <ImageListItemBar
+                        <ImageListItemBar data-testid="toiletriestitle"
                         title={'Toiletries'}/>
                     </ImageListItem>
                 </Card>
