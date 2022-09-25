@@ -11,9 +11,9 @@ const Verification = () => {
     //get user info object from auth g=context
     const {user}=UserAuth();
 
-    //state for open, set to true by default 
+    //state for open, set to true by default
     const [open,setOpen]=useState(true);
-    //set state for verufy button, not clicked by default 
+    //set state for verufy button, not clicked by default
     const [isClicked, setIsClicked]=useState(false);
 
     //get a refrnece to our routing via navigate
@@ -30,7 +30,7 @@ const Verification = () => {
 
         //refresh page to reflect email verification
         window.location.reload(false);
-        
+
 
     }
 
@@ -57,7 +57,7 @@ const Verification = () => {
 
   return (
     //if user has not verified the account, show this.
-    user?.emailVerified===false &&(
+   ( user?.emailVerified===false || user?.emailVerified===undefined) &&(
         <div className='max-w-[700px] mx-auto my-16 p-4'>
             <div>
                 <h1 className='text-2xl font-bold py-2 text-center'>Please verify your account to complete Sign up!</h1>
@@ -66,7 +66,7 @@ const Verification = () => {
                     email will be in your spam inbox so please be sure to check!
                 </p>
             </div>
-                <button onClick={verify} disabled={isClicked} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
+                <button data-testid="verify btn" onClick={verify} disabled={isClicked} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                    Verify
                 </button>
         </div>

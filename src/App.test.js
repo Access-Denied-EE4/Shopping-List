@@ -12,6 +12,7 @@ import {Signup } from './components/Signup';
 import { Validate_SignIn } from './contexts/AuthContext';
 import { CheckPassLength } from './contexts/AuthContext';
 import Signin from "./components/Signin";
+import { useNavigate} from 'react-router-dom';
 
 
 describe ("login testing" ,()=>{
@@ -98,35 +99,35 @@ describe ("Forgot Password testing" ,()=>{
 });
 
 describe ("Verify Email Testing" ,()=>{
+
     test('all UI elements are rendered correctly', () => {
        render(<AppTesting/>)
        let linkSignIn =screen.getAllByTestId("signin")[0];
        expect(linkSignIn).toBeInTheDocument();
        fireEvent.click(linkSignIn, { button: 0});
-/*
+
      let linkSignUp =screen.getAllByTestId("signup link")[0];
      fireEvent.click(linkSignUp, { button: 0});
 
-     let labelInstruct= screen.getAllByText('Sign up for a free account')[0];
-     expect(labelInstruct).toBeInTheDocument();
-
-      let Emailinput= screen.getAllByTestId("email input")[0];
-      fireEvent.change(Emailinput, {target: {value: 'testing2@gmail.com'}})
+     let Emailinput= screen.getAllByTestId("email input")[0];
+      fireEvent.change(Emailinput, {target: {value: 'test@gmail.com'}})
 
       let passinput= screen.getAllByTestId("pass input")[0];
       fireEvent.change(passinput, {target: {value: '123456'}});
 
-       let btnSignUp =screen.getAllByTestId("signup button")[0];
+    let btnSignUp =screen.getAllByTestId("signup button")[0];
        fireEvent.click(btnSignUp, { button: 0});
 
-      //expect(btnSignUp).toBeInTheDocument();
+     let labelInstruct= screen.getAllByText('Please verify your account to complete Sign up!')[0];
+     expect(labelInstruct).toBeInTheDocument();
 
-    //  Please verify your account to complete Sign up!
- //   let labelInstruct2= screen.getAllByText('Please verify your account to complete Sign up!')[0];
-  //   expect(labelInstruct2).toBeInTheDocument();
-*/
+     let labelInstruct2= screen.getAllByText('If this is your first time Signing Up with us the verification email will be in your spam inbox so please be sure to check!')[0];
+     expect(labelInstruct2).toBeInTheDocument();
 
-     });
+     let btnVerify =screen.getAllByTestId("verify btn")[0];
+     expect(btnVerify).toBeInTheDocument();
+    });
+
 
 });
 
