@@ -7,7 +7,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ForgotPassword from "./components/ForgotPasswordPage"
 import Verification from "./components/Verification";
 import Categories from "./components/Categories";
-import NavBar from "./components/NavBar";
 import Meat from "./components/Items/Meat";
 import Dairy from "./components/Items/Dairy";
 import Drink from "./components/Items/Drink";
@@ -15,6 +14,7 @@ import ReadyMade from "./components/Items/Ready";
 import Veg from "./components/Items/Veg";
 import Sweet from "./components/Items/Sweet";
 import Toilet from "./components/Items/Toilet";
+
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
           <Route path='/veg' element={<Veg/>}/>
           <Route path='/sweet' element={<Sweet/>}/>
           <Route path='/toilet' element={<Toilet/>}/>
+
 
           {/*protected route*/}
           <Route path= '/account' element={<ProtectedRoute>

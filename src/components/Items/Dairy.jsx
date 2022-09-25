@@ -1,15 +1,16 @@
 import React from 'react';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
-import { useState } from 'react';
+import { useState , useNavigate} from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
 import {collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
-
+import NavBar from '../NavBar';
+import * as Bi from "react-icons/bi";
+import { Link, NavLink } from 'react-router-dom';
 const Dairy = () => {
-
   //need state to hold list of dairy items 
   //use useState hook->set to empty array by default 
   //dairy Items is a list that will hold all the dairy items from the DB
@@ -71,6 +72,20 @@ const Dairy = () => {
 
   return (
      <>
+      <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
+        <div >
+          <div>
+            <nav>
+              <NavLink key='back' to='/categories'>
+                <Bi.BiArrowBack size={30}/>
+              </NavLink>
+            </nav>
+          </div>
+          <div>
+            <h1 className='text-4xl font-bold py-2 text-4xl font-bold py-2 text-center'>Dairy Products</h1>
+          </div>
+        </div>
+      </div>
        <Container>
            <ImageList
            gap={12}
@@ -112,6 +127,7 @@ const Dairy = () => {
                })}
            </ImageList>
        </Container>
+       <NavBar/>
      </>
   )
 }
