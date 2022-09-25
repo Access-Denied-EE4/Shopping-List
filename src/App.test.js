@@ -56,8 +56,7 @@ describe ("Viewing Categories Testing" ,()=>{
      let pagelabel= screen.getAllByText('Categories')[0];
      expect(pagelabel).toBeInTheDocument();
 
-
-     //categories
+ //categories
      let meat_cat= screen.getAllByTestId('meatcat')[0];
      expect(meat_cat).toBeInTheDocument();
 

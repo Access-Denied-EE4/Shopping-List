@@ -10,7 +10,7 @@ const Account = () => {
   //assign naviagte to our imported function
   const navigate=useNavigate();
 
-  //handle logout 
+  //handle logout
   //async as waitng for user to press button
   const handleLogout= async()=>{
     try{
