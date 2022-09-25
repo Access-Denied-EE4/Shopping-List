@@ -49,14 +49,20 @@ const Dairy = () => {
     getDairyItems();
   },[dairyItems]);
 
+  //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
+    //create an async functiopn so we can use the await key word
     const getImgUrl=async()=>{
+      //image array wil store an object made from the items name and a url to the image 
       const imageArray=[];
       for(let i=0; i<dairyItems.length; ++i)
       {
+          //get url for the image of the relevant itme
           const imgUrl=await getDownloadURL(ref(storage,dairyItems[i].img_url));
+          //create objecr 
           imageArray.push({name: `${dairyItems[i].name}`, url: `${imgUrl}`});
       }
+      //set the url state to the image array
       setUrl(imageArray);
     }
     getImgUrl();
@@ -74,15 +80,18 @@ const Dairy = () => {
                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
            }}>
                {dairyItems.map(item=>{
-                console.log(url);
+                //stores image url to be used
                 let img;
+                //need in if statemnt to handle useffect has not run yet
                 if(url.length!=0)
                 {
+                  //if our url has been populated then use the image
                   let img_url=url.find(img=>img.name===item.name);
                   img=img_url.url;
                 }
                 else
                 {
+                  //if it has not then use our logo and on the next render it will change 
                   img=ctc;
                 }
                  return(
