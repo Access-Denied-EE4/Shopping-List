@@ -47,7 +47,7 @@ const Dairy = () => {
     };
     //call async function 
     getDairyItems();
-  },[]);
+  },[dairyItems]);
 
   useEffect(()=>{
     const getImgUrl=async()=>{
@@ -61,7 +61,7 @@ const Dairy = () => {
     }
     getImgUrl();
 
-  },[]);
+  },[url]);
 
   return (
      <>
@@ -75,11 +75,20 @@ const Dairy = () => {
            }}>
                {dairyItems.map(item=>{
                 console.log(url);
-                let img_url=url.find(img=>img.name===item.name);
+                let img;
+                if(url.length!=0)
+                {
+                  let img_url=url.find(img=>img.name===item.name);
+                  img=img_url.url;
+                }
+                else
+                {
+                  img=ctc;
+                }
                  return(
                    <Card key={item.id}>
                      <ImageListItem sx={{height: '100% !important'}}>
-                         <img src={img_url.url} style={{cursor:'pointer'}}></img>
+                         <img src={img} style={{cursor:'pointer'}}></img>
                          <ImageListItemBar 
                            title={item.name}
                            actionIcon={
