@@ -26,6 +26,7 @@ const LoginScreen = () => {
     const handleLogin=()=>{
         signInWithEmailAndPassword(auth,email,password).then(userCredentials=>{
             const user=userCredentials.user;
+            navigation.navigate("Home")
             console.log('Logged in with: ',user.email);
         })
         .catch(error=>alert(error.message))
