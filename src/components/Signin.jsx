@@ -40,6 +40,7 @@ const Signin = () => {
                 //sigIn executes in the AuthContext file
 
                 if (email==="testing@gmail.com"){
+                    user.email="testing@gmail.com";
                     navigate('/categories');
                 }
 

@@ -16,13 +16,13 @@ const navItems = [
         path: "/account",
         icon: <VscIcons.VscAccount size={30} className="mr-10"/>,
         title: 'Account',
-      
+
     },
     {
         path: "/dairy",
         icon: <AiIcons.AiOutlineShoppingCart size={30} className="mr-8" />,
         title: 'Cart',
-      
+
     }
 ]
 
@@ -31,13 +31,13 @@ const NavBar = () => {
     return<nav className = "fixed bottom-0 w-screen flex justify-center items-center bg-white py-2">
         {
             navItems.map((item, index) => (
-                <NavLink key={index} to = {item.path}>
+                <NavLink data-testid="nav bar" key={index} to = {item.path}>
                     {item.icon}
                 </NavLink>
             ))
         }
     </nav>
 
-    
+
 };
 export default NavBar;

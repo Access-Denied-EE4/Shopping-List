@@ -39,7 +39,14 @@ const Verification = () => {
         //set clicked to true
         setIsClicked(true);
 
-        //send the verification email
+        if (user?.emailVerified===undefined){
+            navigate('/');
+
+            console.log("test email");
+        }
+
+        else{
+            //send the verification email
         try{
             await sendEmailVerification(user);
             console.log("Successfully sent email");
@@ -52,7 +59,7 @@ const Verification = () => {
 
         //call handle the email wait function
         handleEmailVerWait()
-
+        }
     }
 
   return (
