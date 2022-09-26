@@ -12,6 +12,7 @@ import {Signup } from './components/Signup';
 import { Validate_SignIn } from './contexts/AuthContext';
 import { CheckPassLength } from './contexts/AuthContext';
 import Signin from "./components/Signin";
+import MenuBar from './components/MenuBar/MenuBar';
 import { useNavigate} from 'react-router-dom';
 
 
@@ -225,9 +226,6 @@ describe ("Viewing Categories Testing" ,()=>{
 
     });
 });
-
-
-
 
 test('case when passwords match', () => {
     const pass = "check1";
