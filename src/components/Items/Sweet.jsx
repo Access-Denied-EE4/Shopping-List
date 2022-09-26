@@ -52,7 +52,7 @@ const Sweet = () => {
 
     //call async function 
     getSweetItems();
-  },[sweetItems]);
+  },[]);
 
 
   //use effect handling thr retrivel of imags from the database
@@ -73,7 +73,7 @@ const Sweet = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
 
   return (
     <>

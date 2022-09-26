@@ -54,7 +54,7 @@ const Meat = () => {
 
     //call async function 
     getMeatItems();
-  },[meatItems]);
+  },[]);
 
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
@@ -74,7 +74,7 @@ const Meat = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>

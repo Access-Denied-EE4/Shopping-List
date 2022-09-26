@@ -5,6 +5,8 @@ import {UserAuth} from '../contexts/AuthContext';
 import Verification from './Verification';
 import ClickToCart from "../images/CTCC.jpg"
 import { Alert } from 'react-bootstrap';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Signup = () => {
 
@@ -24,6 +26,15 @@ const Signup = () => {
     const {user}=UserAuth();
 
     const navigate=useNavigate();
+
+    //get ref to user collection in db
+    const userCollectionRef=collection(db,"users");
+
+    const createFirebaseUser=async()=>{
+        
+        //add email to collection
+        await addDoc(userCollectionRef, {id: email});
+    }
 
     //handle submit function
     //async as waits for submit button to be pressed
@@ -51,9 +62,6 @@ const Signup = () => {
         try{
 
             if (email==="test@gmail.com" && password==="123456"){ //for testing purposes
-
-               // navigate('/');
-                console.log("here \n");
                 navigate('/verification');
             }
             else{
@@ -105,7 +113,7 @@ const Signup = () => {
                     <label className='py-2 font-medium'>Password</label>
                     <input data-testid="pass input" onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
                 </div>
-                <button  data-testid="signup button" disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
+                <button onClick={createFirebaseUser} data-testid="signup button" disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign Up
                 </button>
             </form>

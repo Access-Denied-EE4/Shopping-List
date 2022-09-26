@@ -52,7 +52,7 @@ const Veg = () => {
 
     //call async function 
     getVegItems();
-  },[vegItems]);
+  },[]);
 
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
@@ -72,7 +72,7 @@ const Veg = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
 
   return (
     <>

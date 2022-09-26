@@ -52,7 +52,7 @@ const Toilet = () => {
 
     //call async function 
     getToiletItems();
-  },[toiletItems]);
+  },[]);
 
 
   //use effect handling thr retrivel of imags from the database
@@ -73,7 +73,7 @@ const Toilet = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
 
   return (
     <>

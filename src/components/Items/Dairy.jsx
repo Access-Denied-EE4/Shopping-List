@@ -48,7 +48,7 @@ const Dairy = () => {
     };
     //call async function 
     getDairyItems();
-  },[dairyItems]);
+  },[]);
 
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
@@ -68,7 +68,7 @@ const Dairy = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
 
   return (
      <>

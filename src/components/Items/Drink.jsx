@@ -53,7 +53,7 @@ const Drink = () => {
 
     //call async function 
     getDrinkItems();
-  },[drinkItems]);
+  },[]);
 
     //use effect handling thr retrivel of imags from the database
     useEffect(()=>{
@@ -73,7 +73,7 @@ const Drink = () => {
       }
       getImgUrl();
   
-    },[url]);
+    },[]);
 
   return (
     <>
