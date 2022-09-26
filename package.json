@@ -27,12 +27,13 @@
         "!src/index.js",
         "!src/components/MenuBar/MenuBar.js",
         "!src/components/Items/Dairy.jsx",
-        "!src/components/Items/Drinks.jsx",
+        "!src/components/Items/Drink.jsx",
         "!src/components/Items/Meat.jsx",
         "!src/components/Items/Ready.jsx",
         "!src/components/Items/Sweet.jsx",
         "!src/components/Items/Toilet.jsx",
         "!src/components/Items/Veg.jsx",
+        "!src/components/ProtectedRoute.js",
         "!src/App.js"
        ]
     },
