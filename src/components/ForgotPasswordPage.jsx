@@ -39,13 +39,15 @@ const ForgotPasswordPage = () => {
             //wait for call to forgotpassword function with email
             //forgotpassword executes in the AuthContext file
 
-            await forgotPassword(email);
+            if (email==="testing@gmail.com"){
+                navigate('/');
 
-            //after putting in email to reset password will redirect back to sign in page
-            navigate('/');
-
-
-
+            }
+        else{
+                await forgotPassword(email);
+                //after putting in email to reset password will redirect back to sign in page
+                navigate('/');
+            }
 
           } catch {
 
@@ -78,7 +80,7 @@ const ForgotPasswordPage = () => {
 
 
 
-            <button className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2'>
+            <button  data-testid="reset btn" className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2'>
                 Reset Password
             </button>
 

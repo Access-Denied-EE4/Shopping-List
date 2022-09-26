@@ -88,5 +88,63 @@ describe ("Viewing Categories Testing" ,()=>{
      let dairy_card= screen.getAllByTestId('dairycard')[0];
      expect(dairy_card).toBeInTheDocument();
 
+
+     let back;
+     //test navigation of categories
+
+     //navigate to meat page
+     fireEvent.click(meat_card, { button: 0});
+     expect(global.window.location.href).toContain('/meat');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
+   //navigate to veg page
+
+     veg_card= screen.getAllByTestId('vegcard')[0];
+     fireEvent.click(veg_card, { button: 0});
+     expect(global.window.location.href).toContain('/veg');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
+     //navigate to sweets page
+     sweet_card= screen.getAllByTestId('sweetcard')[0];
+     fireEvent.click(sweet_card, { button: 0});
+     expect(global.window.location.href).toContain('/sweet');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
+  //navigate to drink page
+     drink_card= screen.getAllByTestId('drinkcard')[0];
+     fireEvent.click(drink_card, { button: 0});
+     expect(global.window.location.href).toContain('/drink');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
+     //navigate to dairy page
+     dairy_card= screen.getAllByTestId('dairycard')[0];
+     fireEvent.click(dairy_card, { button: 0});
+     expect(global.window.location.href).toContain('/dairy');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
+     //navigate to toiletries page
+     toiletries_card= screen.getAllByTestId('toiletriescard')[0]
+     fireEvent.click(toiletries_card, { button: 0});
+     expect(global.window.location.href).toContain('/toilet');
+     back= screen.getAllByTestId('back')[0];
+     expect(back).toBeInTheDocument();
+     fireEvent.click(back, { button: 0});
+     expect(global.window.location.href).toContain('/categories');
+
     });
 });

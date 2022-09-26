@@ -15,14 +15,14 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Meat = () => {
 
-  //need state to hold list of meat items 
-  //use useState hook->set to empty array by default 
+  //need state to hold list of meat items
+  //use useState hook->set to empty array by default
   //meatItems is a list that will hold all the meat items from the DB
   //function setMeatItems is used to alter the meatItems list
   const [meatItems, setMeatItems]=useState([]);
   //variable holding the refernce to the DB collection
   //pass in db variable from fireabse file, collection name in DB
-  //collection is a firebase function 
+  //collection is a firebase function
   const meatItemsCollectionRef=collection(db, "meat_items");
 
     //state for image, defualt is null
@@ -33,7 +33,7 @@ const Meat = () => {
   //make api call to firebase inside the useEffect hook
   useEffect(()=>{
 
-    //use an async function 
+    //use an async function
     //api calls in JS will return a promise
     //never know how long will take for data to return back -> async
     //cant makr useEffect async and therefore need to make an async function inside that will be called
@@ -41,18 +41,18 @@ const Meat = () => {
 
       //var to ref data we gonna get back
       //await is used to handle promise
-      //getDocs-firebase func->returns all documents from a collection 
+      //getDocs-firebase func->returns all documents from a collection
       const data=await getDocs(meatItemsCollectionRef);
-      
+
       //setMeatItems state to be the array from collection
       //map from each doc   and set equal to obejct in meatItems array
       //...doc.data will return the fields of the item
-      //then also add the id 
+      //then also add the id
       setMeatItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
 
     };
 
-    //call async function 
+    //call async function
     getMeatItems();
   },[]);
 
@@ -60,13 +60,13 @@ const Meat = () => {
   useEffect(()=>{
     //create an async functiopn so we can use the await key word
     const getImgUrl=async()=>{
-      //image array wil store an object made from the items name and a url to the image 
+      //image array wil store an object made from the items name and a url to the image
       const imageArray=[];
       for(let i=0; i<meatItems.length; ++i)
       {
           //get url for the image of the relevant itme
           const imgUrl=await getDownloadURL(ref(storage,meatItems[i].img_url));
-          //create objecr 
+          //create objecr
           imageArray.push({name: `${meatItems[i].name}`, url: `${imgUrl}`});
       }
       //set the url state to the image array
@@ -81,7 +81,7 @@ const Meat = () => {
         <div >
           <div>
             <nav>
-              <NavLink key='back' to='/categories'>
+              <NavLink data-testid="back" key='back' to='/categories'>
                 <Bi.BiArrowBack size={30}/>
               </NavLink>
             </nav>
@@ -111,14 +111,14 @@ const Meat = () => {
                 }
                 else
                 {
-                  //if it has not then use our logo and on the next render it will change 
+                  //if it has not then use our logo and on the next render it will change
                   img=ctc;
-                }                
+                }
                 return(
                   <Card key={item.id}>
                     <ImageListItem sx={{height: '100% !important'}}>
                         <img src={img} style={{cursor:'pointer'}}></img>
-                        <ImageListItemBar 
+                        <ImageListItemBar
                           title={item.name}
                           actionIcon={
                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
