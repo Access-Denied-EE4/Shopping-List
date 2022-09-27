@@ -4,16 +4,24 @@ import { View,Text, StyleSheet,KeyboardAvoidingView,TextInput,TouchableOpacity }
 import {auth} from '../firebase'
 import { useNavigation } from '@react-navigation/core'
 
+
+
 const ForgotPasswordScreen = () => {
 
+    //setup state for email
+    //set to empty string by default as no email by default
     const [email,setEmail]=useState('')
+   
+    // create navigate variable to use the navigate function to travel between screens
     const navigation = useNavigation();
 
-
+    //function implements the reset password feature by sending reset password email
+    //function called in onPress of reset password button
     const handleForgotPassword=()=>{
 
         sendPasswordResetEmail(auth, email);
         console.log('Reset Password ');
+        //take you back to login screen
         navigation.navigate("Login");
 
 
@@ -67,6 +75,8 @@ const ForgotPasswordScreen = () => {
 
 export default ForgotPasswordScreen
 
+
+//styling for the elements on the page
 const styles = StyleSheet.create({
     container: {
         flex:1,

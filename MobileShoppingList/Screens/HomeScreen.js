@@ -17,7 +17,8 @@ const HomeScreen = () => {
 
   const logoPic = require("../images/ClickToCart.jpg");
   
-
+  //function to handle logout of account
+  //function called in onPress of logout button
   const handleLogOut = () => {
 
     auth.signOut().then( () => {
@@ -44,10 +45,13 @@ const HomeScreen = () => {
 
         <ScrollView>
        
-
+        {/*Used pressable instead of touchableOpacity or button as the former is the only one that works in scrollview. Hitlsop is hit marker for pressable to activate */}
         <Pressable
           onPress = {handleLogOut}
           style = {[styles.button,styles.container]}
+          
+          
+          
           hitSlop={{top: 50, bottom: 150, left: 50}}
          
         >
@@ -55,7 +59,7 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Logout</Text>
         </Pressable>
      
-       
+       {/*Images sourced to be used in scrollview */}
         <Image style ={[styles.image]} source = {Dairy}></Image>
         <Image style ={[styles.image]} source = {Chocolate}></Image>
         <Image style ={[styles.image]} source = {Drinks}></Image>
@@ -75,6 +79,8 @@ const HomeScreen = () => {
 
 export default HomeScreen
 
+
+//styling for the elements on the page
 const styles = StyleSheet.create({
 
   container: {

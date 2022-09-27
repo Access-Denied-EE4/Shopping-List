@@ -12,6 +12,8 @@ import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
 
+//Stack Navigator provides a way for the app to transition between screens where each new screen is placed on top of a stack
+//each new screen created will be added to the stack and given a anme so it can be navigated to
 const Stack=createNativeStackNavigator();
 export default function App() {
   return (
@@ -27,11 +29,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

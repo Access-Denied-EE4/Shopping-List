@@ -7,11 +7,15 @@ import { Link } from '@react-navigation/native';
 
 const LoginScreen = () => {
     
+    
+    //setup states for email and password
+    //set to empty string by default as no email/password by default
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
+    // create navigate variable to use the navigate function to travel between screens
     const navigation = useNavigation();
-   
+   //when state changed or after rendering will call this and handle navigation between screens
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if(user){
@@ -23,9 +27,12 @@ const LoginScreen = () => {
         return unsubscribe;
     }, [])
     
+    //function to handle login events
     const handleLogin=()=>{
+        //handle the login with email
         signInWithEmailAndPassword(auth,email,password).then(userCredentials=>{
             const user=userCredentials.user;
+            //once logged in will take user to the home screen
             navigation.navigate("Home")
             console.log('Logged in with: ',user.email);
         })
@@ -92,6 +99,8 @@ const LoginScreen = () => {
 
 export default LoginScreen
 
+
+//styling for the elements on the page
 const styles = StyleSheet.create({
     container: {
         flex:1,

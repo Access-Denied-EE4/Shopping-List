@@ -7,11 +7,14 @@ import { useNavigation } from '@react-navigation/core'
 
 const SignUpScreen = () => {
 
+    //setup states for email and password
+    //set to empty string by default as no email/password by default
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
     const navigation = useNavigation();
 
+    //when state changed or after rendering will call this and handle the navigation between screens
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if(user){
@@ -24,7 +27,7 @@ const SignUpScreen = () => {
     }, [])
 
     
-    
+    //function to handle sign up
     const handleSignUp=()=>{
         createUserWithEmailAndPassword(auth,email,password).then(userCredentials=>{
             const user=userCredentials.user;
@@ -79,7 +82,7 @@ const SignUpScreen = () => {
 
 export default SignUpScreen
 
-
+//styling for the elements on the page
 const styles = StyleSheet.create({
     container: {
         flex:1,
