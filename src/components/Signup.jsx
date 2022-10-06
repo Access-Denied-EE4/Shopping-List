@@ -28,14 +28,21 @@ const Signup = () => {
     const navigate=useNavigate();
 
     //get ref to user collection in db
-    const userCollectionRef=collection(db,"users");
+    const userCollectionRef=collection(db,"user_cart");
 
     const createFirebaseUser=async()=>{
         
         //add email to collection
-        await addDoc(userCollectionRef, {id: email});
-    }
+        const user_cart_doc = await addDoc(userCollectionRef, {
+            id: email,
+        });
 
+        //create a new collection within user collection for that users cart
+        const cartCollectionRef=collection(db, "user_cart", user_cart_doc.id, "cart");
+        await addDoc(cartCollectionRef, {
+            data: "hello World!",
+        });
+    }
     //handle submit function
     //async as waits for submit button to be pressed
     //pass event e so page dosent refresh when hit submit
