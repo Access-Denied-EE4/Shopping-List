@@ -10,6 +10,8 @@ import ctc from "../../images/CTCC.jpg"
 import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
+import Signup from '../Signup';
+
 const Dairy = () => {
   //need state to hold list of dairy items
   //use useState hook->set to empty array by default
@@ -20,7 +22,6 @@ const Dairy = () => {
   //pass in db variable from fireabse file, collection name in DB
   //collection is a firebase function
   const dairyItemsCollectionRef=collection(db, "dairy_items");
-
 
   //state for image, defualt is null
    const [url, setUrl]=useState([]);
@@ -70,6 +71,13 @@ const Dairy = () => {
 
   },[]);
 
+  //function when plus icon cliked which addds item to customers cart
+  const addItemToCart=async()=>
+  {
+    //get ref to curr customers cart collection
+    //const cartCollectionRef=collection(db, "user_cart", email, "cart");
+  };
+
   return (
      <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -116,7 +124,7 @@ const Dairy = () => {
                          <ImageListItemBar
                            title={item.name}
                            actionIcon={
-                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                           <Tooltip onClick={addItemToCart} title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
                              <AddCircleIcon/>
                            </Tooltip>
                          }

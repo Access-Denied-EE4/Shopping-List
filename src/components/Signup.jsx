@@ -5,7 +5,7 @@ import {UserAuth} from '../contexts/AuthContext';
 import Verification from './Verification';
 import ClickToCart from "../images/CTCC.jpg"
 import { Alert } from 'react-bootstrap';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const Signup = () => {
@@ -29,19 +29,29 @@ const Signup = () => {
 
     //get ref to user collection in db
     const userCollectionRef=collection(db,"user_cart");
+    const id="car_of_"+email;
 
     const createFirebaseUser=async()=>{
-        
-        //add email to collection
-        const user_cart_doc = await addDoc(userCollectionRef, {
-            id: email,
-        });
+        console.log("Inside user")
+        await setDoc(doc(db, "user_cart",id),{
+            id:email,
+        })
 
+        console.log("inside cart");
+        createCartCollection();
+        console.log("DONE");
+    }
+    
+    const createCartCollection=async()=>{
+        console.log("inside cart");
         //create a new collection within user collection for that users cart
-        const cartCollectionRef=collection(db, "user_cart", user_cart_doc.id, "cart");
+        const cartCollectionRef=collection(db, "user_cart", id, "cart");
+        console.log("PART 2");
         await addDoc(cartCollectionRef, {
             data: "hello World!",
         });
+        console.log("done cart");
+
     }
     //handle submit function
     //async as waits for submit button to be pressed
@@ -84,6 +94,8 @@ const Signup = () => {
             console.log(e.message);
         }
         setLoading(false);
+
+        createFirebaseUser();
     }
 
   return (
@@ -120,7 +132,7 @@ const Signup = () => {
                     <label className='py-2 font-medium'>Password</label>
                     <input data-testid="pass input" onChange={(e)=>setPassword(e.target.value)} className='border p-3' type='password' />
                 </div>
-                <button onClick={createFirebaseUser} data-testid="signup button" disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
+                <button data-testid="signup button" disabled={loading} className='text-white border border-mainBlue bg-mainBlue hover:bg-hoverBlue w-full p-4 my-2 '>
                     Sign Up
                 </button>
             </form>
@@ -130,4 +142,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signup;
