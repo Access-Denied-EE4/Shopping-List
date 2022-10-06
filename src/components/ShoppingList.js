@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 import { UserAuth } from '../contexts/AuthContext';
 import {db, storage} from "../firebase";
-import {addDoc, collection, getDocs} from 'firebase/firestore';
+import {addDoc, collection, getDocs, doc, deleteDoc} from 'firebase/firestore';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ctc from "../images/CTCC.jpg"
@@ -33,6 +33,7 @@ const ShoppingList = () => {
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
   //make api call to firebase inside the useEffect hook
   useEffect(()=>{
+    console.log("CALLED USEFFECt");
     //use an async function
     //api calls in JS will return a promise
     //never know how long will take for data to return back -> async
@@ -51,7 +52,13 @@ const ShoppingList = () => {
     };
     //call async function
     getCartItems();
-  },[]);
+  },[setCartItems]);
+
+  const removeItemFromCart=async(event)=>{
+      const docName=event.currentTarget.id;
+      await deleteDoc(doc(db, "user_cart",userId, "cart", docName));
+      window.location.reload(false);
+  }
 
   return(
     <>
@@ -66,7 +73,7 @@ const ShoppingList = () => {
         <ImageList sx={{mb:8, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',}}>
           {cartItems.map(item=>{
             return(
-                <Card variant="outlined" sx={{display: 'flex' }}>
+                <Card key={item.id} variant="outlined" sx={{display: 'flex' }}>
                   <CardMedia
                     component="img"
                     sx={{width:151}}
@@ -82,7 +89,7 @@ const ShoppingList = () => {
                       <IconButton aria-label="previous">
                         {theme.direction==="rtl" ? <DeleteIcon/> : <CheckBoxIcon/>}
                       </IconButton> 
-                      <IconButton aria-label="previous">
+                      <IconButton aria-label="previous" onClick={removeItemFromCart} id={item.id}>
                         {theme.direction==="rtl" ? <CheckBoxIcon/> : <DeleteIcon/>}
                       </IconButton>               
                     </Box>
@@ -96,43 +103,5 @@ const ShoppingList = () => {
     </>
   )
  }
-
-
-//   return (
-//     <>
-//     <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
-//         <div >
-//           <div>
-//             <h1 className='text-4xl font-bold py-2 text-4xl font-bold py-2 text-center'>Your Cart</h1>
-//           </div>
-//         </div>
-//      </div>
-
-//      <Container>
-//           <ImageList gap={12}
-//           sx={{mb:8,
-//                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',}}>
-//             {cartItems.map(item=>{
-//               return(
-//                   <Card key={item.id}>
-//                   <ImageListItem sx={{height: '100% !important'}}>
-//                       <img src={ctc} style={{cursor:'pointer'}} loading="lazy"></img>
-//                       <ImageListItemBar
-//                         title={item.data}
-//                         actionIcon={
-//                         <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-//                           <AddCircleIcon/>
-//                         </Tooltip>
-//                       }
-//                       />
-//                   </ImageListItem>
-//                 </Card>
-//               )
-//             })}
-//           </ImageList>
-//         </Container>
-//         <NavBar/>
-//     </>
-//   )
 
 export default ShoppingList
