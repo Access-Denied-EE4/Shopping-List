@@ -4,12 +4,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
-import {collection, getDocs} from 'firebase/firestore';
+import {addDoc, collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
 import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
+import { UserAuth } from '../../contexts/AuthContext';
 
 const Ready = () => {
 
@@ -22,8 +23,10 @@ const Ready = () => {
   //pass in db variable from fireabse file, collection name in DB
   //collection is a firebase function
   const readyItemsCollectionRef=collection(db, "ready_items");
-    //state for image, defualt is null
-    const [url, setUrl]=useState([]);
+  //state for image, defualt is null
+  const [url, setUrl]=useState([]);
+
+  const {user}=UserAuth();
 
   //need to display all the ready items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -73,6 +76,20 @@ const Ready = () => {
 
   },[]);
 
+
+    //function when plus icon cliked which addds item to customers cart
+    const getNameItemToCart=async(event)=>
+    {
+      const prodName=event.currentTarget.id;
+      //get ref to curr customers cart collection
+      const userId="car_of_"+user.email;
+      console.log(userId);
+      const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+      await addDoc(cartCollectionRef, {
+        data: prodName,
+      });
+    };
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -120,7 +137,7 @@ const Ready = () => {
                           title={item.name}
                           actionIcon={
                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                            <AddCircleIcon/>
+                             <AddCircleIcon id={item.name} onClick={getNameItemToCart}/>
                           </Tooltip>
                         }
                         />
