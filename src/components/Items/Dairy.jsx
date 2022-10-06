@@ -79,7 +79,6 @@ const Dairy = () => {
     const prodName=event.currentTarget.id;
     //get ref to curr customers cart collection
     const userId="car_of_"+user.email;
-    console.log(userId);
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: prodName,
