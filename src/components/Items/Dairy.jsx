@@ -83,7 +83,7 @@ const Dairy = () => {
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: prodName,
-  });
+    });
   };
 
 
