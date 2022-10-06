@@ -55,8 +55,10 @@ const Dairy = () => {
 
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
+    console.log("CALL USE EFFECt")
     //create an async functiopn so we can use the await key word
     const getImgUrl=async()=>{
+      console.log("ASYNC")
       //image array wil store an object made from the items name and a url to the image
       const imageArray=[];
       for(let i=0; i<dairyItems.length; ++i)
@@ -69,9 +71,9 @@ const Dairy = () => {
       //set the url state to the image array
       setUrl(imageArray);
     }
-    getImgUrl();
+    dairyItems && getImgUrl();
 
-  },[]);
+  },[dairyItems]);
 
   //function when plus icon cliked which addds item to customers cart
    const getNameItemToCart=async(event)=>

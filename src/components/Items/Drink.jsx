@@ -74,9 +74,9 @@ const Drink = () => {
         //set the url state to the image array
         setUrl(imageArray);
       }
-      getImgUrl();
+     drinkItems && getImgUrl();
 
-    },[]);
+    },[drinkItems]);
 
     //function when plus icon cliked which addds item to customers cart
    const getNameItemToCart=async(event)=>

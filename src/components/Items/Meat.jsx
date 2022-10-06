@@ -75,8 +75,8 @@ const Meat = () => {
       //set the url state to the image array
       setUrl(imageArray);
     }
-    getImgUrl();
-  },[]);
+    meatItems && getImgUrl();
+  },[meatItems]);
 
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>

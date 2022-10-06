@@ -74,9 +74,9 @@ const Toilet = () => {
       //set the url state to the image array
       setUrl(imageArray);
     }
-    getImgUrl();
+    toiletItems && getImgUrl();
 
-  },[]);
+  },[toiletItems]);
 
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>

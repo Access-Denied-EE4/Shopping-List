@@ -71,11 +71,11 @@ const Veg = () => {
           imageArray.push({name: `${vegItems[i].name}`, url: `${imgUrl}`});
       }
       //set the url state to the image array
-      setUrl(imageArray);
+       setUrl(imageArray);
     }
-    getImgUrl();
+    vegItems && getImgUrl();
 
-  },[]);
+  },[vegItems]);
 
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>

@@ -72,9 +72,9 @@ const Ready = () => {
       //set the url state to the image array
       setUrl(imageArray);
     }
-    getImgUrl();
+    readyItems && getImgUrl();
 
-  },[]);
+  },[readyItems]);
 
 
     //function when plus icon cliked which addds item to customers cart
