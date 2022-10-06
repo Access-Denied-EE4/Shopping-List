@@ -69,20 +69,6 @@ const HomeScreen = () => {
  
 
  
-  
-  //function to handle logout of account
-  //function called in onPress of logout button
-  const handleLogOut = () => {
-
-    auth.signOut().then( () => {
-      navigation.navigate("Login");
-    })
-
-    .catch(error => alert(error.message))
-
-  }
-
-
 
 
 
@@ -147,13 +133,7 @@ const HomeScreen = () => {
        
         </View>
       </ScrollView>
-      <TouchableOpacity
-      onPress={handleLogOut}
-      style={[styles.button,styles.buttonOutline,styles.container]}
-      >
-        <Text style={styles.buttonText}>Logout</Text>
-
-      </TouchableOpacity>
+     
       
 
     

@@ -1,9 +1,11 @@
 import React from 'react'
 import {  Text, TouchableOpacity, View, StyleSheet} from 'react-native'
 import { auth } from '../firebase'
+import { useNavigation } from '@react-navigation/core'
 
 const UserProfile = () => {
 
+    const navigation = useNavigation();
     const handleLogOut = () => {
 
         auth.signOut().then( () => {
@@ -22,7 +24,7 @@ const UserProfile = () => {
         <Text> Email: {auth.currentUser?.email}</Text>
             <TouchableOpacity
                 onPress={handleLogOut}
-                style={[styles.button,styles.buttonOutline,styles.container]}
+                style={[styles.button,styles.buttonOutline]}
             >
                 <Text style={styles.buttonText}>Logout</Text>
 
@@ -46,20 +48,24 @@ const styles = StyleSheet.create({
 
     container: {
   
-      position: 'absolute',
-      right: 5,
-      top: 2,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      
   
   
     },
     button: {
   
-      backgroundColor:'#2A2C41',
-      width:'20%',
-      padding:5,
+      
+      width:'30%',
+      height:'5%',
       borderRadius:10,
       alignItems:'center',
       marginTop: 10,
+      padding:5,
+      
+     
       
       
      
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
     
     buttonOutline:{
       backgroundColor:'white',
-      marginTop:5,
+    
       borderColor:'#585DA6',
       borderWidth: 2,
     },
@@ -87,19 +93,5 @@ const styles = StyleSheet.create({
       color: "0818F5",
       marginTop: 20,
     },
-    flex:{
-      flex: 1,
-  
-  
-    },
-    scrollViewCategories: {
-      paddingLeft: 20,
-      marginTop: 20,
-    },
-   
-    
-   
-  
-   
-  
+
   })
