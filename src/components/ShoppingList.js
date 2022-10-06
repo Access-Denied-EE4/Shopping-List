@@ -15,7 +15,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 const ShoppingList = () => {
-  const theme = useTheme();  
 
   //need hook to hold list of items in cart
   //use useState hook->set to empty array by default
@@ -29,21 +28,31 @@ const ShoppingList = () => {
   const cartCollectionRef=collection(db, "user_cart", userId , "cart");
 
   const removeItemFromCart=async(event)=>{
+    event.preventDefault();
     const docName=event.currentTarget.id;
     await deleteDoc(doc(db, "user_cart",userId, "cart", docName));
 }
 
   useEffect(()=>{
-    const q=query(cartCollectionRef);
-    const unsubscribe=onSnapshot(q, (querySnapshot)=>{
-      let items=[];
-      querySnapshot.forEach((doc)=>{
-        items.push({...doc.data(), id: doc.id});
+
+    console.log("Use effect called")
+    const getItems=()=>{
+      //path to db
+      const q=query(cartCollectionRef);
+      //snapshot is a snpa of curr image in database 
+      const unsubscribe=onSnapshot(q, (querySnapshot)=>{
+          let items=[];
+          querySnapshot.forEach((doc)=>{
+            items.push({...doc.data(), id: doc.id});
+        });
+        setCartItems(items);
       });
-      setCartItems(items);
-    });
-    return ()=> unsubscribe();
-  },[]);
+      return ()=>{
+        unsubscribe();
+      }
+    }
+    userId && getItems();
+  },[userId]);
 
   return(
     <>
