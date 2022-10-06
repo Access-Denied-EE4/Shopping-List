@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState , useNavigate} from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
-import {collection, getDocs} from 'firebase/firestore';
+import {addDoc, collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
 import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
-import Signup from '../Signup';
+import { UserAuth } from '../../contexts/AuthContext';
 
 const Dairy = () => {
   //need state to hold list of dairy items
@@ -26,6 +26,8 @@ const Dairy = () => {
   //state for image, defualt is null
    const [url, setUrl]=useState([]);
 
+  //get curr users email from the aith context
+  const {user}=UserAuth();
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -72,11 +74,18 @@ const Dairy = () => {
   },[]);
 
   //function when plus icon cliked which addds item to customers cart
-  const addItemToCart=async()=>
+   const getNameItemToCart=async(event)=>
   {
+    const prodName=event.currentTarget.id;
     //get ref to curr customers cart collection
-    //const cartCollectionRef=collection(db, "user_cart", email, "cart");
+    const userId="car_of_"+user.email;
+    console.log(userId);
+    const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+    await addDoc(cartCollectionRef, {
+      data: prodName,
+  });
   };
+
 
   return (
      <>
@@ -124,8 +133,8 @@ const Dairy = () => {
                          <ImageListItemBar
                            title={item.name}
                            actionIcon={
-                           <Tooltip onClick={addItemToCart} title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon/>
+                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                             <AddCircleIcon id={item.name} onClick={getNameItemToCart}/>
                            </Tooltip>
                          }
                          />
