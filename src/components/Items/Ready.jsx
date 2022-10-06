@@ -51,7 +51,7 @@ const Ready = () => {
 
     //call async function
     getReadyItems();
-  },[readyItems]);
+  },[]);
 
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
@@ -71,7 +71,7 @@ const Ready = () => {
     }
     getImgUrl();
 
-  },[url]);
+  },[]);
 
   return (
     <>

@@ -19,7 +19,7 @@ const navItems = [
 
     },
     {
-        path: "/dairy",
+        path: "/cart",
         icon: <AiIcons.AiOutlineShoppingCart size={30} className="mr-8" />,
         title: 'Cart',
 
