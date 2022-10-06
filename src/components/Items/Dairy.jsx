@@ -129,7 +129,7 @@ const Dairy = () => {
                  return(
                    <Card key={item.id}>
                      <ImageListItem sx={{height: '100% !important'}}>
-                         <img src={img} style={{cursor:'pointer'}}></img>
+                         <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
                          <ImageListItemBar
                            title={item.name}
                            actionIcon={
