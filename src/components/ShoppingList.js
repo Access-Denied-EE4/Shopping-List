@@ -115,6 +115,9 @@ const ShoppingList = () => {
                       <Typography component="div" variant="h5">
                         {item.data}
                       </Typography>
+                      <Typography component="div" variant="h6">
+                        {"R" + item.price}
+                      </Typography>
                     </CardContent>
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                       <IconButton aria-label="previous" onClick={removeItemFromCart} id={item.id}>

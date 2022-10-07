@@ -90,7 +90,8 @@ const Veg = () => {
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: infoArray[0],
-      img_url: infoArray[1] 
+      img_url: infoArray[1], 
+      price: infoArray[2],
     });
   };
 
@@ -141,7 +142,7 @@ const Veg = () => {
                           title={item.name}
                           actionIcon={
                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon id={[item.name, item.img_url]} onClick={getNameItemToCart}/>
+                             <AddCircleIcon id={[item.name, item.img_url, item.price]} onClick={getNameItemToCart}/>
                           </Tooltip>
                         }
                         />
