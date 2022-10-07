@@ -13,12 +13,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { getDownloadURL,ref } from 'firebase/storage';
 
 const ShoppingList = () => {
 
   //need hook to hold list of items in cart
   //use useState hook->set to empty array by default
   const [cartItems, setCartItems]=useState([]);
+  const[url, setUrl]=useState([]);
 
   //get curr users email from the aith context
   const {user}=UserAuth();
@@ -34,7 +36,6 @@ const ShoppingList = () => {
 }
 
   useEffect(()=>{
-
     console.log("Use effect called")
     const getItems=()=>{
       //path to db
@@ -54,6 +55,27 @@ const ShoppingList = () => {
     userId && getItems();
   },[userId]);
 
+
+    //use effect handling thr retrivel of imags from the database
+    useEffect(()=>{
+      //create an async functiopn so we can use the await key word
+      const getImgUrl=async()=>{
+        //image array wil store an object made from the items name and a url to the image
+        const imageArray=[];
+        for(let i=0; i<cartItems.length; ++i)
+        {
+            //get url for the image of the relevant itme
+            const imgUrl=await getDownloadURL(ref(storage,cartItems[i].img_url));
+            //create objecr
+            imageArray.push({name: `${cartItems[i].data}`, url: `${imgUrl}`});
+        }
+        //set the url state to the image array
+        setUrl(imageArray);
+      }
+     cartItems && getImgUrl();
+
+    },[cartItems]);
+
   return(
     <>
       {console.log(cartItems)}
@@ -67,12 +89,26 @@ const ShoppingList = () => {
       <Container>
         <ImageList sx={{mb:8, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',}}>
           {cartItems && cartItems.map(item=>{
+                //stores image url to be used
+                let img;
+                //need in if statemnt to handle useffect has not run yet
+                if(url.length!=0)
+                {
+                  //if our url has been populated then use the image
+                  let img_url=url.find(img=>img.name===item.data);
+                  img=img_url.url;
+                }
+                else
+                {
+                  //if it has not then use our logo and on the next render it will change
+                  img=ctc;
+                }
             return(
                 <Card key={item.id} variant="outlined" sx={{display: 'flex' }}>
                   <CardMedia
                     component="img"
                     sx={{width:151}}
-                    image={ctc}
+                    image={img}
                     />
                   <Box sx={{display: 'flex', flexDirection:'column'}}>
                     <CardContent sx={{flex: '1 0 auto'}}>

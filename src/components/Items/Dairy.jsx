@@ -78,12 +78,17 @@ const Dairy = () => {
   //function when plus icon cliked which addds item to customers cart
    const getNameItemToCart=async(event)=>
   {
+    //split string so we have the item name and url sepeatly 
+    const eventString=event.currentTarget.id;
+    const infoArray=eventString.split(",");
+
     const prodName=event.currentTarget.id;
     //get ref to curr customers cart collection
     const userId="car_of_"+user.email;
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
-      data: prodName,
+      data: infoArray[0],
+      img_url: infoArray[1] 
     });
   };
 
@@ -135,7 +140,7 @@ const Dairy = () => {
                            title={item.name}
                            actionIcon={
                            <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon id={item.name} onClick={getNameItemToCart}/>
+                             <AddCircleIcon id={[item.name, item.img_url]} onClick={getNameItemToCart}/>
                            </Tooltip>
                          }
                          />

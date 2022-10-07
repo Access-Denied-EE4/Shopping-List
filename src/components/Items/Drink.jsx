@@ -78,18 +78,22 @@ const Drink = () => {
 
     },[drinkItems]);
 
-    //function when plus icon cliked which addds item to customers cart
-   const getNameItemToCart=async(event)=>
-   {
-     const prodName=event.currentTarget.id;
-     //get ref to curr customers cart collection
-     const userId="car_of_"+user.email;
-     console.log(userId);
-     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
-     await addDoc(cartCollectionRef, {
-       data: prodName,
-     });
-   };
+  //function when plus icon cliked which addds item to customers cart
+  const getNameItemToCart=async(event)=>
+  {
+    //split string so we have the item name and url sepeatly 
+    const eventString=event.currentTarget.id;
+    const infoArray=eventString.split(",");
+
+    const prodName=event.currentTarget.id;
+    //get ref to curr customers cart collection
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+    await addDoc(cartCollectionRef, {
+      data: infoArray[0],
+      img_url: infoArray[1] 
+    });
+  };
 
   return (
     <>
@@ -115,7 +119,7 @@ const Drink = () => {
               /*makes grid respond to different screen sizes */
               gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))!important',
           }}>
-              {drinkItems.map(item=>{
+              {drinkItems && url && drinkItems.map(item=>{
                 //stores image url to be used
                 let img;
                 //need in if statemnt to handle useffect has not run yet
@@ -124,6 +128,7 @@ const Drink = () => {
                   //if our url has been populated then use the image
                   let img_url=url.find(img=>img.name===item.name);
                   img=img_url.url;
+                  console.log(img);
                 }
                 else
                 {
@@ -138,7 +143,7 @@ const Drink = () => {
                           title={item.name}
                           actionIcon={
                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon id={item.name} onClick={getNameItemToCart}/>
+                             <AddCircleIcon id={[item.name, item.img_url]} onClick={getNameItemToCart}/>
                           </Tooltip>
                         }
                         />
