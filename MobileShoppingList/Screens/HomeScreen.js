@@ -17,59 +17,6 @@ const HomeScreen = () => {
 
   const navigation = useNavigation();
 
-  const dataTopProducts = [
-    {
-      name: 'Rump Steak',
-      //icon: IL_Grapes_PNG,
-      bgColor: 'rgba(227,206,243,0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      name: 'Fanta Grape',
-      //icon: IL_Greentea_PNG,
-      bgColor: 'rgba(187, 208, 136, 0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      name: 'Low Fat Milk',
-      //icon: IL_Cauliflawer_PNG,
-      bgColor: 'rgba(140, 250, 145,0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      name: 'Mint Bubbly',
-      //icon: IL_Grapes_PNG,
-      bgColor: 'rgba(227,206,243,0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      name: 'Hand Soap',
-      //icon: IL_Tomato_PNG,
-      bgColor: 'rgba(255, 234, 232, 0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      name: 'Cucumber',
-      //icon: IL_Greentea_PNG,
-      bgColor: 'rgba(187, 208, 136, 0.5)',
-      price: 1.53,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-   
-  ];
-
- 
-
-
- 
-
- 
-
 
 
   return (
