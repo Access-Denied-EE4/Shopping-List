@@ -17,6 +17,8 @@ import ReadyMadeProducts from './categoryPages/ReadyMadeProducts';
 import ToiletryProducts from './categoryPages/ToiletryProducts';
 import VegetableProducts from './categoryPages/VegetableProducts';
 import Tabs from './NavBar/tabs';
+import Welcome from './Screens/Welcome';
+
 
 LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
 
@@ -37,6 +39,7 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
+      <Stack.Screen options={{headerShown:false }} name= "Welcome" component={Welcome}/>
       <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
       <Stack.Screen options={{headerShown:false }} name="Home" component={HomeScreenTabs}/>
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>

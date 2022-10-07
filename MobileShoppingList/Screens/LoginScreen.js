@@ -19,7 +19,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if(user){
-                navigation.navigate("Home")
+                navigation.navigate("Login")
             }
         })
         
@@ -121,26 +121,26 @@ const styles = StyleSheet.create({
         marginTop:5,
     },
     buttonContainer: {
-        width:'60%',
+        width:'60%',  
         justifyContent:'center',
         alignItem: 'center',
         marginTop:40,
     },
     button:{
-        backgroundColor:'#0782F9',
+        
         width:'100%',
         padding:15,
         borderRadius:10,
         alignItems:'center'
     },
     buttonOutline:{
-        backgroundColor:'white',
+        backgroundColor: "#2A2C41",  
         marginTop:5,
-        borderColor:'#585DA6',
+       
         borderWidth: 2,
     },
     buttonText:{
-        color: 'black',
+        color: 'white',
         fontWeight: '700',
         fontSize:16,
     },
@@ -154,11 +154,14 @@ const styles = StyleSheet.create({
         alignItem: 'center',
         marginTop: 80,
         fontWeight: '700',
+        color: "#2A2C41", 
         textDecorationLine: 'underline'
     },
     title:{
+        color: "#2A2C41", 
         justifyContent: 'center',
         alignItems: 'stretch',
+        fontSize:20,
         fontWeight: '800',
         marginBottom: 40,
     },
