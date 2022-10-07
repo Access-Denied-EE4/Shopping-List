@@ -12,10 +12,15 @@ import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getDownloadURL,ref } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingList = () => {
+
+  //assign naviagte to the use navigate function
+  const navigate=useNavigate();
 
   //need hook to hold list of items in cart
   //use useState hook->set to empty array by default
@@ -52,6 +57,10 @@ const ShoppingList = () => {
     {
       setCartCost(cartCost-price);  
     } 
+}
+
+const backToCats=()=>{
+  navigate("/categories")
 }
 
   useEffect(()=>{
@@ -166,6 +175,7 @@ const ShoppingList = () => {
                       <Typography component="div" variant="h6">
                         {"R" + cartCost}
                       </Typography>
+                      <Button variant="contained" size="large" display="flex" onClick={backToCats}>Continue Shopping</Button>
                     </CardContent>
                   </Box>
               </Card>
