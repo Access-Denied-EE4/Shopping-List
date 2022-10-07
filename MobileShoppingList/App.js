@@ -24,7 +24,7 @@ LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native c
 //each new screen created will be added to the stack and given a anme so it can be navigated to
 const Stack=createNativeStackNavigator();
 
-function Home() {
+function HomeScreenTabs() {
   return (
     <Tabs />
   );
@@ -38,7 +38,7 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
-      <Stack.Screen options={{headerShown:false }} name="Home" component={Home}/>
+      <Stack.Screen options={{headerShown:false }} name="Home" component={HomeScreenTabs}/>
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
       <Stack.Screen name="SignUp" component={SignUpScreen}/>
       <Stack.Screen name="Dairy" component={DairyProducts}/>
