@@ -4,7 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
-import {addDoc, collection, getDocs} from 'firebase/firestore';
+import {addDoc, collection, getDocs, increment, updateDoc,doc} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
 import NavBar from '../NavBar';
@@ -94,7 +94,13 @@ const Drink = () => {
       img_url: infoArray[1], 
       price: infoArray[2],
     });
+
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(infoArray[2]),
+    })
   };
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 import { UserAuth } from '../contexts/AuthContext';
 import {db, storage} from "../firebase";
-import {addDoc, collection, getDocs, doc, deleteDoc, onSnapshot,  query} from 'firebase/firestore';
+import {addDoc, collection, getDocs, doc, deleteDoc, onSnapshot,  query, updateDoc, increment} from 'firebase/firestore';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ctc from "../images/CTCC.jpg"
@@ -21,6 +21,7 @@ const ShoppingList = () => {
   //use useState hook->set to empty array by default
   const [cartItems, setCartItems]=useState([]);
   const[url, setUrl]=useState([]);
+  const[cartCost, setCartCost]=useState(0);
 
   //get curr users email from the aith context
   const {user}=UserAuth();
@@ -29,14 +30,31 @@ const ShoppingList = () => {
   //ref to cart collection for this user
   const cartCollectionRef=collection(db, "user_cart", userId , "cart");
 
+  const priceRef=doc(db, "user_cart", userId);
+
   const removeItemFromCart=async(event)=>{
     event.preventDefault();
-    const docName=event.currentTarget.id;
+
+    //get the info from the event and split up into variables
+    const infoString=event.currentTarget.id;
+    const infoStringArray=infoString.split(",");
+    const docName=infoStringArray[0];
+    const price=infoStringArray[1];
+
+    //delete the doc 
     await deleteDoc(doc(db, "user_cart",userId, "cart", docName));
+    //decrease the cost of the cart
+    await updateDoc(doc(db, "user_cart", userId),{
+     cart_cost: increment(-price),
+    })
+
+    if(cartCost!=0)
+    {
+      setCartCost(cartCost-price);  
+    } 
 }
 
   useEffect(()=>{
-    console.log("Use effect called")
     const getItems=()=>{
       //path to db
       const q=query(cartCollectionRef);
@@ -76,9 +94,15 @@ const ShoppingList = () => {
 
     },[cartItems]);
 
+    useEffect(()=>{
+      setCartCost(0);
+      const unsub=onSnapshot(doc(db, "user_cart", userId), (doc)=>{
+        setCartCost(doc.data().cart_cost);
+      })
+    },[cartItems]);
+
   return(
     <>
-      {console.log(cartItems)}
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
          <div >
            <div>
@@ -120,7 +144,7 @@ const ShoppingList = () => {
                       </Typography>
                     </CardContent>
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                      <IconButton aria-label="previous" onClick={removeItemFromCart} id={item.id}>
+                      <IconButton aria-label="previous" onClick={removeItemFromCart} id={[item.id, item.price]}>
                         <DeleteIcon/>
                       </IconButton> 
                       <IconButton aria-label="previous">
@@ -133,6 +157,18 @@ const ShoppingList = () => {
           })}
         </ImageList> 
       </Container> 
+      <Card variant="outlined" sx={{display: 'flex' }}>
+                  <Box sx={{display: 'flex', flexDirection:'column'}}>
+                    <CardContent sx={{flex: '1 0 auto'}}>
+                      <Typography component="div" variant="h5">
+                        Total cost
+                      </Typography>
+                      <Typography component="div" variant="h6">
+                        {"R" + cartCost}
+                      </Typography>
+                    </CardContent>
+                  </Box>
+              </Card>
       <NavBar/>
     </>
   )

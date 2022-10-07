@@ -4,7 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState , useNavigate} from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
-import {addDoc, collection, getDocs} from 'firebase/firestore';
+import {addDoc, collection, getDocs, increment, updateDoc,doc} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import ctc from "../../images/CTCC.jpg"
 import NavBar from '../NavBar';
@@ -76,7 +76,7 @@ const Dairy = () => {
   },[dairyItems]);
 
   //function when plus icon cliked which addds item to customers cart
-   const getNameItemToCart=async(event)=>
+  const getNameItemToCart=async(event)=>
   {
     //split string so we have the item name and url sepeatly 
     const eventString=event.currentTarget.id;
@@ -91,6 +91,11 @@ const Dairy = () => {
       img_url: infoArray[1], 
       price: infoArray[2],
     });
+
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(infoArray[2]),
+    })
   };
 
 
