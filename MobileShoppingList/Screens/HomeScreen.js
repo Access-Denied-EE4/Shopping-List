@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   
   buttonOutline:{
-    backgroundColor:'white',
+    backgroundColor: "#2A2C41",
     marginTop:5,
     borderColor:'#585DA6',
     borderWidth: 2,
@@ -134,9 +134,8 @@ const styles = StyleSheet.create({
 
   title:{
     fontSize: 18,
-    fontFamily: 'Helvetica',
     fontWeight: '700',
-    color: "0818F5",
+    color: "#2A2C41",
     marginTop: 20,
   },
   flex:{

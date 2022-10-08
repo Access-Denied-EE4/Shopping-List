@@ -104,20 +104,20 @@ const styles = StyleSheet.create({
        
     },
     button:{
-        backgroundColor:'#0782F9',
+        backgroundColor: "#2A2C41",
         width:'100%',
         padding:15,
         borderRadius:10,
         alignItems:'center'
     },
     buttonOutline:{
-        backgroundColor:'white',
+        
         marginTop:5,
-        borderColor:'#585DA6',
+       
         borderWidth: 2,
     },
     buttonText:{
-        color: 'black',
+        color: 'white',
         fontWeight: '700',
         fontSize:16,
     },
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
         fontSize:16,
     },
     title:{
+        color:"#2A2C41",
         justifyContent: 'center',
         alignItems: 'stretch',
         fontWeight: '800',
