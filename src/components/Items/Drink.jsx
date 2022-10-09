@@ -101,6 +101,30 @@ const Drink = () => {
     })
   };
 
+
+  const addSpriteToCart=async()=>{
+
+    const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/drink/drink-soft-sprite.webp"));
+    console.log(imgUrl);
+
+    //add item to cart
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId, "cart");
+    await addDoc(cartCollectionRef, {
+      data: "Sprite", 
+      img_url: "gs://shopping-list-wits.appspot.com/drink/drink-soft-sprite.webp",
+      price: "12",
+    });
+
+    //increment cost
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(12),
+    })
+
+  }
+
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -134,7 +158,6 @@ const Drink = () => {
                   //if our url has been populated then use the image
                   let img_url=url.find(img=>img.name===item.name);
                   img=img_url.url;
-                  console.log(img);
                 }
                 else
                 {
@@ -157,6 +180,21 @@ const Drink = () => {
                   </Card>
                 )
               })}
+
+              <Card>
+                <ImageListItem sx={{height: '100% !important'}}>
+                    <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/drink%2Fdrink-soft-sprite.webp?alt=media&token=e8290273-6346-47c1-a768-2239770cec22"} style={{cursor:'pointer'}} loading="lazy"></img>
+                    <ImageListItemBar
+                      title={"Sprite"+" - "+"R12"}
+                      actionIcon={
+                      <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                        <AddCircleIcon  onClick={addSpriteToCart}/>
+                      </Tooltip>
+                    }
+                    />
+                </ImageListItem>
+              </Card> 
+
           </ImageList>
       </Container>
       <NavBar/>

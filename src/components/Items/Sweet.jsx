@@ -101,6 +101,30 @@ const Sweet = () => {
     })
   };
 
+
+
+  const addCrunchieToCart=async()=>{
+
+    const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/sweet/sweet-crunchie.jpeg"));
+    console.log(imgUrl);
+
+    //add item to cart
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId, "cart");
+    await addDoc(cartCollectionRef, {
+      data: "Crunchie", 
+      img_url: "gs://shopping-list-wits.appspot.com/sweet/sweet-crunchie.jpeg",
+      price: "11",
+    });
+
+    //increment cost
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(11),
+    })
+
+  }
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -156,6 +180,22 @@ const Sweet = () => {
                   </Card>
                 )
               })}
+
+
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/sweet%2Fsweet-crunchie.jpeg?alt=media&token=9d08c47d-3575-4faf-8667-b55ee305943d"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Crunchie"+" - "+"R11"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addCrunchieToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card> 
+
           </ImageList>
       </Container>
       <NavBar/>

@@ -100,6 +100,29 @@ const Veg = () => {
     })
   };
 
+
+  const addAppleToCart=async()=>{
+
+    const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/veg/veg-apple.webp"));
+    console.log(imgUrl);
+
+    //add item to cart
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId, "cart");
+    await addDoc(cartCollectionRef, {
+      data: "Apple", 
+      img_url: "gs://shopping-list-wits.appspot.com/veg/veg-apple.webp",
+      price: "15",
+    });
+
+    //increment cost
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(15),
+    })
+
+  }
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -155,6 +178,21 @@ const Veg = () => {
                   </Card>
                 )
               })}
+
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/veg%2Fveg-apple.webp?alt=media&token=6d27d1e3-8184-4947-9839-7efaa3685bce"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Apple"+" - "+"R15"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addAppleToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card> 
+            
           </ImageList>
       </Container>
       <NavBar/>

@@ -59,6 +59,7 @@ const ShoppingList = () => {
     } 
 }
 
+
 const backToCats=()=>{
   navigate("/categories")
 }

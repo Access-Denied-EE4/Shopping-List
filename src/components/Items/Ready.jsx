@@ -100,6 +100,29 @@ const Ready = () => {
     })
   };
 
+
+  const addSaladToCart=async()=>{
+
+    const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/ready/ready-salad.jpeg"));
+    console.log(imgUrl);
+
+    //add item to cart
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId, "cart");
+    await addDoc(cartCollectionRef, {
+      data: "Salad", 
+      img_url: "gs://shopping-list-wits.appspot.com/ready/ready-salad.jpeg",
+      price: "70",
+    });
+
+    //increment cost
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(70),
+    })
+
+  }
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -155,6 +178,21 @@ const Ready = () => {
                   </Card>
                 )
               })}
+
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/ready%2Fready-salad.jpeg?alt=media&token=8aabdb41-8531-4f6c-8221-29bee828d2d2"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Salad"+" - "+"R70"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addSaladToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card> 
+
           </ImageList>
       </Container>
       <NavBar/>

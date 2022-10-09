@@ -101,6 +101,29 @@ const Toilet = () => {
     })
   };
 
+
+  const addTPToCart=async()=>{
+
+    const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/toilet/toilet-toilet-paper.jpeg"));
+    console.log(imgUrl);
+
+    //add item to cart
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId, "cart");
+    await addDoc(cartCollectionRef, {
+      data: "Toilet Paper", 
+      img_url: "gs://shopping-list-wits.appspot.com/toilet/toilet-toilet-paper.jpeg",
+      price: "150",
+    });
+
+    //increment cost
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(150),
+    })
+
+  }
+
   return (
     <>
       <div className='text-white border border-mainBlue bg-mainBlue py-1  mb-2'>
@@ -156,6 +179,21 @@ const Toilet = () => {
                   </Card>
                 )
               })}
+
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/toilet%2Ftoilet-toilet-paper.jpeg?alt=media&token=acde31af-219d-4e61-93de-84f1295f927e"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Toilet Paper"+" - "+"R150"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addTPToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card> 
+
           </ImageList>
       </Container>
       <NavBar/>
