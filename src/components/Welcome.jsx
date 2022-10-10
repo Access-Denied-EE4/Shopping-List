@@ -1,4 +1,3 @@
-import styles from "../style";
 import background from "../images/w.svg";
 import logo from "../images/Logo.png";
 import React, { Component } from 'react';
