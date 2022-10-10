@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
-import ClickToCart from "../images/CTCC.jpg"
+import ClickToCart from "../images/Logo.png"
 import {Alert} from "react-bootstrap";
 import { Validate_SignIn } from '../contexts/AuthContext';
 
