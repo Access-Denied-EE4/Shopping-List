@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Account from "./components/Account";
+import Welcome from "./components/Welcome";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ForgotPassword from "./components/ForgotPasswordPage"
@@ -26,7 +27,8 @@ function App() {
         {/* all routes to be used*/}
         <Routes>
           {/*individual routes */}
-          <Route path= '/' element={<Signin/>}/>
+          <Route path= '/' element={<Welcome/>}/>
+          <Route path= '/signin' element={<Signin/>}/>
           <Route path= '/signup' element={<Signup/>}/>
           <Route path = '/forgot-password' element={<ForgotPassword />}/>
           <Route path='/verification' element={<Verification/>}/>
