@@ -78,7 +78,7 @@ const Dairy = () => {
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>
   {
-    //split string so we have the item name and url sepeatly 
+    //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
 
@@ -88,7 +88,7 @@ const Dairy = () => {
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: infoArray[0],
-      img_url: infoArray[1], 
+      img_url: infoArray[1],
       price: infoArray[2],
     });
 
@@ -103,7 +103,7 @@ const Dairy = () => {
     const userId="car_of_"+user.email;
     const cartCollectionRef=collection(db, "user_cart", userId, "cart");
     await addDoc(cartCollectionRef, {
-      data: "Butter", 
+      data: "Butter",
       img_url: "gs://shopping-list-wits.appspot.com/dairy/dairy-butter.webp",
       price: "25",
     });
@@ -184,8 +184,9 @@ const Dairy = () => {
                     }
                     />
                 </ImageListItem>
-              </Card>               
+              </Card>
            </ImageList>
+           <AddCircleIcon data-testid='add dairy to cart' onClick={addButterToCart}/>
        </Container>
        <NavBar/>
      </>

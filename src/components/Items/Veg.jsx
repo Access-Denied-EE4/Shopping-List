@@ -80,7 +80,7 @@ const Veg = () => {
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>
   {
-    //split string so we have the item name and url sepeatly 
+    //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
 
@@ -90,7 +90,7 @@ const Veg = () => {
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: infoArray[0],
-      img_url: infoArray[1], 
+      img_url: infoArray[1],
       price: infoArray[2],
     });
 
@@ -110,7 +110,7 @@ const Veg = () => {
     const userId="car_of_"+user.email;
     const cartCollectionRef=collection(db, "user_cart", userId, "cart");
     await addDoc(cartCollectionRef, {
-      data: "Apple", 
+      data: "Apple",
       img_url: "gs://shopping-list-wits.appspot.com/veg/veg-apple.webp",
       price: "15",
     });
@@ -191,9 +191,10 @@ const Veg = () => {
                   }
                   />
               </ImageListItem>
-            </Card> 
-            
+            </Card>
+
           </ImageList>
+          <AddCircleIcon data-testid='add veg to cart'  onClick={addAppleToCart}/>
       </Container>
       <NavBar/>
     </>

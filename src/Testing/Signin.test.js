@@ -5,6 +5,8 @@ import AppTesting from '../AppTester';
 describe ("Signin testing" ,()=>{
     test('Testing functionailty and rendering', () => {
        render(<AppTesting/>)
+
+
        //get elements to be tested
      let labelInst= screen.getAllByText('Sign in to your account')[0];
      let labelNewAcc= screen.getAllByText('Dont have an account yet?')[0];

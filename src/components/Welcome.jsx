@@ -16,21 +16,21 @@ const Hero = () => {
 
           <a href="signin" className="button-el">Log In</a>
           <a href="signup" className="button-el">Sign Up</a>
-        
+
         <h2> We find our phones quicker than pen and paper, so what better way to store our shopping lists, making them more organized and easily accessible?</h2>
         <h1> Created by Adam Gordon, Jaden Harris, Lerusha Munien, Wasim Rahiman and Yasira Dedat</h1>
-      </div> 
+      </div>
       <div className="overlay" style={{background: `url(${background})`}}/>
- 
- 
+
+
     </div>
 
-    
+
 
   )
 }
 
-export default Hero; 
+export default Hero;
 
 
 

@@ -6,13 +6,8 @@ describe ("Forgot Password testing" ,()=>{
     test('UI rendering and functionality', () => {
        render(<AppTesting/>)
 
-       // check that UI renders accordingly
-       let link =screen.getAllByTestId("signup link")[0];
-       expect(link).toBeInTheDocument();
-       fireEvent.click(link, { button: 0});
 
-       let linkSignIn =screen.getAllByTestId("sign in")[0];
-       fireEvent.click(linkSignIn, { button: 0});
+
 
        let linkForgotPass =screen.getAllByTestId("forgot password")[0];
        fireEvent.click(linkForgotPass, { button: 0});

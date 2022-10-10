@@ -28,7 +28,7 @@ const Meat = () => {
 
     //state for image, defualt is null
     const [url, setUrl]=useState([]);
-  
+
   const {user}=UserAuth();
 
   //need to display all the meat items immedailty when the page is loaded without having to click on a button
@@ -81,7 +81,7 @@ const Meat = () => {
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>
   {
-    //split string so we have the item name and url sepeatly 
+    //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
 
@@ -91,7 +91,7 @@ const Meat = () => {
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
     await addDoc(cartCollectionRef, {
       data: infoArray[0],
-      img_url: infoArray[1], 
+      img_url: infoArray[1],
       price: infoArray[2],
     });
 
@@ -110,7 +110,7 @@ const Meat = () => {
     const userId="car_of_"+user.email;
     const cartCollectionRef=collection(db, "user_cart", userId, "cart");
     await addDoc(cartCollectionRef, {
-      data: "Chicken Breast", 
+      data: "Chicken Breast",
       img_url: "gs://shopping-list-wits.appspot.com/meat/meat-chicken-breast.jpeg",
       price: "120",
     });
@@ -180,7 +180,8 @@ const Meat = () => {
                 )
               })}
 
-              <Card>
+
+              <Card >
                 <ImageListItem sx={{height: '100% !important'}}>
                     <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/meat%2Fmeat-chicken-breast.jpeg?alt=media&token=56a7109d-eeab-4de4-bac2-7bc4cc0bd4fe"} style={{cursor:'pointer'}} loading="lazy"></img>
                     <ImageListItemBar
@@ -192,9 +193,11 @@ const Meat = () => {
                     }
                     />
                 </ImageListItem>
-              </Card> 
+              </Card>
+
 
           </ImageList>
+          <AddCircleIcon data-testid='add to cart button' onClick={addChickenBreastToCart}/>
       </Container>
       <NavBar/>
     </>
