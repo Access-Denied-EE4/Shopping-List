@@ -4,7 +4,7 @@ import {collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import {db, storage} from '../firebase';
 import CategoryItems from '../categoryBoxes/catBoxes'
-import ctc from '../assets/ClickToCart.jpg';
+import ctc from '../images/Logo.png';
 
 
 const DairyProducts = () => {
