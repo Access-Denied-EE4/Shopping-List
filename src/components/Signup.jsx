@@ -116,7 +116,7 @@ const Signup = () => {
                 <p className='py-2'>
                     {/* '/' indiciates link will take us to home page */}
                     Already have an account?
-                    <Link data-testid="sign in" to='/' className='underline' >Sign in</Link>
+                    <Link data-testid="sign in" to='/signin' className='underline' >Sign in</Link>
                 </p>
             </div>
 
