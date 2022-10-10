@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
  }
-h2, .TitleList .Title {
+.hero .content h2, .TitleList .Title {
 	font-size: 28px;
     font-family:'serif';
     font-weight: bold;
@@ -22,7 +22,7 @@ h2, .TitleList .Title {
 }
 
 
-h1, .TitleList .Title{
+.hero .content h1, .TitleList .Title{
     font-size: 17px;
     font-family:'serif';
     font-weight: bold;
