@@ -3,7 +3,7 @@
 import { render, screen ,fireEvent,within} from '@testing-library/react';
 import App from '../App';
 import AppTesting from '../AppTester';
-import meatItems from '../components/Items/meat';
+
 
 describe ("Adding to cart" ,()=>{
 
