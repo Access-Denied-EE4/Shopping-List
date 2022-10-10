@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {auth} from '../firebase'
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { useNavigation } from '@react-navigation/core'
 
 
@@ -11,29 +11,43 @@ const SignUpScreen = () => {
     //set to empty string by default as no email/password by default
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    
 
     const navigation = useNavigation();
 
-    //when state changed or after rendering will call this and handle the navigation between screens
+    //when state changed or after rendering will call this 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if(user){
-                navigation.navigate("Login")
-            }
-        })
-        
+        const unsubscribe = auth.onAuthStateChanged(currentUser => {
 
-        return unsubscribe;
-    }, [])
+            console.log(currentUser);
+            
+           
+        });
+        
+       
+        return () => {
+            unsubscribe();
+        }
+          
+      
+    }, []);
 
     
     //function to handle sign up
-    const handleSignUp=()=>{
-        createUserWithEmailAndPassword(auth,email,password).then(userCredentials=>{
-            const user=userCredentials.user;
-            console.log('Signed up with: ',user.email);
+    const handleSignUp = () =>{
+        
+       
+    
+        createUserWithEmailAndPassword(auth,email,password).then((userCredentials) =>{
+            sendEmailVerification(userCredentials.user);
         })
-        .catch(error=>alert(error.message))
+        .catch(alert);
+
+
+        navigation.navigate("Login")
+
+    
+
     }
 
 
