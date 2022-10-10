@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
 import Verification from './Verification';
-import ClickToCart from "../images/CTCC.jpg"
+import ClickToCart from "../images/Logo.png"
 import { Alert } from 'react-bootstrap';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
