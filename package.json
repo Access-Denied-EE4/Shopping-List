@@ -40,7 +40,8 @@
         "!src/components/ProtectedRoute.jsx",
         "!src/components/Sidebar.js",
         "!src/components/MenuBar/MenuBar.js",
-        "!src/components/Verification.js"
+        "!src/components/Verification.js",
+        "!src/components/Account.jsx"
        ]
     },
     "scripts": {
