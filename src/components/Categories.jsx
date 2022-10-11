@@ -85,7 +85,7 @@ const Categories = () => {
                     </Card>
                 </ImageList>
             </Container>
-        <NavBar/>
+        <NavBar data-testid="navbar"/>
     </>
   )
 }

@@ -11,8 +11,10 @@ import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthContext';
+import { useNavigate} from 'react-router-dom';
 
 const Veg = () => {
+  const navigate=useNavigate();
 
   //need state to hold list of veg items
   //use useState hook->set to empty array by default
@@ -80,6 +82,7 @@ const Veg = () => {
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>
   {
+
     //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
@@ -102,7 +105,6 @@ const Veg = () => {
 
 
   const addAppleToCart=async()=>{
-
     const imgUrl=await getDownloadURL(ref(storage,"gs://shopping-list-wits.appspot.com/veg/veg-apple.webp"));
     console.log(imgUrl);
 

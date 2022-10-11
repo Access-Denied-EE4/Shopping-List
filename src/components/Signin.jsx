@@ -7,7 +7,6 @@ import { Validate_SignIn } from '../contexts/AuthContext';
 
 const Signin = () => {
 
-
     //setup states for email and password
     //set to empty string by default as no email/password by default
     const [email,setEmail]=useState('');

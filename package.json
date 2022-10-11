@@ -34,7 +34,13 @@
         "!src/components/Items/Toilet.jsx",
         "!src/components/Items/Veg.jsx",
         "!src/components/ProtectedRoute.js",
-        "!src/App.js"
+        "!src/App.js",
+        "!src/components/ShoppingList.js",
+        "!src/components/Welcome.jsx",
+        "!src/components/ProtectedRoute.jsx",
+        "!src/components/Sidebar.jsx",
+        "!src/components/MenuBar/MenuBar.js",
+        "!src/components/MenuBar/MenuBarData.js"
        ]
     },
     "scripts": {

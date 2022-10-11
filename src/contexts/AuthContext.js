@@ -80,8 +80,6 @@ export const Pass_Entered = (password) => password !== "";
 export const Approve_Sign_in = (email, password) => email !== "" && password !== "";
 export const CheckPassLength = (password) => password.length >= 6;
 export const Validate_SignIn = (password, email) => {
-
-
     if (!Approve_Sign_in(password, email)) {
 
         if (!Email_Entered(email) && Pass_Entered(password)) {
@@ -98,3 +96,15 @@ export const Validate_SignIn = (password, email) => {
     }
 
 }
+
+export const GetCartItems = () => {
+    let cart= ["Chicken Breast","Butter","Sprite","Crunchie","Toilet paper","Apple"];
+
+    return cart;
+}
+
+
+export const removeItemFromCart = (cartItems,itemind) => {
+    cartItems.splice(itemind,1);
+}
+
