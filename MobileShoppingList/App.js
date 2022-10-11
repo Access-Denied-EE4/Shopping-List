@@ -41,7 +41,7 @@ export default function App() {
     <Stack.Navigator>
       <Stack.Screen options={{headerShown:false }} name= "Welcome" component={Welcome}/>
       <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
-      <Stack.Screen options={{headerShown:false }} name="Home" component={HomeScreenTabs}/>
+      <Stack.Screen options={{headerShown:false }} name="HomeScreen" component={HomeScreenTabs}/>
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
       <Stack.Screen name="SignUp" component={SignUpScreen}/>
       <Stack.Screen name="Dairy" component={DairyProducts}/>

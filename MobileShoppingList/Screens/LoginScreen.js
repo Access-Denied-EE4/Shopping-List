@@ -33,7 +33,7 @@ const LoginScreen = () => {
         signInWithEmailAndPassword(auth,email,password).then(userCredentials=>{
             const user=userCredentials.user;
             //once logged in will take user to the home screen
-            navigation.navigate("Home")
+            navigation.navigate("HomeScreen")
             console.log('Logged in with: ',user.email);
         })
         .catch(error=>alert(error.message))

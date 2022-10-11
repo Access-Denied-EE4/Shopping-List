@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },text3: {
    
     top: 50,
-    fontFamily:'serif',
+    fontFamily:'Times New Roman',
     left:254,
     color: "#2A2C41", 
     fontSize: 28,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },text4: {
    
     top: 20,
-    fontFamily:'serif',
+    fontFamily:'Times New Roman',
     left:270,
     color: "#2A2C41", 
     fontSize: 28,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
 
   },text5: {
-    fontFamily:'serif',
+    fontFamily:'Times New Roman',
     top: -10,
     left:294,
     color: "#2A2C41", 

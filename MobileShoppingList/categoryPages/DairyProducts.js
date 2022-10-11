@@ -99,10 +99,10 @@ const DairyProducts = () => {
                       
                       return(
                        
-                       <ScrollView vertical showsVerticalScrollIndicator = {false}>
+                       <ScrollView vertical showsVerticalScrollIndicator = {false} key = {item.id}>
                        
                       
-                      
+                        
                         <Text style = {styles.title}>{item.name}</Text>
                         <Image style ={styles.image} source={url.length == 0 ? img :{uri: img}}/>
                       
