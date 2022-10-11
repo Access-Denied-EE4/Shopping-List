@@ -3,7 +3,6 @@ import { SafeAreaView, Text,StyleSheet,ScrollView,View, Image } from 'react-nati
 import {collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import {db, storage} from '../firebase';
-import CategoryItems from '../categoryBoxes/catBoxes'
 import ctc from '../images/Logo.png';
 
 
@@ -19,6 +18,8 @@ const DairyProducts = () => {
   //state for image, defualt is null
    const [url, setUrl]=useState([]);
 
+  
+
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -28,6 +29,7 @@ const DairyProducts = () => {
     //api calls in JS will return a promise
     //never know how long will take for data to return back -> async
     //cant makr useEffect async and therefore need to make an async function inside that will be called
+   
     const getDairyItems=async()=>{
       //var to ref data we gonna get back
       //await is used to handle promise
@@ -47,6 +49,7 @@ const DairyProducts = () => {
   //use effect handling thr retrivel of imags from the database
   useEffect(()=>{
     //create an async functiopn so we can use the await key word
+   
     const getImgUrl=async()=>{
       //image array wil store an object made from the items name and a url to the image
       const imageArray=[];
@@ -60,9 +63,9 @@ const DairyProducts = () => {
       //set the url state to the image array
       setUrl(imageArray);
     }
-    getImgUrl();
+    dairyItems && getImgUrl();
 
-  },[]);
+  },[dairyItems]);
  
   
     
@@ -73,6 +76,7 @@ const DairyProducts = () => {
   
   return (
     
+    
     <SafeAreaView style = {styles.flex}>
       <ScrollView>
         <View>
@@ -80,6 +84,7 @@ const DairyProducts = () => {
                   {
                     dairyItems.map(item => {
                       let img;
+                      //need in if statemnt to handle useffect has not run yet
                       if(url.length!=0)
                       {
                         //if our url has been populated then use the image
@@ -91,16 +96,17 @@ const DairyProducts = () => {
                         //if it has not then use our logo and on the next render it will change
                         img=ctc;
                       }
+                      
                       return(
                        
                        <ScrollView vertical showsVerticalScrollIndicator = {false}>
-                        <View key = {item.id}>
+                       
                       
                       
-                          <Text style = {styles.title}>{item.name}</Text>
-                          <Image style ={styles.image} source={img}/>
+                        <Text style = {styles.title}>{item.name}</Text>
+                        <Image style ={styles.image} source={url.length == 0 ? img :{uri: img}}/>
                       
-                        </View>
+                      
     
                         </ScrollView>
 
@@ -134,8 +140,8 @@ const styles = StyleSheet.create({
  
     width:260,
     height:300,
-    resizeMode: 'cover',
-    margin:8
+    resizeMode: 'contain',
+    margin:8,
   
  },
  

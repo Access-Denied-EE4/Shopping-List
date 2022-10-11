@@ -3,17 +3,16 @@ import { SafeAreaView, Text,StyleSheet,ScrollView,View, Image } from 'react-nati
 import {collection, getDocs} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
 import {db, storage} from '../firebase';
-import CategoryItems from '../categoryBoxes/catBoxes'
 import ctc from '../images/Logo.png';
 
 
 const DairyProducts = () => {
 
-  const [dairyItems, setDairyItems]=useState([]);
+  const [toiletryItems, setToiletryItems]=useState([]);
   //variable holding the refernce to the DB collection
   //pass in db variable from fireabse file, collection name in DB
   //collection is a firebase function
-  const dairyItemsCollectionRef=collection(db, "toilet_items");
+  const toiletryItemsCollectionRef=collection(db, "toilet_items");
 
 
   //state for image, defualt is null
@@ -28,20 +27,20 @@ const DairyProducts = () => {
     //api calls in JS will return a promise
     //never know how long will take for data to return back -> async
     //cant makr useEffect async and therefore need to make an async function inside that will be called
-    const getDairyItems=async()=>{
+    const gettoiletryItems=async()=>{
       //var to ref data we gonna get back
       //await is used to handle promise
       //getDocs-firebase func->returns all documents from a collection
-      const data=await getDocs(dairyItemsCollectionRef);
+      const data=await getDocs(toiletryItemsCollectionRef);
 
-      //setDairyItems state to be the array from collection
-      //map from each doc   and set equal to obejct in dairyItems array
+      //setToiletryItems state to be the array from collection
+      //map from each doc   and set equal to obejct in toiletryItems array
       //...doc.data will return the fields of the item
       //then also add the id
-     setDairyItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
+     setToiletryItems(data.docs.map((doc)=> ({...doc.data(), id: doc.id})));
     };
     //call async function
-    getDairyItems();
+    gettoiletryItems();
   },[]);
 
   //use effect handling thr retrivel of imags from the database
@@ -50,19 +49,19 @@ const DairyProducts = () => {
     const getImgUrl=async()=>{
       //image array wil store an object made from the items name and a url to the image
       const imageArray=[];
-      for(let i=0; i<dairyItems.length; ++i)
+      for(let i=0; i<toiletryItems.length; ++i)
       {
           //get url for the image of the relevant itme
-          const imgUrl=await getDownloadURL(ref(storage,dairyItems[i].img_url));
+          const imgUrl=await getDownloadURL(ref(storage,toiletryItems[i].img_url));
           //create objecr
-          imageArray.push({name: `${dairyItems[i].name}`, url: `${imgUrl}`});
+          imageArray.push({name: `${toiletryItems[i].name}`, url: `${imgUrl}`});
       }
       //set the url state to the image array
       setUrl(imageArray);
     }
     getImgUrl();
 
-  },[]);
+  },[toiletryItems]);
  
   
     
@@ -78,7 +77,7 @@ const DairyProducts = () => {
         <View>
           <Text style = {styles.title}>Toiletry Products</Text>
                   {
-                    dairyItems.map(item => {
+                    toiletryItems.map(item => {
                       let img;
                       if(url.length!=0)
                       {
@@ -98,7 +97,7 @@ const DairyProducts = () => {
                       
                       
                           <Text style = {styles.title}>{item.name}</Text>
-                          <Image style ={styles.image} source={img}/>
+                          <Image style ={styles.image} source={url.length == 0 ? img :{uri: img}}/>
                       
                         </View>
     
