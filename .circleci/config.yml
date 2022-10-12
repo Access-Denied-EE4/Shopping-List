@@ -24,4 +24,5 @@ jobs:
           command: |
             ./cc-test-reporter before-build
             npm test -- --coverage
+            store_test_results
             ./cc-test-reporter after-build --exit-code $?
