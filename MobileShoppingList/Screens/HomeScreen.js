@@ -31,6 +31,7 @@ const HomeScreen = () => {
        
           <Text style = {styles.title}>Categories</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator = {false} style = {styles.scrollViewCategories}>
+            {/*Created custom category items component. It has an image,text and onpress component*/}
             <CategoryItems
               icon={Dairy}
               text="Dairy"
