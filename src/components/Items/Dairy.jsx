@@ -161,7 +161,7 @@ const Dairy = () => {
                      <ImageListItem sx={{height: '100% !important'}}>
                          <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
                          <ImageListItemBar
-                           title={item.name}
+                           title={item.name + " - " +"R"+ item.price}
                            actionIcon={
                            <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
                              <AddCircleIcon id={[item.name, item.img_url, item.price]} onClick={getNameItemToCart}/>
