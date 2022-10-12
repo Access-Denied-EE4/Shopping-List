@@ -42,7 +42,8 @@
         "!src/components/MenuBar/MenuBar.js",
         "!src/components/Verification.js",
         "!src/components/Account.jsx",
-        "!src/components/Categories.jsx"
+        "!src/components/Categories.jsx",
+        "!src/components/Signin.jsx"
        ]
     },
     "scripts": {
