@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import { SafeAreaView, Text,StyleSheet,ScrollView,View, Image } from 'react-native'
-import {collection, getDocs} from 'firebase/firestore';
+import {collection, getDocs,addDoc,doc,increment, updateDoc} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
-import {db, storage} from '../firebase';
+import {auth, db, storage} from '../firebase';
 import ctc from '../images/Logo.png';
+import ItemsBox from '../itemBoxes/prodBox';
+import shoppingCart from '../images/shopping-cart.png';
+import IconBox from '../shoppingCart/cartBox';
+import { useNavigation } from '@react-navigation/core'
+import Toast from 'react-native-root-toast';
 
-
-const DairyProducts = () => {
+const MeatProducts = () => {
 
   const [meatItems, setMeatItems]=useState([]);
   //variable holding the refernce to the DB collection
@@ -14,6 +18,7 @@ const DairyProducts = () => {
   //collection is a firebase function
   const meatItemsCollectionRef=collection(db, "meat_items");
 
+  const navigation = useNavigation();
 
   //state for image, defualt is null
    const [url, setUrl]=useState([]);
@@ -62,6 +67,35 @@ const DairyProducts = () => {
     getImgUrl();
 
   },[meatItems]);
+
+  
+  async function getNameItemToCart(arr){
+    //split string so we have the item name and url sepeatly
+     
+    //get ref to curr customers cart collection
+    const userId="car_of_"+auth.currentUser.email;
+    const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+    await addDoc(cartCollectionRef, {
+      data: arr[0],
+      img_url: arr[1],
+      price: arr[2],
+    });
+
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(arr[2]),
+    })
+
+    let toast = Toast.show(arr[0]+' '+'added to cart', {
+      duration: Toast.durations.LONG,
+    });
+    
+   
+    setTimeout(function hideToast() {
+      Toast.hide(toast);
+    }, 1500);
+  };
+ 
  
   
     
@@ -75,6 +109,11 @@ const DairyProducts = () => {
     <SafeAreaView style = {styles.flex}>
       <ScrollView>
         <View>
+        <IconBox 
+            icon={shoppingCart}
+            onPress={() => navigation.navigate("Cart")}
+          
+          />
           <Text style = {styles.title}>Meat Products</Text>
                   {
                     meatItems.map(item => {
@@ -93,12 +132,16 @@ const DairyProducts = () => {
                       return(
                        
                        <ScrollView vertical showsVerticalScrollIndicator = {false} key = {item.id}>
-                       
-                      
-                        <Text style = {styles.title}>{item.name}</Text>
-                        <Image style ={styles.image} source={url.length == 0 ? img :{uri: img}}/>
-                      
-                       
+                       <ItemsBox
+                            icon={url.length == 0 ? img :{uri: img}}
+                            text={item.name + " - " +"R"+ item.price}
+                            onPress={() => getNameItemToCart([item.name, item.img_url, item.price])}
+
+                           
+                            
+                            
+                          
+                          /> 
     
                         </ScrollView>
 
@@ -124,7 +167,7 @@ const DairyProducts = () => {
   )
 }
 
-export default DairyProducts
+export default MeatProducts
 
 const styles = StyleSheet.create({
 

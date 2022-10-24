@@ -18,6 +18,8 @@ import ToiletryProducts from './categoryPages/ToiletryProducts';
 import VegetableProducts from './categoryPages/VegetableProducts';
 import Tabs from './NavBar/tabs';
 import Welcome from './Screens/Welcome';
+import UsersCart from './Screens/UserCart';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 
 LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
@@ -37,8 +39,10 @@ function HomeScreenTabs() {
 
 export default function App() {
   return (
+   
     <NavigationContainer>
-    <Stack.Navigator>
+      <RootSiblingParent>
+      <Stack.Navigator>
       <Stack.Screen options={{headerShown:false }} name= "Welcome" component={Welcome}/>
       <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
       <Stack.Screen options={{headerShown:false }} name="HomeScreen" component={HomeScreenTabs}/>
@@ -51,7 +55,11 @@ export default function App() {
       <Stack.Screen name="ReadyMade" component={ReadyMadeProducts}/>
       <Stack.Screen name="Toiletries" component={ToiletryProducts}/>
       <Stack.Screen name="Vegetables" component={VegetableProducts}/>
+      <Stack.Screen name="Cart" component={UsersCart}/>
+      
     </Stack.Navigator>
+      </RootSiblingParent>
+    
   </NavigationContainer>
 
   

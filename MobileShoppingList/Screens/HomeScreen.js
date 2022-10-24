@@ -10,6 +10,7 @@ import Meat from '../images/meat.jpeg'
 import ReadyMade from '../images/readyMade.webp'
 import Toiletries from '../images/Toiletries.jpeg'
 import Veggies from '../images/vegetables.jpeg'
+import IconBox from '../shoppingCart/cartBox';
 
 
 
@@ -28,7 +29,6 @@ const HomeScreen = () => {
       
       <ScrollView>
         <View>
-       
           <Text style = {styles.title}>Categories</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator = {false} style = {styles.scrollViewCategories}>
             {/*Created custom category items component. It has an image,text and onpress component*/}

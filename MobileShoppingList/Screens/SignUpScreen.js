@@ -1,9 +1,9 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
 import React, { useEffect, useState } from 'react'
-import {auth} from '../firebase'
 import {createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { useNavigation } from '@react-navigation/core'
-
+import {addDoc, collection, doc,setDoc} from 'firebase/firestore';
+import {auth, db} from '../firebase';
 
 const SignUpScreen = () => {
 
@@ -14,6 +14,33 @@ const SignUpScreen = () => {
     
 
     const navigation = useNavigation();
+
+     //get ref to user collection in db
+     const userCollectionRef=collection(db,"user_cart");
+     const id="car_of_"+email;
+ 
+     const createFirebaseUser=async()=>{
+         console.log("Inside user")
+         await setDoc(doc(db, "user_cart",id),{
+            id:email,
+         })
+ 
+         console.log("inside cart");
+         createCartCollection();
+         console.log("DONE");
+     }
+
+    const createCartCollection=async()=>{
+        console.log("inside cart");
+        //create a new collection within user collection for that users cart
+        const cartCollectionRef=collection(db,"user_cart",id,"cart")
+        console.log("Cart Created");
+        await addDoc(cartCollectionRef, {
+            data: "hello World!",
+        });
+        console.log("done cart");
+
+    }
 
     //when state changed or after rendering will call this 
     useEffect(() => {
@@ -28,6 +55,8 @@ const SignUpScreen = () => {
         return () => {
             unsubscribe();
         }
+
+       
           
       
     }, []);
@@ -36,15 +65,18 @@ const SignUpScreen = () => {
     //function to handle sign up
     const handleSignUp = () =>{
         
-       
+        createFirebaseUser();
     
         createUserWithEmailAndPassword(auth,email,password).then((userCredentials) =>{
             sendEmailVerification(userCredentials.user);
+           
         })
         .catch(alert);
 
-
+        
         navigation.navigate("Login")
+        
+       
 
     
 

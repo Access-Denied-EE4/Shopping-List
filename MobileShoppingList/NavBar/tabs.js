@@ -3,7 +3,8 @@ import React from 'react'
 import HomeScreen from '../Screens/HomeScreen';
 import UserProfile from '../Screens/UserProfile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import shoppingCart from '../images/shopping-cart.png';
+import CartScreen from '../Screens/UserCart';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,8 @@ const tabs = () => {
               : 'home-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'ios-person' : 'person-outline';
+          } else if (route.name === 'Cart'){
+            iconName = focused ? 'ios-cart' : 'cart-outline';
           }
           
           //style the icons themselves
@@ -57,6 +60,7 @@ const tabs = () => {
     >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Profile" component={UserProfile} />
+        <Tab.Screen name= "Cart" component={CartScreen} />
     </Tab.Navigator>
     
   )
