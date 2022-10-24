@@ -84,7 +84,7 @@ const Sweet = () => {
     //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
-
+    console.log(infoArray[3]);
     const prodName=event.currentTarget.id;
     //get ref to curr customers cart collection
     const userId="car_of_"+user.email;
@@ -93,6 +93,7 @@ const Sweet = () => {
       data: infoArray[0],
       img_url: infoArray[1],
       price: infoArray[2],
+      exp_time: infoArray[3],
     });
 
     const cartPriceRef=doc(db, "user_cart", userId);
@@ -172,7 +173,7 @@ const Sweet = () => {
                            title={item.name + " - " +"R"+ item.price}
                           actionIcon={
                           <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon id={[item.name, item.img_url, item.price]} onClick={getNameItemToCart}/>
+                             <AddCircleIcon id={[item.name, item.img_url, item.price, item.exp_time]} onClick={getNameItemToCart}/>
                           </Tooltip>
                         }
                         />

@@ -64,62 +64,71 @@ const addItemToHomeCart=async(event)=>{
     const eventString=event.currentTarget.id;
     const infoArray=eventString.split(",");
 
-    //get ref to expirey time-> this indicates how long the product has before exp
-    const expTimeArray=infoArray[3].split("-");
-    let expTimeLen=parseInt(expTimeArray[0],10);
-    console.log("TIME: "+expTimeLen);
-
-    let expTimeType=expTimeArray[1];
-    console.log("TYPE: "+ expTimeType);
-    //get current date 
-    const current=new Date();
-    let day=current.getDate();
-    let month=current.getMonth();
-
     //var to hold exp date
     let date;
 
-    /*if exp type is days*/
-    if(expTimeType==="d" && day+expTimeLen<=31)
+    if(infoArray[3]==="N/A")
     {
-      console.log("TIME < 31: " + (day +expTimeLen))
-      //if curr date + exp time is less 31 then its in the same month and so just add days
-      date = `${current.getDate()+expTimeLen}/${current.getMonth()+1}/${current.getFullYear()}`;
+      date="N/A";
     }
-    else if(expTimeType==="d" && day+expTimeLen>31)
+    else
     {
-      console.log("TIME > 31: " + (day +expTimeLen))
-      // curr date + exp time goes over into the next month and so need to add new month and get correct day
-      while(expTimeLen + day >31)
+      //get ref to expirey time-> this indicates how long the product has before exp
+      const expTimeArray=infoArray[3].split("-");
+      let expTimeLen=parseInt(expTimeArray[0],10);
+      console.log("TIME: "+expTimeLen);
+  
+      let expTimeType=expTimeArray[1];
+      console.log("TYPE: "+ expTimeType);
+      //get current date 
+      const current=new Date();
+      let day=current.getDate();
+      let month=current.getMonth();
+  
+      /*if exp type is days*/
+      if(expTimeType==="d" && day+expTimeLen<=31)
       {
-        expTimeLen-=1;
+        console.log("TIME < 31: " + (day +expTimeLen))
+        //if curr date + exp time is less 31 then its in the same month and so just add days
+        date = `${current.getDate()+expTimeLen}/${current.getMonth()+1}/${current.getFullYear()}`;
       }
-      console.log("NEW TIME: "+expTimeLen);
-      date = `${expTimeLen}/${current.getMonth()+1+1}/${current.getFullYear()}`;
-
-    }
-
-    /*if exp type is months*/
-    if(expTimeType==="m" && expTimeLen+month <=12)
-    {
-      console.log("MONTH < 12: " + (month + expTimeLen))
-      //if when adding mobth its <= 12 then still same year
-      date = `${current.getDate()}/${current.getMonth()+1+expTimeLen}/${current.getFullYear()}`;
-    }
-    else if(expTimeType==="m" && expTimeLen+month >12)
-    {
-      console.log("CURR MONTH: "+ month);
-      console.log("MONTH > 12: " + (month+expTimeLen))
-      //decrease the time unitl its equal to 12, then we just add ythat many months 
-      while(expTimeLen+month>12)
+      else if(expTimeType==="d" && day+expTimeLen>31)
       {
-        expTimeLen-=1;
+        console.log("TIME > 31: " + (day +expTimeLen))
+        // curr date + exp time goes over into the next month and so need to add new month and get correct day
+        const toEndMonth=31-day;
+        const remainder=expTimeLen-toEndMonth;
+        console.log("NEW TIME: "+remainder);
+        date = `${remainder}/${current.getMonth()+1+1}/${current.getFullYear()}`;
+  
       }
-      console.log("NEW TIME: "+expTimeLen);
-      //have to go to next year and add months 
-      date = `${current.getDate()}/${expTimeLen}/${current.getFullYear()+1}`;
+  
+      /*if exp type is months*/
+      if(expTimeType==="m" && expTimeLen+month<=12)
+      {
+        console.log("MONTH < 12: " + (month + expTimeLen))
+        //if when adding mobth its <= 12 then still same year
+        date = `${current.getDate()}/${current.getMonth()+1+expTimeLen}/${current.getFullYear()}`;
+      }
+      else if(expTimeType==="m" && expTimeLen+month >12)
+      {
+        console.log("CURR MONTH: "+ month);
+        console.log("MONTH > 12: " + (month+expTimeLen))
+  
+        const toEndYear=12-month;
+        const remainder=expTimeLen-toEndYear;
+        console.log("NEW TIME: "+remainder);
+        //have to go to next year and add months 
+        date = `${current.getDate()}/${remainder+1}/${current.getFullYear()+1}`;
+      }
+      if(expTimeType==="y")
+      {
+        date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()+expTimeLen}`;
+      }
+      console.log("");
+      console.log("");
+ 
     }
-
     //get ref to curr customers cart collection
     const userId="car_of_"+user.email;
     const homeCollectionRef=collection(db, "user_cart", userId , "home_items");
