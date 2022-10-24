@@ -2,6 +2,8 @@ import { NavLink, isActive } from "react-router-dom";
 import * as FaIcons from "react-icons/fa"
 import * as AiIcons from "react-icons/ai"
 import * as VscIcons from "react-icons/vsc"
+import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
+import * as TbIcons from "react-icons/tb";
 
 //array of the objects on the navigation bar
 // Path is the page it will take you to once the icon ic clicked
@@ -22,6 +24,12 @@ const navItems = [
         path: "/cart",
         icon: <AiIcons.AiOutlineShoppingCart size={30} className="mr-8" />,
         title: 'Cart',
+
+    },
+    {
+        path: "/home_cart",
+        icon: <TbIcons.TbClipboardList size={30} className="mr-8" />,
+        title: 'home_cart',
 
     }
 ]

@@ -39,8 +39,10 @@ const Signup = () => {
 
         console.log("inside cart");
         createCartCollection();
+        createHomeCollection();
         console.log("DONE");
     }
+    //creates collection for users cart
     
     const createCartCollection=async()=>{
         console.log("inside cart");
@@ -53,6 +55,21 @@ const Signup = () => {
         console.log("done cart");
 
     }
+
+    //creates collection for what the user has at home
+
+    const createHomeCollection=async()=>{
+        console.log("inside home items");
+        //create a new collection within user collection for that users cart
+        const homeCollectionRef=collection(db, "user_cart", id, "home_items");
+        console.log("PART 2");
+        await addDoc(homeCollectionRef, {
+            data: "hello World!",
+        });
+        console.log("done cart");
+
+    }
+
     //handle submit function
     //async as waits for submit button to be pressed
     //pass event e so page dosent refresh when hit submit

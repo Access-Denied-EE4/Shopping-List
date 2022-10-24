@@ -16,6 +16,7 @@ import Veg from "./components/Items/Veg";
 import Sweet from "./components/Items/Sweet";
 import Toilet from "./components/Items/Toilet";
 import ShoppingList from "./components/ShoppingList";
+import HomeCart from "./components/HomeCart";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path='/sweet' element={<Sweet/>}/>
           <Route path='/toilet' element={<Toilet/>}/>
           <Route path='/cart' element={<ShoppingList/>}/>
+          <Route path='/home_cart' element={<HomeCart/>}/>
 
 
           {/*protected route*/}

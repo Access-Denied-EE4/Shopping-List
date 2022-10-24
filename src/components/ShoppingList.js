@@ -59,6 +59,22 @@ const ShoppingList = () => {
     } 
 }
 
+const addItemToHomeCart=async(event)=>{
+    //split string so we have the item name and url sepeatly
+    const eventString=event.currentTarget.id;
+    const infoArray=eventString.split(",");
+
+    const prodName=event.currentTarget.id;
+    //get ref to curr customers cart collection
+    const userId="car_of_"+user.email;
+    const homeCollectionRef=collection(db, "user_cart", userId , "home_items");
+    await addDoc(homeCollectionRef, {
+      data: infoArray[0],
+      img_url: infoArray[1],
+      price: infoArray[2],
+    });
+}
+
 
 const backToCats=()=>{
   navigate("/categories")
@@ -158,7 +174,7 @@ const backToCats=()=>{
                         <DeleteIcon/>
                       </IconButton> 
                       <IconButton aria-label="previous">
-                        <CheckBoxIcon/>
+                        <CheckBoxIcon onClick={addItemToHomeCart} id={[item.data, item.img_url, item.price]}/>
                       </IconButton>               
                     </Box>
                   </Box>
