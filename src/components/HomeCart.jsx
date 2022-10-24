@@ -125,8 +125,8 @@ const HomeCart = () => {
                         <Typography component="div" variant="h5">
                           {item.data}
                         </Typography>
-                        <Typography component="div" variant="h6">
-                          {"Exp Date: "}
+                        <Typography component="div" variant="h7">
+                          {"Exp Date: " + item.exp_time}
                         </Typography>
                       </CardContent>
                       <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
