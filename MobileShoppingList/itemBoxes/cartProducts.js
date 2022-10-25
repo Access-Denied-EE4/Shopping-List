@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
 prodBox: {
     width: 40,
     height: 40,
-    left: '28%',
-    bottom: '60%'
+    left: '40%',
+    bottom: '80%'
 }
 
 
