@@ -26,12 +26,9 @@ const UserCart = () => {
   
   async function removeItemFromCart(arr){
    
-
-    //get the info from the event and split up into variables
-    
-   
     const docName=arr[0];
     const price=arr[1];
+    
 
     //delete the doc 
     await deleteDoc(doc(db, "user_cart",userId, "cart", docName));
@@ -53,6 +50,8 @@ const UserCart = () => {
     setTimeout(function hideToast() {
       Toast.hide(toast);
     }, 1500);
+
+
 }
 
 
@@ -128,7 +127,8 @@ const UserCart = () => {
                 {
                   //if our url has been populated then use the image
                   let img_url=url.find(img=>img.name===item.data);
-                  img=img_url.url;
+                  img = img_url.url;
+                  //img=img_url.url;
                 }
                 else
                 {

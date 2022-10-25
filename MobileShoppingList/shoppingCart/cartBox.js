@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
    
   },
   wrapperImg: ({
-    height: 50,
+    height: 40,
     width: 50,
    
    
@@ -37,10 +37,9 @@ const styles = StyleSheet.create({
  
   image: {
     
-    marginTop: 10,
-    
-    width: 40,
-    height: 40,
+    right: 20,
+    width: 60,
+    height: 60,
 
 }
 

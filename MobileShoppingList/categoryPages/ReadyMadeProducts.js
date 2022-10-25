@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '700',
     color: "0818F5",
-    marginTop: 20,
+   
   },
   flex:{
     flex: 1,

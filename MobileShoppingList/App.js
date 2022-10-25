@@ -46,16 +46,16 @@ export default function App() {
       <Stack.Screen options={{headerShown:false }} name= "Welcome" component={Welcome}/>
       <Stack.Screen options={{headerShown:false }} name="Login" component={LoginScreen}/>
       <Stack.Screen options={{headerShown:false }} name="HomeScreen" component={HomeScreenTabs}/>
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
-      <Stack.Screen name="SignUp" component={SignUpScreen}/>
-      <Stack.Screen name="Dairy" component={DairyProducts}/>
-      <Stack.Screen name="Sweets" component={SweetProducts}/>
-      <Stack.Screen name="Meat" component={MeatProducts}/>
-      <Stack.Screen name="Drinks" component={DrinksProducts}/>
-      <Stack.Screen name="ReadyMade" component={ReadyMadeProducts}/>
-      <Stack.Screen name="Toiletries" component={ToiletryProducts}/>
-      <Stack.Screen name="Vegetables" component={VegetableProducts}/>
-      <Stack.Screen name="Cart" component={UsersCart}/>
+      <Stack.Screen options={{headerShown:false }} name="ForgotPassword" component={ForgotPasswordScreen}/>
+      <Stack.Screen options={{headerShown:false }} name="SignUp" component={SignUpScreen}/>
+      <Stack.Screen options={{headerShown:false }} name="Dairy" component={DairyProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Sweets" component={SweetProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Meat" component={MeatProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Drinks" component={DrinksProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="ReadyMade" component={ReadyMadeProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Toiletries" component={ToiletryProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Vegetables" component={VegetableProducts}/>
+      <Stack.Screen options={{headerShown:false }} name="Cart" component={UsersCart}/>
       
     </Stack.Navigator>
       </RootSiblingParent>

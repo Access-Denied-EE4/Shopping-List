@@ -35,20 +35,20 @@ export default catBoxes;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+   
     alignItems: 'center',
     marginRight: 17,
     marginHorizontal: 16,
-    marginVertical: 40,
+    marginVertical: 30,
    
   },
   wrapperImg: ({
     height: 210,
-    width: 150,
-    justifyContent: 'center',
+    width: 210,
     alignItems: 'center',
     borderRadius: 10,
     flexDirection: "row",
+    flexWrap: 'wrap',
    
     
   }),
@@ -60,11 +60,12 @@ const styles = StyleSheet.create({
   },
   image: {
     
-    width:250,
-    height:250,
-    resizeMode: 'cover',
-    margin:8,
+    flex: 1,
+    width: 180,
+    height: 180,
     borderRadius: 10,
+    resizeMode: 'contain',
+    
    
 },
 prodBox: {

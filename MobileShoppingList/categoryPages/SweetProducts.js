@@ -79,13 +79,20 @@ const DairyProducts = () => {
       data: arr[0],
       img_url: arr[1],
       price: arr[2],
+     
+      
     });
 
     const cartPriceRef=doc(db, "user_cart", userId);
     await updateDoc(cartPriceRef,{
       cart_cost: increment(arr[2]),
+    
+      
     })
 
+    
+   
+   
     let toast = Toast.show(arr[0]+' '+'added to cart', {
       duration: Toast.durations.LONG,
     });
@@ -188,7 +195,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '700',
     color: "0818F5",
-    marginTop: 20,
+   
   },
   flex:{
     flex: 1,
