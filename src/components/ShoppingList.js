@@ -231,6 +231,9 @@ const backToCats=()=>{
                         {item.data}
                       </Typography>
                       <Typography component="div" variant="h6">
+                        {"Num of Items: 30"}
+                      </Typography>
+                      <Typography component="div" variant="h6">
                         {"R" + item.price}
                       </Typography>
                     </CardContent>

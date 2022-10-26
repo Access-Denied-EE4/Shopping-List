@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
+import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip, Typography} from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthContext';
+import Counter from "react-mui-counter";
 
 
 const Drink = () => {
@@ -166,35 +167,27 @@ const Drink = () => {
                   img=ctc;
                 }
                 return(
-                  <Card key={item.id}>
-                    <ImageListItem sx={{height: '100% !important'}}>
-                        <img src={img} style={{cursor:'pointer'}}></img>
-                        <ImageListItemBar
-                           title={item.name + " - " +"R"+ item.price}
-                          actionIcon={
-                          <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                             <AddCircleIcon id={[item.name, item.img_url, item.price, item.exp_time]} onClick={getNameItemToCart}/>
-                          </Tooltip>
-                        }
-                        />
-                    </ImageListItem>
-                  </Card>
+                  <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
+                  <ImageListItem sx={{height: '100% !important'}}>
+                      <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
+                      <ImageListItemBar 
+                         sx={{
+                           background:'rgba(255,255,255,0.75)', 
+                           color:"text.secondary",
+                         }}
+                        title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
+                        actionIcon={
+                         <Counter sx={{
+                           border:0.7,
+                           borderRadius:2,
+                           width: 150,
+                         }}/>
+                      }
+                      />
+                  </ImageListItem>
+                </Card>
                 )
               })}
-
-              <Card>
-                <ImageListItem sx={{height: '100% !important'}}>
-                    <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/drink%2Fdrink-soft-sprite.webp?alt=media&token=e8290273-6346-47c1-a768-2239770cec22"} style={{cursor:'pointer'}} loading="lazy"></img>
-                    <ImageListItemBar
-                      title={"Sprite"+" - "+"R12"}
-                      actionIcon={
-                      <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                        <AddCircleIcon  onClick={addSpriteToCart}/>
-                      </Tooltip>
-                    }
-                    />
-                </ImageListItem>
-              </Card>
 
           </ImageList>
           <AddCircleIcon  data-testid='add drink to cart' onClick={addSpriteToCart}/>
