@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip, Typography} from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import { useState , useNavigate} from 'react';
 import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
@@ -12,6 +13,7 @@ import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthContext';
 import Counter from "react-mui-counter";
+import { Add } from '@mui/icons-material';
 
 const Dairy = () => {
   //need state to hold list of dairy items
@@ -52,6 +54,9 @@ const Dairy = () => {
     };
     //call async function
     getDairyItems();
+
+
+
   },[]);
 
   //use effect handling thr retrivel of imags from the database
@@ -76,6 +81,11 @@ const Dairy = () => {
 
   },[dairyItems]);
 
+  const addItemToCart=async(event)=>
+  {
+    //const eventString=event.currentTarget.id;
+    console.log(event);
+  }
   //function when plus icon cliked which addds item to customers cart
   const getNameItemToCart=async(event)=>
   {
@@ -87,6 +97,7 @@ const Dairy = () => {
     //get ref to curr customers cart collection
     const userId="car_of_"+user.email;
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+
     await addDoc(cartCollectionRef, {
       data: infoArray[0],
       img_url: infoArray[1],
@@ -159,6 +170,20 @@ const Dairy = () => {
                   img=ctc;
                 }
                  return(
+                  <Card key={item.id}>
+                    <ImageListItem sx={{height: '100% !important'}}>
+                        <img src={img} style={{cursor:'pointer'}}></img>
+                        <ImageListItemBar sx={{borderRadius:1}}
+                           title={item.name + " - " +"R"+ item.price}
+                          actionIcon={
+                          <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                             <AddCircleIcon id={[item.name, item.img_url, item.price, item.exp_time]} onClick={getNameItemToCart}/>
+                          </Tooltip>
+                        }
+                        />
+                    </ImageListItem>
+                  </Card>
+                  /*
                   <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
                   <ImageListItem sx={{height: '100% !important'}}>
                       <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
@@ -169,15 +194,42 @@ const Dairy = () => {
                          }}
                         title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
                         actionIcon={
-                         <Counter sx={{
-                           border:0.7,
-                           borderRadius:2,
-                           width: 150,
-                         }}/>
+                          <>
+                          <Tooltip  title={"Remove item from cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                            <AddCircleIcon/>
+                          </Tooltip>
+                          {" "}
+                          {" "}
+                          {0}
+                          {" "}
+                          {" "}
+                          <Tooltip  title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                            <RemoveCircleOutlineOutlinedIcon/>
+                          </Tooltip>
+                          </>
                       }
                       />
                   </ImageListItem>
                 </Card>
+                  
+                  <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
+                  <ImageListItem sx={{height: '100% !important'}}>
+                      <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
+                      <ImageListItemBar 
+                         sx={{
+                           background:'rgba(255,255,255,0.4)', 
+                           color:"text.secondary",
+                         }}
+                        title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
+                        actionIcon={
+                         <Counter id={"hello"}  onClick={addItemToCart}
+                            sx={{border:0.7,borderRadius:2, width: 150}}/>
+                      }
+                      />
+                  </ImageListItem>
+                </Card>
+                */
+
                  )
                })}
            </ImageList>

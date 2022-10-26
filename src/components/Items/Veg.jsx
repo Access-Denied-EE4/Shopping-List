@@ -166,6 +166,20 @@ const Veg = () => {
                   img=ctc;
                 }
                 return(
+                  <Card key={item.id}>
+                    <ImageListItem sx={{height: '100% !important'}}>
+                        <img src={img} style={{cursor:'pointer'}}></img>
+                        <ImageListItemBar sx={{borderRadius:1}}
+                           title={item.name + " - " +"R"+ item.price}
+                          actionIcon={
+                          <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                             <AddCircleIcon id={[item.name, item.img_url, item.price, item.exp_time]} onClick={getNameItemToCart}/>
+                          </Tooltip>
+                        }
+                        />
+                    </ImageListItem>
+                  </Card>
+                  /*
                   <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
                   <ImageListItem sx={{height: '100% !important'}}>
                       <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
@@ -185,22 +199,9 @@ const Veg = () => {
                       />
                   </ImageListItem>
                 </Card>
+                */
                 )
               })}
-
-            <Card>
-              <ImageListItem sx={{height: '100% !important'}}>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/veg%2Fveg-apple.webp?alt=media&token=6d27d1e3-8184-4947-9839-7efaa3685bce"} style={{cursor:'pointer'}} loading="lazy"></img>
-                  <ImageListItemBar
-                    title={"Apple"+" - "+"R15"}
-                    actionIcon={
-                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                      <AddCircleIcon  onClick={addAppleToCart}/>
-                    </Tooltip>
-                  }
-                  />
-              </ImageListItem>
-            </Card>
 
           </ImageList>
           <AddCircleIcon data-testid='add veg to cart'  onClick={addAppleToCart}/>

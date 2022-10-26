@@ -38,13 +38,20 @@ const HomeCart = () => {
     }
 
     const removeItemFromCart=async(event)=>{
-      event.preventDefault();
   
       const docName=event.currentTarget.id;
   
       //delete the doc 
       await deleteDoc(doc(db, "user_cart",userId, "home_items", docName));
   }
+
+  const autoRemoveItemFromCart=async(id)=>{
+  
+    const docName=id;
+
+    //delete the doc 
+    await deleteDoc(doc(db, "user_cart",userId, "home_items", docName));
+}
 
     //gets all the items from the datatbase 
     useEffect(()=>{
@@ -86,6 +93,42 @@ const HomeCart = () => {
      homeItems && getImgUrl();
 
     },[homeItems]);
+
+    //runs to cehck weather or not to auto remove item from list adn add to cart
+    useEffect(()=>{
+     // console.log("CHECKING FOR EXP DATE-> REMOVE AND ADD TO CART")
+      const currDate=new Date();
+
+      const currYear=currDate.getFullYear();
+      const currMonth=currDate.getMonth()+1;
+      const currDay=currDate.getDate()
+
+      console.log("CURRENT DATE: "+currDay +"/"+currMonth+"/"+ currYear)
+
+        const checkExp=async()=>{
+          for(let i=0; i<homeItems.length;++i)
+          {
+            const currItem=homeItems[i];
+            //get exp date of curr item
+            const itemExp=currItem.exp_time;
+            const expArr=itemExp.split("/");
+            console.log("EXP DATE: "+currItem.exp_time);
+            console.log(currItem.id);
+
+            if(currDay>=expArr[0] && currMonth==expArr[1] && currYear==expArr[2])
+            {
+              //same month adn year but past exp day
+              autoRemoveItemFromCart(currItem.id);
+              console.log("REMOVED FROM CART");
+            }
+
+          }
+        };
+
+        homeItems && checkExp();
+
+
+    },[homeItems])
 
     return(
       <>
@@ -130,8 +173,8 @@ const HomeCart = () => {
                         </Typography>
                       </CardContent>
                       <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                        <IconButton aria-label="previous">
-                          <DeleteIcon onClick={removeItemFromCart} id={item.id}/>
+                        <IconButton aria-label="previous" onClick={removeItemFromCart} id={item.id}>
+                          <DeleteIcon/>
                         </IconButton>               
                       </Box>
                     </Box>
