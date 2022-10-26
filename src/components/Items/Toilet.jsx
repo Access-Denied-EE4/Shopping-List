@@ -202,7 +202,19 @@ const Toilet = () => {
                 */
                 )
               })}
-
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/toilet%2Ftoilet-toilet-paper.jpeg?alt=media&token=acde31af-219d-4e61-93de-84f1295f927e"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Toilet Paper"+" - "+"R150"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addTPToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card>
           </ImageList>
           <AddCircleIcon data-testid='add toilet to cart'  onClick={addTPToCart}/>
       </Container>

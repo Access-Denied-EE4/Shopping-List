@@ -232,6 +232,19 @@ const Dairy = () => {
 
                  )
                })}
+              <Card>
+                <ImageListItem sx={{height: '100% !important'}}>
+                    <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/dairy%2Fdairy-butter.webp?alt=media&token=28723d23-d7e7-4612-9eb2-da550591f2b9"} style={{cursor:'pointer'}} loading="lazy"></img>
+                    <ImageListItemBar
+                      title={"Butter"+" - "+"R25"}
+                      actionIcon={
+                      <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                        <AddCircleIcon  onClick={addButterToCart}/>
+                      </Tooltip>
+                    }
+                    />
+                </ImageListItem>
+              </Card> 
            </ImageList>
            <AddCircleIcon data-testid='add dairy to cart' onClick={addButterToCart}/>
        </Container>

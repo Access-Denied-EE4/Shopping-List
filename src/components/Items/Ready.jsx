@@ -201,6 +201,20 @@ const Ready = () => {
                 */
                 )
               })}
+            <Card>
+              <ImageListItem sx={{height: '100% !important'}}>
+                  <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/ready%2Fready-salad.jpeg?alt=media&token=8aabdb41-8531-4f6c-8221-29bee828d2d2"} style={{cursor:'pointer'}} loading="lazy"></img>
+                  <ImageListItemBar
+                    title={"Salad"+" - "+"R70"}
+                    actionIcon={
+                    <Tooltip title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
+                      <AddCircleIcon  onClick={addSaladToCart}/>
+                    </Tooltip>
+                  }
+                  />
+              </ImageListItem>
+            </Card> 
+
 
           </ImageList>
       </Container>
