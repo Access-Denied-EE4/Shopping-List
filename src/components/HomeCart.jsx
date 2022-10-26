@@ -53,6 +53,26 @@ const HomeCart = () => {
     await deleteDoc(doc(db, "user_cart",userId, "home_items", docName));
 }
 
+  //function when plus icon cliked which addds item to customers cart
+  const autoAddItemToCart=async(event)=>
+  {
+    const infoArray=event
+    //get ref to curr customers cart collection
+    const userId="car_of_"+user.email;
+    const cartCollectionRef=collection(db, "user_cart", userId , "cart");
+    await addDoc(cartCollectionRef, {
+      data: infoArray[0],
+      img_url: infoArray[1],
+      price: infoArray[2],
+      exp_time: infoArray[3],
+    });
+
+    const cartPriceRef=doc(db, "user_cart", userId);
+    await updateDoc(cartPriceRef,{
+      cart_cost: increment(infoArray[2]),
+    })
+  };
+
     //gets all the items from the datatbase 
     useEffect(()=>{
         //get items that have been added to home cart
@@ -103,7 +123,6 @@ const HomeCart = () => {
       const currMonth=currDate.getMonth()+1;
       const currDay=currDate.getDate()
 
-      console.log("CURRENT DATE: "+currDay +"/"+currMonth+"/"+ currYear)
 
         const checkExp=async()=>{
           for(let i=0; i<homeItems.length;++i)
@@ -112,14 +131,19 @@ const HomeCart = () => {
             //get exp date of curr item
             const itemExp=currItem.exp_time;
             const expArr=itemExp.split("/");
-            console.log("EXP DATE: "+currItem.exp_time);
-            console.log(currItem.id);
 
             if(currDay>=expArr[0] && currMonth==expArr[1] && currYear==expArr[2])
             {
               //same month adn year but past exp day
+              //remove from home list
               autoRemoveItemFromCart(currItem.id);
-              console.log("REMOVED FROM CART");
+              console.log("REMOVED FROM LIST");
+
+              //arr of info to send to func
+              const infoArray=[currItem.data,currItem.img_url, currItem.price, currItem.exp_time];
+              //add to cart again
+              autoAddItemToCart(infoArray); 
+              console.log("ADDED BACK TO CART")
             }
 
           }
