@@ -59,6 +59,20 @@ const ShoppingList = () => {
     } 
 }
 
+const addSpriteToHomeCart=async()=>{
+      //add item to cart
+      const userId="car_of_"+user.email;
+      const cartCollectionRef=collection(db, "user_cart", userId, "home_items");
+      await addDoc(cartCollectionRef, {
+        data: "Sprite",
+        img_url: "gs://shopping-list-wits.appspot.com/drink/drink-soft-sprite.webp",
+        price: "12",
+        exp_time: "12/12/2023",
+      });
+
+}
+
+
 const addItemToHomeCart=async(event)=>{
     //split string so we have the item name and url sepeatly
     const eventString=event.currentTarget.id;
@@ -249,8 +263,37 @@ const backToCats=()=>{
               </Card>
             )
           })}
+
+              <Card variant="outlined" sx={{display: 'flex' }}>
+                  <CardMedia
+                    component="img"
+                    sx={{width:151}}
+                    image={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/drink%2Fdrink-soft-sprite.webp?alt=media&token=e8290273-6346-47c1-a768-2239770cec22"}
+                    />
+                  <Box sx={{display: 'flex', flexDirection:'column'}}>
+                    <CardContent sx={{flex: '1 0 auto'}}>
+                      <Typography component="div" variant="h5">
+                        {"Sprite"}
+                      </Typography>
+                      <Typography component="div" variant="h6">
+                        {"R" + "25"}
+                      </Typography>
+                    </CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                      <IconButton aria-label="previous">
+                        <DeleteIcon/>
+                      </IconButton> 
+                      <IconButton aria-label="previous">
+                        <CheckBoxIcon onClick={addSpriteToHomeCart}/>
+                      </IconButton>               
+                    </Box>
+                  </Box>
+              </Card>
+
         </ImageList> 
       </Container> 
+
+
       <Card variant="outlined" sx={{display: 'flex' }}>
                   <Box sx={{display: 'flex', flexDirection:'column'}}>
                     <CardContent sx={{flex: '1 0 auto'}}>
