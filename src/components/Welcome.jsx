@@ -27,7 +27,7 @@ top: "19vh"
     }}>
 
 
-Your gateway to a better shopping expirience!
+Your gateway to a better shopping experience!
     </p>
 
     <button style={{
