@@ -42,7 +42,9 @@
             "!src/components/Verification.js",
             "!src/components/Account.jsx",
             "!src/components/Categories.jsx",
-            "!src/components/Signin.jsx"
+            "!src/components/Signin.jsx",
+            "!src/components/HomeCart.jsx",
+            "!src/components/Welcome.jsx"
         ]
     },
     "scripts": {

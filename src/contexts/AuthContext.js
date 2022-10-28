@@ -10,7 +10,10 @@ import { sendPasswordResetEmail } from "firebase/auth";
 
 
 const UserContext = createContext();
-
+let cart= ["Chicken Breast","Butter","Sprite","Crunchie","Toilet paper","Apple"];
+let HomeCart= [];
+let cart_2= ["Chicken Breast","Sprite","Crunchie"];
+let CartTotal=[120,132,143,23,11,0];
 //takes in children
 export const AuthContextProvider = ({ children }) => {
 
@@ -66,8 +69,6 @@ export const AuthContextProvider = ({ children }) => {
     )
 }
 
-
-
 export const UserAuth = () => {
         //this is what makes context avaliable
         return useContext(UserContext)
@@ -98,13 +99,33 @@ export const Validate_SignIn = (password, email) => {
 }
 
 export const GetCartItems = () => {
-    let cart= ["Chicken Breast","Butter","Sprite","Crunchie","Toilet paper","Apple"];
-
     return cart;
+}
+
+export const GetCartItem = () => {
+    return cart_2;
 }
 
 
 export const removeItemFromCart = (cartItems,itemind) => {
     cartItems.splice(itemind,1);
 }
+
+
+export const GetHomeCart = () => {
+    return HomeCart;
+}
+
+export const TickOffItem = (HomeCart,item,cart_2) => {
+    cart_2.splice(0,1);
+    HomeCart.push(item);
+}
+
+export const GetCurrentCartPrice = () => {
+   let price=CartTotal[0];
+   CartTotal.splice(0,1);
+
+   return price;
+}
+
 
