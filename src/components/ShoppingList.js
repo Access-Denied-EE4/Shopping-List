@@ -67,7 +67,7 @@ const addSpriteToHomeCart=async()=>{
         data: "Sprite",
         img_url: "gs://shopping-list-wits.appspot.com/drink/drink-soft-sprite.webp",
         price: "12",
-        exp_time: "12/12/2023",
+        exp_time: "12/12/2022",
       });
 
 }
