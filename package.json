@@ -36,7 +36,7 @@
             "!src/components/Items/Veg.jsx",
             "!src/App.js",
             "!src/components/ShoppingList.js",
-            "!src/components/ProtectedRoute.jsx",
+            "!src/components/ProtectedRoute.js",
             "!src/components/Sidebar.js",
             "!src/components/MenuBar/MenuBar.js",
             "!src/components/Verification.js",
