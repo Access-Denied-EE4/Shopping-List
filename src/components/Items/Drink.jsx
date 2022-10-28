@@ -204,7 +204,7 @@ const Drink = () => {
                 )
               })}
               
-              {/* <Card>
+              <Card>
                 <ImageListItem sx={{height: '100% !important'}}>
                     <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/drink%2Fdrink-soft-sprite.webp?alt=media&token=e8290273-6346-47c1-a768-2239770cec22"} style={{cursor:'pointer'}} loading="lazy"></img>
                     <ImageListItemBar
@@ -216,9 +216,9 @@ const Drink = () => {
                     }
                     />
                 </ImageListItem>
-              </Card>  */}
+              </Card> 
           </ImageList>
-          {/* <AddCircleIcon  data-testid='add drink to cart' onClick={addSpriteToCart}/> */}
+          <AddCircleIcon  data-testid='add drink to cart' onClick={addSpriteToCart}/>
       </Container>
       <NavBar/>
     </>

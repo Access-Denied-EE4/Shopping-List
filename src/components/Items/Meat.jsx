@@ -202,7 +202,7 @@ const Meat = () => {
                 */
                 )
               })}
-              {/* <Card >
+            <Card >
                 <ImageListItem sx={{height: '100% !important'}}>
                     <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/meat%2Fmeat-chicken-breast.jpeg?alt=media&token=56a7109d-eeab-4de4-bac2-7bc4cc0bd4fe"} style={{cursor:'pointer'}} loading="lazy"></img>
                     <ImageListItemBar
@@ -214,9 +214,9 @@ const Meat = () => {
                     }
                     />
                 </ImageListItem>
-              </Card> */}
+              </Card>
           </ImageList>
-          {/* <AddCircleIcon data-testid='add to cart button' onClick={addChickenBreastToCart}/> */}
+          <AddCircleIcon data-testid='add to cart button' onClick={addChickenBreastToCart}/> 
       </Container>
       <NavBar/>
     </>

@@ -201,7 +201,7 @@ const Ready = () => {
                 */
                 )
               })}
-            {/* <Card>
+            <Card>
               <ImageListItem sx={{height: '100% !important'}}>
                   <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/ready%2Fready-salad.jpeg?alt=media&token=8aabdb41-8531-4f6c-8221-29bee828d2d2"} style={{cursor:'pointer'}} loading="lazy"></img>
                   <ImageListItemBar
@@ -213,7 +213,7 @@ const Ready = () => {
                   }
                   />
               </ImageListItem>
-            </Card>  */}
+            </Card>  
 
 
           </ImageList>

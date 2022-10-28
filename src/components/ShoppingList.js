@@ -273,7 +273,7 @@ const backToCats=()=>{
             )
           })}
 
-              {/* <Card variant="outlined" sx={{display: 'flex' }}>
+              <Card variant="outlined" sx={{display: 'flex' }}>
                   <CardMedia
                     component="img"
                     sx={{width:151}}
@@ -297,7 +297,7 @@ const backToCats=()=>{
                       </IconButton>               
                     </Box>
                   </Box>
-              </Card> */}
+              </Card> 
 
         </ImageList> 
       </Container> 
