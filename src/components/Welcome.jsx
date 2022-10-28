@@ -8,27 +8,26 @@ const Hero = () => {
     <div className='max-w-[700px] mx-auto my-16 p-4'>
 
     <div className='image-container'>
-            <img style={{width:190, height:190, position: "fixed", top:'70vh', left:10}} src={logo}></img>
+            <img style={{width:190, height:190, position: "fixed", top:'2vh'}} src={logo}></img>
     </div>
      
   
-    <h1 style={{color:'#998a18',fontFamily:'serif',fontWeight: 'bold', lineHeight: 0.5,  fontSize: '300%',marginBottom: '0.5em',textAlign  : 'center', alignSelf: 'center'}}>Welcome to</h1>
-    <h1 style={{color:'#998a18',fontFamily:'serif',fontWeight: 'bold', lineHeight: 0.5,  fontSize: '300%',marginBottom: '0.5em', textAlign  : 'center', alignSelf: 'center'}}>Click to Cart!</h1>
+    <h1 style={{color:'#2A2C41',fontFamily:'serif',fontWeight: 'bold', lineHeight: 0.8,  fontSize: '300%',marginBottom: '0.5em',textAlign  : 'center',position: "relative", top: "21vh"}}>Welcome to Click to Cart</h1>
+  
     <p style={{
       fontSize: '150%',
       fontFamily:'serif',
       fontWeight: 'bold',
     lineHeight: 1.3,
     marginBottom: '1em',
-      color:' #2A2C41', textAlign  : 'center', alignSelf: 'center'
-
+      color:'#998a18 ', textAlign  : 'center', alignSelf: 'center',
+position: "relative",
+top: "19vh"
   
     }}>
 
 
-
-We find our phones quicker than pen and paper, so what better way to store our shopping lists, making them more organized and easily accessible?
-
+Your gateway to a better shopping expirience!
     </p>
 
     <button style={{
@@ -49,10 +48,12 @@ We find our phones quicker than pen and paper, so what better way to store our s
       borderWidth: '3px',
       textAlign  : 'center', alignSelf: 'center',
       
-      fontSize: '20px',
+      fontSize: '23px',
       lineHeight: '50px',
       padding: '10 40px',
-      margin: 'auto'
+      margin: 'auto',
+      position: "relative",
+      top: "20vh"
 
     }}> 
       <a href="signup" className="button">Sign Up</a>
@@ -75,12 +76,14 @@ We find our phones quicker than pen and paper, so what better way to store our s
       borderWidth: '3px',
       textAlign  : 'center', alignSelf: 'center',
       
-      fontSize: '20px',
+      fontSize: '23px',
       lineHeight: '50px',
       padding: '10 40px',
       alignItems:' center',
     justifyContent: 'center',
-    margin: 'auto'
+    margin: 'auto',
+    position: "relative",
+   top: "22vh"
 
     }}> 
       <a href="signin" className="button">Log In</a>
@@ -91,8 +94,4 @@ We find our phones quicker than pen and paper, so what better way to store our s
 }
 
 export default Hero; 
-
-
-
-
 
