@@ -10,10 +10,6 @@ import { sendPasswordResetEmail } from "firebase/auth";
 
 
 const UserContext = createContext();
-let cart= ["Chicken Breast","Butter","Sprite","Crunchie","Toilet paper","Apple"];
-let HomeCart= [];
-let cart_2= ["Chicken Breast","Sprite","Crunchie"];
-let CartTotal=[120,132,143,23,11,0];
 //takes in children
 export const AuthContextProvider = ({ children }) => {
 
@@ -80,6 +76,11 @@ export const Email_Entered = (email) => email !== "";
 export const Pass_Entered = (password) => password !== "";
 export const Approve_Sign_in = (email, password) => email !== "" && password !== "";
 export const CheckPassLength = (password) => password.length >= 6;
+
+let cart= ["Chicken Breast","Butter","Sprite","Crunchie","Toilet paper","Apple"];
+let HomeCart= [];
+let cart_2= ["Chicken Breast","Sprite","Crunchie"];
+let CartTotal=[120,132,143,23,11,0];
 export const Validate_SignIn = (password, email) => {
     if (!Approve_Sign_in(password, email)) {
 
@@ -127,5 +128,20 @@ export const GetCurrentCartPrice = () => {
 
    return price;
 }
+
+export const CheckExp = (day,year,month) => {
+
+    let expired=false;
+
+      const currDate=new Date();
+      const currYear=currDate.getFullYear();
+      const currMonth=currDate.getMonth()+1;
+      const currDay=currDate.getDate();
+
+    if(currDay>=day+7 && currMonth==month && currYear==year){
+        expired=true;//add back to cart
+    }
+    return expired;
+ }
 
 
