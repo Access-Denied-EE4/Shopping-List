@@ -21,16 +21,18 @@ const UserCart = () => {
     
 
 
-  
+
+  //Removes item from the users cart collection
+  //Again pass in the array of item information obtained by the onclick method for each item
   async function removeItemFromCart(arr){
-   
+   //set item info
     const docName=arr[0];
     const price=arr[1];
     
 
     //delete the doc 
     await deleteDoc(doc(db, "user_cart",userId, "cart", docName));
-    //decrease the cost of the cart
+    //decrease the cost of the cart by the amount of the item cost
     await updateDoc(doc(db, "user_cart", userId),{
      cart_cost: increment(-price),
     })
@@ -40,11 +42,13 @@ const UserCart = () => {
       setCartCost(cartCost-price);  
     } 
 
+     //Add pop up feature to the app
+    //When item is removed from cart a pop up will be shown that the item was removed from the users cart
     let toast = Toast.show('removed from cart', {
       duration: Toast.durations.LONG,
     });
     
-   
+   //time for pop up to be visible
     setTimeout(function hideToast() {
       Toast.hide(toast);
     }, 1500);
@@ -58,7 +62,7 @@ const UserCart = () => {
     const getItems=()=>{
       //path to db
       const q=query(cartCollectionRef);
-      //snapshot is a snpa of curr image in database 
+      //snapshot is a snap of curr image in database 
       const unsubscribe=onSnapshot(q, (querySnapshot)=>{
           let items=[];
           querySnapshot.forEach((doc)=>{

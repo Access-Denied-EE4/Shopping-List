@@ -71,9 +71,10 @@ const DairyProducts = () => {
 
   },[dairyItems]);
 
+  //function to add items to users cart
+   //pass in the array of item information that we get from the onclick button to each item
   async function getNameItemToCart(arr){
-    //split string so we have the item name and url sepeatly
-     
+  
     //get ref to curr customers cart collection
     const userId="car_of_"+auth.currentUser.email;
     const cartCollectionRef=collection(db, "user_cart", userId , "cart");
@@ -83,16 +84,21 @@ const DairyProducts = () => {
       price: arr[2],
     });
 
+    //this increments the cart by the amount of the item
     const cartPriceRef=doc(db, "user_cart", userId);
     await updateDoc(cartPriceRef,{
       cart_cost: increment(arr[2]),
     })
 
+    //Add pop up feature to the app
+    //When item is added to cart a pop up will be shown of the name of the item and
+    //that it was added to the users cart
+
     let toast = Toast.show(arr[0]+' '+'added to cart', {
       duration: Toast.durations.LONG,
     });
     
-   
+   //timeout for pop up to stop showing
     setTimeout(function hideToast() {
       Toast.hide(toast);
     }, 1500);
