@@ -151,7 +151,19 @@ const addItemToHomeCart=async(event)=>{
       img_url: infoArray[1],
       price: infoArray[2],
       exp_time: date,
+      shelf_life: infoArray[3],
     });
+
+
+    await deleteDoc(doc(db, "user_cart",userId, "cart", infoArray[4]));
+    await updateDoc(doc(db, "user_cart", userId),{
+      cart_cost: increment(-infoArray[2]),
+     })
+ 
+     if(cartCost!=0)
+     {
+       setCartCost(cartCost-infoArray[2]);  
+     } 
 }
 
 
@@ -245,9 +257,6 @@ const backToCats=()=>{
                         {item.data}
                       </Typography>
                       <Typography component="div" variant="h6">
-                        {"Num of Items: 30"}
-                      </Typography>
-                      <Typography component="div" variant="h6">
                         {"R" + item.price}
                       </Typography>
                     </CardContent>
@@ -256,7 +265,7 @@ const backToCats=()=>{
                         <DeleteIcon/>
                       </IconButton> 
                       <IconButton aria-label="previous">
-                        <CheckBoxIcon onClick={addItemToHomeCart} id={[item.data, item.img_url, item.price, item.exp_time]}/>
+                        <CheckBoxIcon onClick={addItemToHomeCart} id={[item.data, item.img_url, item.price, item.exp_time, item.id]}/>
                       </IconButton>               
                     </Box>
                   </Box>
@@ -264,7 +273,7 @@ const backToCats=()=>{
             )
           })}
 
-              <Card variant="outlined" sx={{display: 'flex' }}>
+              {/* <Card variant="outlined" sx={{display: 'flex' }}>
                   <CardMedia
                     component="img"
                     sx={{width:151}}
@@ -288,7 +297,7 @@ const backToCats=()=>{
                       </IconButton>               
                     </Box>
                   </Box>
-              </Card>
+              </Card> */}
 
         </ImageList> 
       </Container> 

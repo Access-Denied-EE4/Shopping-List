@@ -202,7 +202,7 @@ const Toilet = () => {
                 */
                 )
               })}
-            <Card>
+            {/* <Card>
               <ImageListItem sx={{height: '100% !important'}}>
                   <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/toilet%2Ftoilet-toilet-paper.jpeg?alt=media&token=acde31af-219d-4e61-93de-84f1295f927e"} style={{cursor:'pointer'}} loading="lazy"></img>
                   <ImageListItemBar
@@ -214,7 +214,7 @@ const Toilet = () => {
                   }
                   />
               </ImageListItem>
-            </Card>
+            </Card> */}
           </ImageList>
           <AddCircleIcon data-testid='add toilet to cart'  onClick={addTPToCart}/>
       </Container>

@@ -203,7 +203,7 @@ const Sweet = () => {
                 */
                 )
               })}
-            <Card>
+            {/* <Card>
               <ImageListItem sx={{height: '100% !important'}}>
                   <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/sweet%2Fsweet-crunchie.jpeg?alt=media&token=9d08c47d-3575-4faf-8667-b55ee305943d"} style={{cursor:'pointer'}} loading="lazy"></img>
                   <ImageListItemBar
@@ -215,10 +215,10 @@ const Sweet = () => {
                   }
                   />
               </ImageListItem>
-            </Card>
+            </Card> */}
 
           </ImageList>
-          <AddCircleIcon  data-testid='add sweet to cart' onClick={addCrunchieToCart}/>
+          {/* <AddCircleIcon  data-testid='add sweet to cart' onClick={addCrunchieToCart}/> */}
       </Container>
       <NavBar/>
     </>

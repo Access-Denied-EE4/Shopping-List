@@ -140,7 +140,7 @@ const HomeCart = () => {
               console.log("REMOVED FROM LIST");
 
               //arr of info to send to func
-              const infoArray=[currItem.data,currItem.img_url, currItem.price, currItem.exp_time];
+              const infoArray=[currItem.data,currItem.img_url, currItem.price, currItem.shelf_life];
               //add to cart again
               autoAddItemToCart(infoArray); 
               console.log("ADDED BACK TO CART")
