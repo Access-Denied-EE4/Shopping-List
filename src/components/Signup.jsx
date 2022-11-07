@@ -4,7 +4,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {UserAuth} from '../contexts/AuthContext';
 import Verification from './Verification';
 import ClickToCart from "../images/Logo.png"
-import { Alert } from 'react-bootstrap';
+import { Alert } from '@mui/material';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -49,9 +49,9 @@ const Signup = () => {
         //create a new collection within user collection for that users cart
         const cartCollectionRef=collection(db, "user_cart", id, "cart");
         console.log("PART 2");
-        await addDoc(cartCollectionRef, {
-            data: "hello World!",
-        });
+        // await addDoc(cartCollectionRef, {
+        //     data: "hello World!",
+        // });
         console.log("done cart");
 
     }
@@ -63,9 +63,9 @@ const Signup = () => {
         //create a new collection within user collection for that users cart
         const homeCollectionRef=collection(db, "user_cart", id, "home_items");
         console.log("PART 2");
-        await addDoc(homeCollectionRef, {
-            data: "hello World!",
-        });
+        // await addDoc(homeCollectionRef, {
+        //     data: "hello World!",
+        // });
         console.log("done cart");
 
     }
@@ -122,12 +122,11 @@ const Signup = () => {
             <img style={{width:190, height:190}} src={ClickToCart}></img>
         </div>
         <div className='max-w-[700px] mx-auto my-16 p-4'>
-            <div id='errorDiv'>
-                <div className='text-white border border-error bg-error w-fit p-4 my-2'>
-                    {/* if there is an error, set a bootstrap alert with the error*/}
-                    {error && <Alert variant='danger'>{error}</Alert>}
-                </div>
-            </div>
+        {error && (
+                <Alert variant="filled" severity="error">
+                {error}
+                </Alert>
+            )}
             <div>
                 <h1 className='text-2xl font-bold py-2'>Sign up for a free account</h1>
                 <p className='py-2'>

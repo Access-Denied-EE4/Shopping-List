@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import {db, storage} from "../firebase";
 import {addDoc, collection, getDocs, doc, deleteDoc, onSnapshot,  query, updateDoc, increment} from 'firebase/firestore';
-import ctc from "../images/CTCC.jpg"
+import ctc from "../images/CTCC.png"
 import { getDownloadURL,ref } from 'firebase/storage';
 import NavBar from './NavBar'
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";

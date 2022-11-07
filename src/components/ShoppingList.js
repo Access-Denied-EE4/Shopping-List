@@ -5,7 +5,7 @@ import {db, storage} from "../firebase";
 import {addDoc, collection, getDocs, doc, deleteDoc, onSnapshot,  query, updateDoc, increment} from 'firebase/firestore';
 import {Avatar, Card, Container, ImageList, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import ctc from "../images/CTCC.jpg"
+import ctc from "../images/CTCC.png"
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -135,6 +135,7 @@ const addItemToHomeCart=async(event)=>{
         //have to go to next year and add months 
         date = `${current.getDate()}/${remainder+1}/${current.getFullYear()+1}`;
       }
+      
       if(expTimeType==="y")
       {
         date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()+expTimeLen}`;
@@ -155,6 +156,7 @@ const addItemToHomeCart=async(event)=>{
     });
 
 
+    //update and delete doc from database
     await deleteDoc(doc(db, "user_cart",userId, "cart", infoArray[4]));
     await updateDoc(doc(db, "user_cart", userId),{
       cart_cost: increment(-infoArray[2]),
@@ -170,7 +172,7 @@ const addItemToHomeCart=async(event)=>{
 const backToCats=()=>{
   navigate("/categories")
 }
-
+//handles laoding items fro database on load
   useEffect(()=>{
     const getItems=()=>{
       //path to db
@@ -211,10 +213,15 @@ const backToCats=()=>{
 
     },[cartItems]);
 
+    //handles seetting cart cost
     useEffect(()=>{
       setCartCost(0);
       const unsub=onSnapshot(doc(db, "user_cart", userId), (doc)=>{
         setCartCost(doc.data().cart_cost);
+        if(cartCost==null)
+        {
+          setCartCost(0);
+        }
       })
     },[cartItems]);
 
@@ -272,32 +279,6 @@ const backToCats=()=>{
               </Card>
             )
           })}
-
-              <Card variant="outlined" sx={{display: 'flex' }}>
-                  <CardMedia
-                    component="img"
-                    sx={{width:151}}
-                    image={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/drink%2Fdrink-soft-sprite.webp?alt=media&token=e8290273-6346-47c1-a768-2239770cec22"}
-                    />
-                  <Box sx={{display: 'flex', flexDirection:'column'}}>
-                    <CardContent sx={{flex: '1 0 auto'}}>
-                      <Typography component="div" variant="h5">
-                        {"Sprite"}
-                      </Typography>
-                      <Typography component="div" variant="h6">
-                        {"R" + "25"}
-                      </Typography>
-                    </CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                      <IconButton aria-label="previous">
-                        <DeleteIcon/>
-                      </IconButton> 
-                      <IconButton aria-label="previous">
-                        <CheckBoxIcon onClick={addSpriteToHomeCart}/>
-                      </IconButton>               
-                    </Box>
-                  </Box>
-              </Card> 
 
         </ImageList> 
       </Container> 

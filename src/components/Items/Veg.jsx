@@ -6,13 +6,15 @@ import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
 import {addDoc, collection, getDocs, increment, updateDoc,doc} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
-import ctc from "../../images/CTCC.jpg"
+import ctc from "../../images/CTCC.png"
 import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthContext';
 import { useNavigate} from 'react-router-dom';
 import Counter from "react-mui-counter";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Veg = () => {
   const navigate=useNavigate();
@@ -31,6 +33,15 @@ const Veg = () => {
   const [url, setUrl]=useState([]);
 
   const {user}=UserAuth();
+
+  //notifys user of addigt to cart
+  const notify=(info)=>{
+
+    toast(info,{
+      autoClose: 3500,
+      theme: "dark",
+    });
+  }
 
   //need to display all the veg items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -102,6 +113,7 @@ const Veg = () => {
     await updateDoc(cartPriceRef,{
       cart_cost: increment(infoArray[2]),
     })
+    notify(`Added ${infoArray[0]} to cart`);
   };
 
 
@@ -179,27 +191,6 @@ const Veg = () => {
                         />
                     </ImageListItem>
                   </Card>
-                  /*
-                  <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
-                  <ImageListItem sx={{height: '100% !important'}}>
-                      <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
-                      <ImageListItemBar 
-                         sx={{
-                           background:'rgba(255,255,255,0.75)', 
-                           color:"text.secondary",
-                         }}
-                        title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
-                        actionIcon={
-                         <Counter sx={{
-                           border:0.7,
-                           borderRadius:2,
-                           width: 150,
-                         }}/>
-                      }
-                      />
-                  </ImageListItem>
-                </Card>
-                */
                 )
               })}
             <Card>
@@ -220,6 +211,9 @@ const Veg = () => {
           <AddCircleIcon data-testid='add veg to cart'  onClick={addAppleToCart}/>
       </Container>
       <NavBar/>
+      <ToastContainer 
+          newestOnTop
+        />
     </>
   )
 }

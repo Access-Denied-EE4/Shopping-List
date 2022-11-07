@@ -33,16 +33,36 @@ function App() {
           <Route path= '/signup' element={<Signup/>}/>
           <Route path = '/forgot-password' element={<ForgotPassword />}/>
           <Route path='/verification' element={<Verification/>}/>
-          <Route path='/categories' element={<Categories/>}/>
-          <Route path='/meat' element={<Meat/>}/>
-          <Route path='/dairy' element={<Dairy/>}/>
-          <Route path='/drink' element={<Drink/>}/>
-          <Route path='/ready' element={<ReadyMade/>}/>
-          <Route path='/veg' element={<Veg/>}/>
-          <Route path='/sweet' element={<Sweet/>}/>
-          <Route path='/toilet' element={<Toilet/>}/>
-          <Route path='/cart' element={<ShoppingList/>}/>
-          <Route path='/home_cart' element={<HomeCart/>}/>
+          <Route path='/categories' element={<ProtectedRoute>
+            <Categories/>
+          </ProtectedRoute>}/>
+          <Route path='/meat' element={<ProtectedRoute>
+            <Meat/>
+          </ProtectedRoute>}/>
+          <Route path='/dairy' element={<ProtectedRoute>
+            <Dairy/>
+          </ProtectedRoute>}/>
+          <Route path='/drink' element={<ProtectedRoute>
+            <Drink/>
+          </ProtectedRoute>}/>
+          <Route path='/ready' element={<ProtectedRoute>
+            <ReadyMade/>
+          </ProtectedRoute>}/>
+          <Route path='/veg' element={<ProtectedRoute>
+            <Veg/>
+          </ProtectedRoute>}/>
+          <Route path='/sweet' element={<ProtectedRoute>
+            <Sweet/>
+          </ProtectedRoute>}/>
+          <Route path='/toilet' element={<ProtectedRoute>
+            <Toilet/>
+          </ProtectedRoute>}/>
+          <Route path='/cart' element={<ProtectedRoute>
+            <ShoppingList/>
+          </ProtectedRoute>}/>
+          <Route path='/home_cart' element={<ProtectedRoute>
+              <HomeCart/>
+          </ProtectedRoute>}/>
 
 
           {/*protected route*/}

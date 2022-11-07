@@ -7,13 +7,15 @@ import { useEffect } from 'react';
 import {db, storage} from "../../firebase";
 import {addDoc, collection, getDocs, increment, updateDoc,doc} from 'firebase/firestore';
 import {ref, getDownloadURL} from 'firebase/storage';
-import ctc from "../../images/CTCC.jpg"
+import ctc from "../../images/CTCC.png"
 import NavBar from '../NavBar';
 import * as Bi from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthContext';
 import Counter from "react-mui-counter";
 import { Add } from '@mui/icons-material';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Dairy = () => {
   //need state to hold list of dairy items
@@ -31,6 +33,15 @@ const Dairy = () => {
 
   //get curr users email from the aith context
   const {user}=UserAuth();
+
+  //notifys user of addigt to cart
+  const notify=(info)=>{
+
+    toast(info,{
+      autoClose: 3500,
+      theme: "dark",
+    });
+  }
 
   //need to display all the dairy items immedailty when the page is loaded without having to click on a button
   //useEffect hook -> function to be called that allows info to be loaded as soon as the page is loaded
@@ -109,6 +120,8 @@ const Dairy = () => {
     await updateDoc(cartPriceRef,{
       cart_cost: increment(infoArray[2]),
     })
+
+    notify(`Added ${infoArray[0]} to cart`);
   };
 
   const addButterToCart=async()=>{
@@ -183,55 +196,9 @@ const Dairy = () => {
                         />
                     </ImageListItem>
                   </Card>
-                  /*
-                  <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
-                  <ImageListItem sx={{height: '100% !important'}}>
-                      <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
-                      <ImageListItemBar 
-                         sx={{
-                           background:'rgba(255,255,255,0.4)', 
-                           color:"text.secondary",
-                         }}
-                        title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
-                        actionIcon={
-                          <>
-                          <Tooltip  title={"Remove item from cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                            <AddCircleIcon/>
-                          </Tooltip>
-                          {" "}
-                          {" "}
-                          {0}
-                          {" "}
-                          {" "}
-                          <Tooltip  title={"add item to cart"} sx={{mr:'5px'}} style={{cursor:'pointer'}}>
-                            <RemoveCircleOutlineOutlinedIcon/>
-                          </Tooltip>
-                          </>
-                      }
-                      />
-                  </ImageListItem>
-                </Card>
-                  
-                  <Card key={item.id} sx={{border:0.1, borderColor:'rgba(0,0,0,0.3)', borderRadius:2,}}>
-                  <ImageListItem sx={{height: '100% !important'}}>
-                      <img src={img} style={{cursor:'pointer'}} loading="lazy"></img>
-                      <ImageListItemBar 
-                         sx={{
-                           background:'rgba(255,255,255,0.4)', 
-                           color:"text.secondary",
-                         }}
-                        title={<Typography variant ="h6" color="black">{item.name + " - " +"R"+ item.price}</Typography>}
-                        actionIcon={
-                         <Counter id={"hello"}  onClick={addItemToCart}
-                            sx={{border:0.7,borderRadius:2, width: 150}}/>
-                      }
-                      />
-                  </ImageListItem>
-                </Card>
-                */
-
                  )
                })}
+
               <Card>
                 <ImageListItem sx={{height: '100% !important'}}>
                     <img src={"https://firebasestorage.googleapis.com/v0/b/shopping-list-wits.appspot.com/o/dairy%2Fdairy-butter.webp?alt=media&token=28723d23-d7e7-4612-9eb2-da550591f2b9"} style={{cursor:'pointer'}} loading="lazy"></img>
@@ -249,6 +216,9 @@ const Dairy = () => {
            <AddCircleIcon data-testid='add dairy to cart' onClick={addButterToCart}/>
        </Container>
        <NavBar/>
+       <ToastContainer 
+          newestOnTop
+        />
      </>
   )
 }

@@ -18,8 +18,10 @@
         "react-firebase-hooks": "^5.0.3",
         "react-icons": "^4.4.0",
         "react-mui-counter": "^1.0.9",
+        "react-notifications": "^1.7.4",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
+        "react-toastify": "^9.0.8",
         "web-vitals": "^2.1.4"
     },
     "jest": {

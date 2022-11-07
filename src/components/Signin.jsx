@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import ClickToCart from "../images/Logo.png"
-import {Alert} from "react-bootstrap";
+// import {Alert} from "react-bootstrap";
 import { Validate_SignIn } from '../contexts/AuthContext';
+import { AlertTitle } from '@mui/material';
+import { Alert } from '@mui/material';
+
 
 const Signin = () => {
 
@@ -58,10 +61,11 @@ const Signin = () => {
                     navigate('/categories');
                 }
                 else{
-                    alert("Veryify email");
+                    /*set error instead of alert */
+                    setError("Veryify email");
                     const delay = ms => new Promise(res => setTimeout(res, ms));
                     //wait 6 seconds
-                    await delay(6000);
+                    await delay(9000);
                     window.location.reload(false);
                 }
             }
@@ -84,12 +88,14 @@ const Signin = () => {
         </div>
 
         <div className='max-w-[700px] mx-auto my-16 p-4'>
-            <div id='errorDiv'>
-                <div className='text-white border border-error bg-error w-fit p-4 my-2'>
-                    {/* if there is an error, set a bootstrap alert with the error*/}
-                    {error && <Alert variant='danger'>{error}</Alert>}
-                </div>
-            </div>
+            {error && (
+                <Alert variant="filled" severity="error">
+                {error}
+                </Alert>
+                // <Alert severity="error">{error}</Alert>
+            )}
+            
+       
             <div>
                 <h1 data-testid="Sign-in-label" className='text-2xl font-bold py-2'>Sign in to your account</h1>
                 <p className='py-2'>
