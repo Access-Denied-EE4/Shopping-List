@@ -46,7 +46,8 @@
             "!src/components/Categories.jsx",
             "!src/components/Signin.jsx",
             "!src/components/HomeCart.jsx",
-            "!src/components/Welcome.jsx"
+            "!src/components/Welcome.jsx",
+            "!src/components/NavBar.jsx"
         ]
     },
     "scripts": {
