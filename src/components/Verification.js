@@ -5,6 +5,8 @@ import { sendEmailVerification } from 'firebase/auth';
 import {Close} from '@mui/icons-material'
 import {useNavigate } from 'react-router-dom';
 import {Card, Form} from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Verification = () => {
 
@@ -18,6 +20,14 @@ const Verification = () => {
 
     //get a refrnece to our routing via navigate
     const navigate=useNavigate();
+
+    const notify=()=>{
+
+        toast("Verification Email Sent",{
+        autoClose: 3500,
+        theme: "dark",
+        });
+    }
 
     //handle waiting for user to verify email
     //async funcrion to allow await
@@ -49,8 +59,8 @@ const Verification = () => {
             //send the verification email
         try{
             await sendEmailVerification(user);
-            console.log("Successfully sent email");
-            console.log(user.email);
+            notify();
+            //notifys user of addigt to cart
             //naviagte back to sign in page
             //navigate('/');
         }catch(e){
@@ -63,8 +73,8 @@ const Verification = () => {
     }
 
   return (
-    //if user has not verified the account, show this.
-   ( user?.emailVerified===false || user?.emailVerified===undefined) &&(
+    <>
+   {( user?.emailVerified===false || user?.emailVerified===undefined) &&(
         <div className='max-w-[700px] mx-auto my-16 p-4'>
             <div>
                 <h1 className='text-2xl font-bold py-2 text-center'>Please verify your account to complete Sign up!</h1>
@@ -79,7 +89,9 @@ const Verification = () => {
         </div>
 
 
-    )
+    )}
+    <ToastContainer newestOnTop />
+    </>
   )
 }
 

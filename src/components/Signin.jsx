@@ -56,18 +56,18 @@ const Signin = () => {
                 await signIn(email,password);
 
                 //upon log in, redirect to account page
-                if(user.emailVerified)
-                {
+                //if(user.emailVerified)
+                //{
                     navigate('/categories');
-                }
-                else{
-                    /*set error instead of alert */
-                    setError("Veryify email");
-                    const delay = ms => new Promise(res => setTimeout(res, ms));
-                    //wait 6 seconds
-                    await delay(9000);
-                    window.location.reload(false);
-                }
+                //}
+                // else{
+                //     /*set error instead of alert */
+                //     setError("Veryify email");
+                //     const delay = ms => new Promise(res => setTimeout(res, ms));
+                //     //wait 6 seconds
+                //     await delay(9000);
+                //     window.location.reload(false);
+                // }
             }
 
             }catch(e){
